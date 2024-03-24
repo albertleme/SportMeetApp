@@ -10,7 +10,7 @@ import {
     SubmitText
 } from '../SignIn/styles';
 
-export default function SignUp(){
+export default function ForgotPassword(){
     return(
         <Background>
             <Container
@@ -19,28 +19,27 @@ export default function SignUp(){
             >
                 <AreaInput>
                     <Input
-                        placeholder="Nome"
-                    />
-                </AreaInput>
-                <AreaInput>
-                    <Input
                         placeholder="E-mail"
                     />
                 </AreaInput>
-                <AreaInput>
-                    <Input
-                        placeholder="Senha"
-                    />
-                </AreaInput>
-                <AreaInput>
-                    <Input
-                        placeholder="Confirmar Senha"
-                        
-                    />
-                </AreaInput>
                 <SubmitButton>
-                    <SubmitText>Cadastrar</SubmitText>
+                    <SubmitText>Enviar Código</SubmitText>
                 </SubmitButton>
+                <AreaInput>
+                    <Input
+                        placeholder="Código"
+                    />
+                </AreaInput>
+                <AreaInput>
+                    <Input
+                        placeholder="Nova Senha"
+                    />
+                </AreaInput>
+                <AreaInput>
+                    <Input
+                        placeholder="Confirmar Nova Senha"
+                    />
+                </AreaInput>
             </Container>
         </Background>
     )

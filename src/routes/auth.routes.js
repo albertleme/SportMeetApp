@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import ForgotPassword from "../pages/ForgotPassword";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -11,13 +12,41 @@ function AuthRoutes() {
     return (
         <AuthStack.Navigator>
             <AuthStack.Screen
-                name="SignIn"
+                name="Sign In"
                 component={SignIn}
+                options={{
+                    headerShown: false
+                }}
             />
 
             <AuthStack.Screen
-                name="SignUp"
+                name="Sign Up"
                 component={SignUp}
+                options={{
+                    headerStyle:{
+                        backgroundColor: '#3B3DBF',
+                        borderBottomWidth: 1,
+                        borderBottomColor: '#00B94A',
+                    },
+                    headerTintColor: '#FFF',
+                    headerTitle: 'Voltar',
+                    headerBackTitleVisible: false,
+                }}
+            />
+
+<AuthStack.Screen
+                name="Forgot Password"
+                component={ForgotPassword}
+                options={{
+                    headerStyle:{
+                        backgroundColor: '#3B3DBF',
+                        borderBottomWidth: 1,
+                        borderBottomColor: '#00B94A',
+                    },
+                    headerTintColor: '#FFF',
+                    headerTitle: 'Voltar',
+                    headerBackTitleVisible: false,
+                }}
             />
         </AuthStack.Navigator>
     )

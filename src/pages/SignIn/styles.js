@@ -1,20 +1,19 @@
 import styled from "styled-components/native";
 
 export const Background = styled.View`
-    flex:1;
-    background-color: #FFF;
-    justify-content: center;
-    align-itens: center;
+    flex: 1;
+    background-color: #F0F4FF;
 `;
 
 export const Container = styled.KeyboardAvoidingView`
     flex:1;
-    align-itens:center;
+    align-items:center;
     justify-content:center;
+    
 `;
 
 export const Logo = styled.Image`
-    maring-bottom: 25px;
+    margin-bottom: 25px;
 `;
 
 export const AreaInput = styled.View`
@@ -37,8 +36,9 @@ export const SubmitButton = styled.TouchableOpacity`
     border-radius: 8px;
     background-color: #3B3BBF;
     margin-top: 10px;
-    align-itens: center;
+    align-items:center;
     justify-content: center;
+    margin-bottom: 15px;
 `;
 
 export const SubmitText = styled.Text`

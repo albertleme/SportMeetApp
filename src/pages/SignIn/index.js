@@ -28,7 +28,7 @@ export default function SignIn(){
                 enabled
             >
                 <Logo
-                    source={require('../../assets/unnamed.jpg')}
+                    source={require('../../assets/logo.png')}
                 />
 
                 <AreaInput>
@@ -43,11 +43,15 @@ export default function SignIn(){
                     />
                 </AreaInput>
 
+                <Link onPress={() => navigation.navigate('Forgot Password')}>
+                    <Linktext>Esqueci minha senha</Linktext>
+                </Link>
+
                 <SubmitButton activeOpacity={0.7}>
                     <SubmitText>Acessar</SubmitText>
                 </SubmitButton>
 
-                <Link onPress={() => navigation.navigate('SignUp')}>
+                <Link onPress={() => navigation.navigate('Sign Up')}>
                     <Linktext>Crie sua conta</Linktext>
                 </Link>
             </Container>
