@@ -1,6 +1,5 @@
 import React, {useContext, useState, useEffect} from "react";
 import {Platform} from 'react-native';
-import axios from "axios";
 
 import {
     Background,
@@ -15,14 +14,20 @@ import { AuthContext } from "../../contexts/auth";
 
 export default function SignUp(){
 
-    const{signUp} = useContext(AuthContext)
+    const{user} = useContext(AuthContext)
     const[nome, setNome]=useState('');
     const[email, setEmail]=useState('');
     const[password, setPassword]=useState('');
     const [] = useState();
     
     function handleSignUp(){
-        signUp(email, password, nome);
+        setNome(nome);
+        setPassword(password);
+        setEmail(email);
+        console.log(user.nome);
+        console.log(nome);
+        console.log(email);
+        console.log(password);
     }
 
     return(

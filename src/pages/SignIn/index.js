@@ -40,6 +40,7 @@ export default function SignIn(){
                 <AreaInput>
                     <Input
                         placeholder="Sua Senha"
+                        secureTextEntry={true}
                     />
                 </AreaInput>
 

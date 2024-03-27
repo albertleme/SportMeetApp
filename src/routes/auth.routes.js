@@ -23,7 +23,7 @@ function AuthRoutes() {
                 name="Sign Up"
                 component={SignUp}
                 options={{
-                    headerStyle:{
+                    headerStyle: {
                         backgroundColor: '#3B3DBF',
                         borderBottomWidth: 1,
                         borderBottomColor: '#00B94A',
@@ -34,11 +34,11 @@ function AuthRoutes() {
                 }}
             />
 
-<AuthStack.Screen
+            <AuthStack.Screen
                 name="Forgot Password"
                 component={ForgotPassword}
                 options={{
-                    headerStyle:{
+                    headerStyle: {
                         backgroundColor: '#3B3DBF',
                         borderBottomWidth: 1,
                         borderBottomColor: '#00B94A',
