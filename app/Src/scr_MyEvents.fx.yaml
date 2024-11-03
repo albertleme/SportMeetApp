@@ -1,0 +1,526 @@
+scr_MyEvents As screen:
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =ClearCollect(
+            colMyEvents,
+            Filter(
+                tbEvent,
+                ID = LookUp(
+                    tbParticipants,
+                    ID_Solicitante = gbl_varUser.ID,
+                    ID_Evento
+                ) Or ID_CriadorEvento = gbl_varUser.ID
+            )
+        );
+        ClearCollect(
+            colParticipants,
+            Filter(
+                tbParticipants,
+                ID_Aprovador = gbl_varUser.ID,
+                Status.Value = "Em espera"
+            )
+        )
+
+    cnt_ContentMenu_2 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Regular
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: |-
+            =Switch(
+                scr_Login.Size,
+                1,
+                Parent.Width,
+                2,
+                Parent.Width,
+                3,
+                Parent.Width,
+                4,
+                640
+            )
+        X: =Parent.Width/2-Self.Width/2
+        ZIndex: =1
+
+        Container32_4 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(5, 102, 178, 1)
+            FillPortions: =0
+            Height: =100
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =1
+
+            Icon10_4 As icon.ChevronLeft:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.ArrowLeft
+                OnSelect: =Navigate(scr_Home,ScreenTransition.Fade)
+                PaddingBottom: =20
+                PaddingLeft: =20
+                PaddingRight: =20
+                PaddingTop: =20
+                Width: =Parent.Height
+                ZIndex: =1
+
+            TextCanvas7_4 As Text:
+                DisplayMode: =DisplayMode.Edit
+                FillPortions: =1
+                FontColor: =RGBA(255, 255, 255, 1)
+                Height: =Parent.Height
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =26
+                Text: |-
+                    ="Meus Eventos
+                    "
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+        "glr_Requests As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            BorderColor: =App.Theme.Colors.Darker40
+            DelayItemLoading: =true
+            Height: =Parent.Height
+            Items: =colMyEvents
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Data
+            OnSelect: |-
+                =Set(varSelectedEvent,ThisItem);
+                UpdateContext(
+                    {
+                        varEvento: ThisItem
+                    }
+                );
+                Navigate(
+                    scr_Event,
+                    ScreenTransition.Fade
+                )
+            ShowScrollbar: =false
+            TemplatePadding: =30
+            TemplateSize: =300
+            Width: =Parent.Width
+            ZIndex: =4
+
+            btn_SelectEvent As button:
+                BorderColor: =App.Theme.Colors.Primary
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =0
+                Color: =
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =0
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =App.Theme.Colors.PrimaryForeground
+                HoverFill: =App.Theme.Colors.Darker10
+                OnSelect: |-
+                    =Select(Parent);
+                    Set(varEvent,ThisItem)
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Size: =24
+                Text: =
+                Width: =580
+                Y: =Parent.TemplateHeight-Self.Height
+                ZIndex: =7
+
+            Container19 As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.Semibold
+                Height: =Parent.TemplateHeight
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.TemplateWidth
+                ZIndex: =8
+
+                Container34 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =Parent.Height/4
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    Image4 As image:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Height: =Parent.Height
+                        Image: =LookUp(tbSports,ThisItem.Esporte.Id=ID,Icone)
+                        LayoutMinHeight: =320
+                        LayoutMinWidth: =320
+                        OnSelect: =
+                        PaddingBottom: =15
+                        PaddingLeft: =15
+                        PaddingRight: =12
+                        PaddingTop: =15
+                        Width: =Self.Height-10
+                        X: =120
+                        Y: =135
+                        ZIndex: =1
+
+                    "TextInputCanvas2 As 'Text input'":
+                        Appearance: ='TextInputCanvas.Appearance'.FilledLighter
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        FontSize: =24
+                        FontWeight: =FontWeight.Normal
+                        Height: =Parent.Height
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        Value: =ThisItem.TituloEvento
+                        Width: =320
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    Icon15 As icon.ArrowRight:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =App.Theme.Colors.Darker30
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Height: =Parent.Height
+                        Icon: =Icon.ArrowRight
+                        OnSelect: |-
+                            =Set(varEvent,ThisItem);
+                            Navigate(scr_Event,ScreenTransition.Fade)
+                        PaddingBottom: =20
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =20
+                        Width: =Self.Height
+                        ZIndex: =3
+
+                Container29_1 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =Parent.Height/4
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    Y: =64
+                    ZIndex: =2
+
+                    Icon8_1 As icon.CalendarBlank:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(12, 59, 94, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Height: =Parent.Height
+                        Icon: =Icon.CalendarBlank
+                        PaddingBottom: =15
+                        PaddingLeft: =15
+                        PaddingRight: =15
+                        PaddingTop: =15
+                        Width: =Self.Height-10
+                        ZIndex: =1
+
+                    TextCanvas4_5 As Text:
+                        AutoHeight: =false
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        Height: =Parent.Height
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        PaddingLeft: =5
+                        Size: =26
+                        Text: =Text(ThisItem.DataHorarioEvento,"dd/mm/yyyy")
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    Icon11_1 As icon.Clock:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(12, 59, 94, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Height: =Parent.Height
+                        Icon: =Icon.Clock
+                        PaddingBottom: =15
+                        PaddingLeft: =15
+                        PaddingRight: =15
+                        PaddingTop: =15
+                        Width: =Self.Height-10
+                        ZIndex: =3
+
+                    TextCanvas4_6 As Text:
+                        AutoHeight: =false
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        Height: =Parent.Height
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        PaddingLeft: =5
+                        Size: =26
+                        Text: |-
+                            =Text(ThisItem.DataHorarioEvento,"hh:mm")
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =4
+
+                Container28_1 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =Parent.Height/4
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    Y: =128
+                    ZIndex: =3
+
+                    Icon7_1 As icon.Map:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(12, 59, 94, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Height: =Parent.Height
+                        Icon: =Icon.Location
+                        PaddingBottom: =16
+                        PaddingLeft: =16
+                        PaddingRight: =16
+                        PaddingTop: =16
+                        Width: =Self.Height-10
+                        ZIndex: =1
+
+                    TextCanvas4_2 As Text:
+                        AutoHeight: =false
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        Height: =Parent.Height
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        PaddingLeft: =5
+                        Size: =26
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                Container28_2 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =Parent.Height/4
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    Y: =Container28_1.Y+Container28_1.Height
+                    ZIndex: =4
+
+                    Label12_1 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =
+                        Width: =10
+                        ZIndex: =1
+
+                    Container14 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.Regular
+                        FillPortions: =0
+                        Height: =Parent.Height-10
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =999
+                        RadiusBottomRight: =999
+                        RadiusTopLeft: =999
+                        RadiusTopRight: =999
+                        Width: =Self.Height
+                        ZIndex: =2
+
+                        Image6 As image:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayMode: =DisplayMode.View
+                            Height: =Parent.Height
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,FotoPerfil),SampleImage)
+                            ImagePosition: =ImagePosition.Fill
+                            Width: =Self.Height
+                            ZIndex: =1
+
+                    Label8 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FillPortions: =1
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =0
+                        PaddingLeft: =12
+                        Size: =21
+                        Text: =LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,Nome)
+                        Width: =560
+                        ZIndex: =3
+
+                    Icon12 As icon.Cancel:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: |-
+                            =Switch(
+                                Self.Icon,
+                                Icon.Airplane,
+                                Color.Blue,
+                                Icon.CheckBadge,
+                                Color.Green,
+                                Icon.CancelBadge,
+                                Color.Red
+                            )
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Height: =Parent.Height
+                        Icon: |-
+                            =Switch(
+                                LookUp(
+                                    tbParticipants,
+                                    ID_Solicitante = gbl_varUser.ID And ID_Evento = ThisItem.ID,
+                                    Status.Value
+                                ),
+                                "Em espera",
+                                Icon.Airplane,
+                                "Aprovado",
+                                Icon.CheckBadge,
+                                "Rejeitado",
+                                Icon.CancelBadge
+                            )
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        Tooltip: |-
+                            =Switch(
+                                Self.Icon,
+                                Icon.Airplane,
+                                "Em Espera",
+                                Icon.CheckBadge,
+                                "Aprovado",
+                                Icon.CancelBadge,
+                                "Rejeitado"
+                            )
+                        Visible: =If(ThisItem.ID_CriadorEvento=gbl_varUser.ID,false,true)
+                        ZIndex: =4
+
+                    Container26 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderStyle: =BorderStyle.None
+                        DropShadow: =DropShadow.Semibold
+                        Fill: =RGBA(255, 0, 0, 1)
+                        FillPortions: =0
+                        Height: =Parent.Height-30
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =999
+                        RadiusBottomRight: =999
+                        RadiusTopLeft: =999
+                        RadiusTopRight: =999
+                        Visible: |-
+                            =If(
+                                CountRows(
+                                    Filter(
+                                        colParticipants,
+                                        ID_Evento = ThisItem.ID,
+                                        Status.Value = "Em espera"
+                                    )
+                                )=0,
+                                false,
+                                true
+                            )
+                        Width: =Self.Height
+                        ZIndex: =5
+
+                        Label10 As label:
+                            Align: =Align.Center
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(255, 255, 255, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height
+                            OnSelect: =
+                            Size: =13
+                            Text: |-
+                                =CountRows(
+                                    Filter(
+                                        colParticipants,
+                                        ID_Evento = ThisItem.ID,
+                                        Status.Value = "Em espera"
+                                    )
+                                )
+                            Tooltip: |-
+                                =Switch(
+                                    Value(Self.Text),
+                                    1,
+                                    "Há " & Self.Text & " pedido de participação nesse evento",
+                                    "Há " & Self.Text & " pedidos de participação nesse evento"
+                                )
+                            Width: =Parent.Width
+                            ZIndex: =1
+
+                        Button1 As button:
+                            BorderColor: =
+                            BorderStyle: =BorderStyle.None
+                            BorderThickness: =0
+                            Color: =
+                            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                            DisabledColor: =RGBA(0, 0, 0, 0)
+                            DisabledFill: =RGBA(0, 0, 0, 0)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =Parent.Height
+                            HoverBorderColor: =
+                            HoverColor: =
+                            HoverFill: =
+                            OnSelect: |-
+                                =Set(varEvent,ThisItem);
+                                Navigate(scr_Requisitions,ScreenTransition.Fade)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            PressedBorderColor: =
+                            PressedColor: =
+                            PressedFill: =
+                            Size: =24
+                            Text: =
+                            Width: =Parent.Width
+                            ZIndex: =2
+
+                    Label12 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =
+                        Width: =10
+                        ZIndex: =6
+

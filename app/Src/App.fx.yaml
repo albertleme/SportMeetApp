@@ -1,0 +1,13 @@
+App As appinfo:
+    BackEnabled: =true
+    OnStart: =
+    StartScreen: =scr_Login
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

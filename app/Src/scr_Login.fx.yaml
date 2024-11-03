@@ -1,0 +1,316 @@
+scr_Login As screen:
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    Rectangle1 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =App.Height
+        Width: =App.Width
+        ZIndex: =1
+
+    cnt_Screen_Login As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Regular
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =App.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =16
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =16
+        PaddingLeft: =16
+        PaddingRight: =16
+        PaddingTop: =16
+        Width: |-
+            =Switch(
+                scr_Login.Size,
+                1,
+                Parent.Width,
+                2,
+                Parent.Width,
+                3,
+                Parent.Width,
+                4,
+                640
+            )
+        X: =Parent.Width/2-Self.Width/2
+        ZIndex: =2
+
+        cnt_Logo As groupContainer.horizontalAutoLayoutContainer:
+            Height: =225
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =2
+
+            img_Logo As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                FillPortions: =1
+                Height: =Parent.Height
+                Image: =logo
+                LayoutMinHeight: =320
+                LayoutMinWidth: =320
+                Width: =512
+                X: =64
+                Y: =56
+                ZIndex: =1
+
+        cnt_Main_Login As groupContainer.verticalAutoLayoutContainer:
+            Height: =225
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =3
+
+            cnt_User As groupContainer.manualLayoutContainer:
+                FillPortions: =0
+                Height: =130
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                ZIndex: =1
+
+                "txt_User As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =RGBA(168, 110, 235, 1)
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =Font.Lato
+                    FontColor: =
+                    FontSize: =26
+                    Height: =64
+                    Placeholder: ="Endereço de e-mail"
+                    TriggerOutput: ="Focus"
+                    Width: =lbl_User.Width
+                    X: =lbl_User.X
+                    Y: =lbl_User.Y+lbl_User.Height+6
+                    ZIndex: =1
+
+                lbl_User As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =Font.Lato
+                    FontColor: =
+                    Height: =40
+                    Size: =28
+                    Text: ="Login"
+                    VerticalAlign: ='TextCanvas.VerticalAlign'.Bottom
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width-64
+                    X: =32
+                    Y: =16
+                    ZIndex: =2
+
+            cnt_Password As groupContainer.manualLayoutContainer:
+                FillPortions: =0
+                Height: =170
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                ZIndex: =2
+
+                "txt_Password As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =RGBA(168, 110, 235, 1)
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =Font.Lato
+                    FontColor: =
+                    FontSize: =26
+                    Height: =64
+                    Placeholder: ="Insira sua senha"
+                    TriggerOutput: ="Focus"
+                    Type: ='TextInputCanvas.Type'.Password
+                    Width: =lbl_Password.Width
+                    X: =lbl_Password.X
+                    Y: =lbl_Password.Y+lbl_Password.Height+6
+                    ZIndex: =1
+
+                lbl_Password As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    Font: =Font.Lato
+                    FontColor: =
+                    Height: =40
+                    Size: =28
+                    Text: ="Senha"
+                    VerticalAlign: ='TextCanvas.VerticalAlign'.Bottom
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width-64
+                    X: =32
+                    Y: =16
+                    ZIndex: =2
+
+                lbl_PasswordError As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =RGBA(255, 0, 0, 1)
+                    Height: =34
+                    Size: =24
+                    Text: ="Usuário ou senha incorreta!"
+                    Visible: =varLoginError
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =txt_Password.Width
+                    X: =32
+                    Y: =txt_Password.Y+txt_Password.Height+6
+                    ZIndex: =3
+
+            cnt_ButtonsLogin As groupContainer.manualLayoutContainer:
+                Height: =120
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                ZIndex: =3
+
+                btn_ForgotPassword As Button:
+                    Align: =Align.Center
+                    Appearance: ='ButtonCanvas.Appearance'.Transparent
+                    BasePaletteColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.Lato
+                    FontColor: =RGBA(53, 61, 63, 1)
+                    FontSize: =26
+                    FontWeight: =FontWeight.Normal
+                    Height: =32
+                    IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                    OnSelect: =Navigate(scr_ForgotPassword,ScreenTransition.Fade)
+                    Text: ="Esqueci minha senha"
+                    Width: =txt_Password.Width
+                    X: =33
+                    Y: =btn_Login.Y+btn_Login.Height+12
+                    ZIndex: =1
+
+                btn_CreateAccount As Button:
+                    Align: =Align.Center
+                    Appearance: ='ButtonCanvas.Appearance'.Transparent
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.Lato
+                    FontColor: =RGBA(53, 61, 63, 1)
+                    FontSize: =26
+                    FontWeight: =FontWeight.Normal
+                    Height: =32
+                    IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                    OnSelect: |-
+                        =NewForm(frm_CreateUser);
+                        Navigate(scr_CreateAccount,ScreenTransition.Fade)
+                    Text: ="Criar Nova Conta"
+                    Width: =txt_Password.Width
+                    X: =32
+                    Y: =16
+                    ZIndex: =2
+
+                btn_Login As Button:
+                    BasePaletteColor: =RGBA(5, 102, 178, 1)
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.Lato
+                    FontSize: =26
+                    Height: =64
+                    OnSelect: |-
+                        =UpdateContext({varLoadingSpinner:true});
+                        If(
+                            txt_Password.Value = First(
+                                Filter(
+                                    tbUsers,
+                                    Email = txt_User.Value
+                                )
+                            ).Senha,
+                            UpdateContext({varLoginError: false}) + Navigate(scr_Home) + Set(
+                                gbl_varUser,
+                                First(
+                                    Filter(
+                                        tbUsers,
+                                        Email = txt_User.Value
+                                    )
+                                )
+                            ) + Reset(txt_User) + Reset(txt_Password),
+                            UpdateContext({varLoginError: true})
+                        );
+                        UpdateContext({varLoadingSpinner:false});
+                    Text: ="Login"
+                    Width: =Parent.Width-64
+                    X: =33
+                    Y: =btn_CreateAccount.Y+btn_CreateAccount.Height+12
+                    ZIndex: =3
+
+    img_LoadingSpinner_CreateAccount_2 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(255, 255, 255, 0.2)
+        Height: =cnt_Screen_Login.Height
+        Image: |-
+            ="data:image/svg+xml;utf8, " & 
+            EncodeUrl("
+            <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='25px' height='25px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50' xml:space='preserve'>
+                <path fill='#0566b2' d='M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z' transform='rotate(275.098 25 25)'>
+                    <animateTransform attributeType='xml' attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='1.0s' repeatCount='indefinite'></animateTransform>
+                </path>
+            </svg>
+            ")
+            
+            
+            /*
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-pink-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            
+            */
+        PaddingBottom: =200
+        PaddingLeft: =200
+        PaddingRight: =200
+        PaddingTop: =200
+        Visible: =varLoadingSpinner
+        Width: =cnt_Screen_Login.Width
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =3
+

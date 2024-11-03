@@ -1,0 +1,941 @@
+scr_Home As screen:
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =UpdateContext({varLoadingSpinner: true});
+        UpdateContext({varLoadingSpinner: false})
+
+    cnt_ContentMenu As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Regular
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: |-
+            =Switch(
+                scr_Home.Size,
+                1,
+                Parent.Width,
+                2,
+                Parent.Width,
+                3,
+                Parent.Width,
+                4,
+                640
+            )
+        X: =Parent.Width/2-Self.Width/2
+        ZIndex: =2
+
+        cnt_Header As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(39, 113, 194, 1)
+            FillPortions: =0
+            Height: =100
+            LayoutGap: =16
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Width: =Parent.Width
+            ZIndex: =1
+
+            Container33_1 As groupContainer.manualLayoutContainer:
+                FillPortions: =0
+                Height: =225
+                LayoutMinHeight: =0
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =68
+                ZIndex: =1
+
+                Icon14 As icon.Leave:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =Parent.Height
+                    Icon: =Icon.Leave
+                    OnSelect: |-
+                        =UpdateContext({varSair:true})
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    Tooltip: ="Sair"
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+            Container33 As groupContainer.manualLayoutContainer:
+                Height: =225
+                LayoutMinHeight: =0
+                LayoutMinWidth: =225
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =2
+
+                TextCanvas5 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =RGBA(255, 255, 255, 1)
+                    Height: =Parent.Height
+                    Size: =30
+                    Text: ="SportMeet App"
+                    Weight: ='TextCanvas.Weight'.Bold
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+            cnt_Filter As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Regular
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =0
+                Height: =225
+                LayoutMinHeight: =0
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =40
+                RadiusBottomRight: =40
+                RadiusTopLeft: =40
+                RadiusTopRight: =40
+                Width: =Self.Height
+                ZIndex: =4
+
+                icoFilter As icon.OptionsList:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(53, 61, 63, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =Parent.Height
+                    Icon: =Icon.OptionsList
+                    OnSelect: |-
+                        =UpdateContext({varFilters: true});
+                        If(
+                            glr_SportFilter.Selected.NomeEsporte = drp_Sport_Home.Selected.NomeEsporte,
+                            Blank(),
+                            Reset(drp_Sport_Home)
+                        )
+                    PaddingBottom: =20
+                    PaddingLeft: =20
+                    PaddingRight: =20
+                    PaddingTop: =20
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+        cnt_SportFilter As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =130
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =2
+
+            "glr_SportFilter As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
+                BorderColor: =App.Theme.Colors.Darker40
+                Default: =Coalesce(drp_Sport_Home.Selected,Blank())
+                DelayItemLoading: =true
+                Height: =Parent.Height
+                Items: =tbSports
+                LayoutMinHeight: =0
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: =true
+                ShowScrollbar: =false
+                TemplateSize: =140
+                Width: =Parent.Width
+                ZIndex: =1
+
+                img_SportIcon As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =75
+                    Image: =ThisItem.Icone
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =1
+
+                lbl_SportName As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =Font.Lato
+                    FontColor: =RGBA(39, 113, 194, 1)
+                    Height: =45
+                    Size: =26
+                    Text: =ThisItem.NomeEsporte
+                    Weight: =If(ThisItem.IsSelected,'TextCanvas.Weight'.Semibold,'TextCanvas.Weight'.Regular)
+                    Width: =Parent.TemplateWidth
+                    Wrap: =false
+                    X: =0
+                    Y: =75
+                    ZIndex: =2
+
+                fig_SportActive As rectangle:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Fill: =RGBA(39, 113, 194, 1)
+                    Height: =5
+                    OnSelect: =Select(Parent)
+                    Visible: =If(ThisItem.IsSelected,true,false)
+                    Width: =Parent.TemplateWidth-24
+                    X: =Parent.TemplateWidth/2-Self.Width/2
+                    Y: =115
+                    ZIndex: =3
+
+        "glr_Events As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            BorderColor: =App.Theme.Colors.Darker40
+            DelayItemLoading: =true
+            Height: =Parent.Height
+            Items: |-
+                =Filter(
+                    tbEvent,
+                    Esporte.Value = glr_SportFilter.Selected.NomeEsporte,
+                    ID_CriadorEvento <> gbl_varUser.ID
+                )
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Data
+            OnSelect: |-
+                =Set(
+                    varEvent,
+                    ThisItem
+                );
+                UpdateContext(
+                    {
+                        varEvento: ThisItem
+                    }
+                );
+                Navigate(
+                    scr_Event,
+                    ScreenTransition.Fade
+                )
+            ShowScrollbar: =false
+            TemplatePadding: =30
+            TemplateSize: =220
+            Width: =Parent.Width
+            ZIndex: =3
+
+            cnt_Event As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.Semibold
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =Parent.TemplateHeight
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.TemplateWidth
+                ZIndex: =1
+
+                cnt_EventHeader As groupContainer.horizontalAutoLayoutContainer:
+                    Height: |
+                        =64
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =580
+                    ZIndex: =1
+
+                    Image8 As image:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(255, 255, 255, 1)
+                        Height: =Parent.Height
+                        Image: =LookUp(tbSports,NomeEsporte=ThisItem.Esporte.Value,Icone)
+                        LayoutMinHeight: =320
+                        LayoutMinWidth: =320
+                        OnSelect: =Select(btn_Home)
+                        PaddingBottom: =15
+                        PaddingLeft: =15
+                        PaddingRight: =15
+                        PaddingTop: =15
+                        Width: =Self.Height
+                        ZIndex: =1
+
+                    Label3 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(53, 61, 63, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        OnSelect: =Select(btn_Home)
+                        Size: =21
+                        Text: =ThisItem.TituloEvento
+                        Width: =560
+                        ZIndex: =3
+
+                cnt_EventDate As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =64
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    ZIndex: =2
+
+                    Icon8 As icon.CalendarBlank:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Height: =Parent.Height
+                        Icon: =Icon.CalendarBlank
+                        PaddingBottom: =15
+                        PaddingLeft: =15
+                        PaddingRight: =15
+                        PaddingTop: =15
+                        ZIndex: =1
+
+                    Label5 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(53, 61, 63, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =Text(ThisItem.DataHorarioEvento,"dd/mm/yyyy")
+                        Width: =560
+                        ZIndex: =2
+
+                    Icon11 As icon.Clock:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Height: =Parent.Height
+                        Icon: =Icon.Clock
+                        PaddingBottom: =15
+                        PaddingLeft: =15
+                        PaddingRight: =15
+                        PaddingTop: =15
+                        ZIndex: =4
+
+                    Label5_1 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(53, 61, 63, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: |-
+                            =Text(ThisItem.DataHorarioEvento,"hh:mm")
+                        Width: =560
+                        ZIndex: =6
+
+                cnt_EventCreator As groupContainer.horizontalAutoLayoutContainer:
+                    Height: |
+                        =64
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =6
+                    PaddingLeft: =6
+                    PaddingRight: =6
+                    PaddingTop: =6
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    ZIndex: =3
+
+                    Container14_1 As groupContainer.manualLayoutContainer:
+                        DropShadow: =DropShadow.Semilight
+                        FillPortions: =0
+                        Height: =Parent.Height
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =999
+                        RadiusBottomRight: =999
+                        RadiusTopLeft: =999
+                        RadiusTopRight: =999
+                        Width: =Self.Height
+                        ZIndex: =1
+
+                        Image6_1 As image:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =Parent.Height
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,FotoPerfil),SampleImage)
+                            ImagePosition: =ImagePosition.Fill
+                            Width: =Self.Height
+                            ZIndex: =1
+
+                    Label5_2 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(53, 61, 63, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FillPortions: =1
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height-10
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =0
+                        PaddingLeft: =15
+                        Size: =21
+                        Text: =LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,Nome)
+                        Width: =560
+                        ZIndex: =3
+
+            btn_Home As Button:
+                BasePaletteColor: =RGBA(5, 102, 178, 1)
+                DisplayMode: =DisplayMode.Edit
+                Height: =0
+                OnSelect: =Select(Parent)
+                Text: =
+                Width: =580
+                X: =0
+                Y: =220
+                ZIndex: =3
+
+            cnt_FullEvent As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.TemplateHeight
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Visible: |-
+                    =If(
+                        CountRows(
+                            Filter(
+                                tbParticipants,
+                                Value(ID_Evento) = Value(ThisItem.ID)
+                            )
+                        ) = ThisItem.QtdParticipantes,
+                        true,
+                        false
+                    )
+                Width: =Parent.TemplateWidth
+                ZIndex: =4
+
+                rct_FullEvent As rectangle:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Fill: =RGBA(255, 255, 255, 0.6)
+                    Height: =Parent.Height
+                    OnSelect: =
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+            Icon6 As icon.ArrowRight:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(39, 113, 194, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Icon: =Icon.ArrowRight
+                OnSelect: =Select(Parent)
+                PaddingBottom: =12
+                PaddingLeft: =12
+                PaddingRight: =12
+                PaddingTop: =12
+                X: =516
+                ZIndex: =5
+
+        txt_NoEvents As Text:
+            Align: ='TextCanvas.Align'.Center
+            AlignInContainer: =AlignInContainer.Center
+            AutoHeight: =true
+            DisplayMode: =DisplayMode.Edit
+            FillPortions: =1
+            FontColor: =RGBA(139, 154, 159, 1)
+            Height: |
+                =45
+            LayoutMinHeight: =32
+            LayoutMinWidth: =96
+            PaddingBottom: =30
+            PaddingLeft: =30
+            PaddingRight: =30
+            PaddingTop: =30
+            Size: =26
+            Text: |-
+                =If(
+                    CountRows(glr_Events.AllItems) = 0,
+                    "Nenhum evento encontrado",
+                    If(
+                        CountRows(glr_Events.AllItems) = 1,
+                        "Apenas " & CountRows(glr_Events.AllItems) & " evento encontrado",
+                        If(
+                            CountRows(glr_Events.AllItems) > 1,
+                            CountRows(glr_Events.AllItems) & " eventos encontrados"
+                        )
+                    )
+                )
+            VerticalAlign: ='TextCanvas.VerticalAlign'.Top
+            Visible: =If(CountRows(glr_Events.AllItems)=0,true,false)
+            Weight: ='TextCanvas.Weight'.Regular
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =4
+
+        cnt_FooterMenu As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            FillPortions: =0
+            Height: =100
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            Width: =Parent.Width
+            ZIndex: =6
+
+            "glr_FooterMenu As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
+                BorderColor: =App.Theme.Colors.Darker40
+                DelayItemLoading: =true
+                Height: =Parent.Height
+                Items: =tbMenuItens
+                LayoutMinHeight: =0
+                LayoutMinWidth: =0
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: |-
+                    =Switch(
+                        ThisItem.ID,
+                        1,
+                        Navigate(
+                            scr_Home,
+                            ScreenTransition.Fade
+                        ),
+                        2,
+                        Navigate(
+                            scr_Event,
+                            ScreenTransition.Fade
+                        ) + ResetForm(frm_Event) + NewForm(frm_Event);
+                        ,
+                        3,
+                        Navigate(
+                            scr_MyEvents,
+                            ScreenTransition.Fade
+                        ),
+                        4,
+                        Navigate(
+                            scr_ChatMenu,
+                            ScreenTransition.Fade
+                        ),
+                        5,EditForm(frm_MyProfile)+
+                        Navigate(
+                            scr_MyProfile,
+                            ScreenTransition.Fade
+                        ),
+                        Blank()
+                    )
+                TemplatePadding: =0
+                TemplateSize: =Parent.Width/CountRows(tbMenuItens)
+                Transition: =Transition.Pop
+                Width: =Parent.Width
+                ZIndex: =1
+
+                ico_ItemMenuIcon As icon.Flag:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(106, 122, 127, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =60
+                    HoverColor: =RGBA(5, 102, 178, 1)
+                    Icon: =Switch(ThisItem.ID,1,Icon.Search,2,Icon.Add,3,Icon.CalendarBlank,4,Icon.Message,5,Icon.Person)
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =12
+                    PaddingLeft: =12
+                    PaddingRight: =12
+                    PaddingTop: =12
+                    PressedColor: =RGBA(5, 102, 178, 1)
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =1
+
+                "lbl_ItemMenuName As 'Text input'":
+                    Align: ="Center"
+                    Appearance: ='TextInputCanvas.Appearance'.FilledLighter
+                    BasePaletteColor: =RGBA(5, 102, 178, 1)
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.View
+                    Fill: =
+                    FontColor: =RGBA(106, 122, 127, 1)
+                    FontSize: =16
+                    FontWeight: ='TextCanvas.Weight'.Semibold
+                    Height: =39
+                    Value: =ThisItem.ItemName
+                    Width: =Parent.TemplateWidth
+                    X: =0
+                    Y: =60
+                    ZIndex: =2
+
+    Rectangle3 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(0, 0, 0, 0.4)
+        Height: =App.Height
+        OnSelect: |-
+            =UpdateContext({varFilters:false,varSair:false})
+        Visible: =varFilters Or varSair
+        Width: |-
+            =Switch(
+                scr_Login.Size,
+                1,
+                Parent.Width,
+                2,
+                Parent.Width,
+                3,
+                Parent.Width,
+                4,
+                640
+            )
+        X: =App.Width/2-Self.Width/2
+        ZIndex: =4
+
+    cnt_Filters As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.ExtraBold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =cnt_ContentMenu.Height*0.75
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusTopLeft: =24
+        RadiusTopRight: =24
+        Visible: =varFilters
+        Width: =cnt_ContentMenu.Width
+        X: =cnt_ContentMenu.X
+        Y: =cnt_ContentMenu.Height-Self.Height
+        ZIndex: =5
+
+        Container23 As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =80
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =2
+
+            Label4 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                LayoutMinWidth: =560
+                PaddingLeft: =24
+                Size: =24
+                Text: ="Filtros"
+                Width: =560
+                ZIndex: =1
+
+            Icon5 As icon.Reset:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(53, 61, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.Reset
+                PaddingBottom: =20
+                PaddingLeft: =20
+                PaddingRight: =20
+                PaddingTop: =20
+                Tooltip: ="Limpar Filtros"
+                Width: =Self.Height
+                ZIndex: =2
+
+        Container18 As groupContainer.manualLayoutContainer:
+            FillPortions: =0
+            Height: =128
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =3
+
+            DataCardKey5_1 As Text:
+                DisplayMode: =DisplayMode.Edit
+                Height: =44
+                Size: =28
+                Text: ="Esporte"
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =Parent.Width - 64
+                Wrap: =false
+                X: =32
+                Y: =16
+                ZIndex: =1
+
+            drp_Sport_Home As Dropdown.pcfdataset:
+                DisplayMode: =DisplayMode.Edit
+                FontSize: =26
+                Height: =64
+                Items: =tbSports
+                Width: =Parent.Width - 64
+                X: =DataCardKey5_1.X
+                Y: =DataCardKey5_1.Height+DataCardKey5_1.Y+4
+                ZIndex: =3
+
+                Título1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="Título"
+                    FieldName: ="Title"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =2
+                    ZIndex: =6
+
+                NomeEsporte1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="NomeEsporte"
+                    FieldName: ="NomeEsporte"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =1
+                    ZIndex: =7
+
+                QtdParticipantes1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="QtdParticipantes"
+                    FieldName: ="QtdParticipantes"
+                    FieldType: ="n"
+                    FieldVariantName: ="textualColumn"
+                    Order: =3
+                    ZIndex: =8
+
+                Icone1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="Icone"
+                    FieldName: ="Icone"
+                    FieldType: ="I"
+                    FieldVariantName: ="textualColumn"
+                    Order: =4
+                    ZIndex: =9
+
+                Anexos1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="Anexos"
+                    FieldName: ="{Attachments}"
+                    FieldType: ="r*"
+                    FieldVariantName: ="textualColumn"
+                    Order: =5
+                    ZIndex: =10
+
+        Container18_1 As groupContainer.manualLayoutContainer:
+            FillPortions: =0
+            Height: =128
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =4
+
+            DataCardKey5_2 As Text:
+                DisplayMode: =DisplayMode.Edit
+                Height: =44
+                Size: =28
+                Text: ="Data do Evento"
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =Parent.Width - 64
+                Wrap: =false
+                X: =32
+                Y: =16
+                ZIndex: =1
+
+            DatePickerCanvas1 As datepicker:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =0
+                CalendarHeaderFill: =App.Theme.Colors.Primary
+                Color: =RGBA(53, 61, 63, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(244, 244, 244, 1)
+                Font: =App.Theme.Font
+                Height: =64
+                HoverDateFill: =App.Theme.Colors.Lighter70
+                IconBackground: =App.Theme.Colors.Primary
+                IconFill: =App.Theme.Colors.PrimaryForeground
+                SelectedDateFill: =App.Theme.Colors.Primary
+                Size: =19
+                Width: =575
+                X: =DataCardKey5_1.X
+                Y: =DataCardKey5_1.Height+DataCardKey5_1.Y+4
+                ZIndex: =6
+
+        Container18_2 As groupContainer.manualLayoutContainer:
+            FillPortions: =0
+            Height: =128
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =5
+
+            DataCardKey5_3 As Text:
+                DisplayMode: =DisplayMode.Edit
+                Height: =44
+                Size: =28
+                Text: ="Apenas Eventos Públicos?"
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =Parent.Width - 64
+                Wrap: =false
+                X: =32
+                Y: =16
+                ZIndex: =1
+
+            Toggle1 As Toggle:
+                DisplayMode: =DisplayMode.Edit
+                FontSize: =26
+                Height: =64
+                Label: =If(Self.Checked,"Sim","Não")
+                OnCheck: =false
+                OnUncheck: =false
+                Width: =Parent.Width-64
+                X: =DataCardKey5_3.X
+                Y: =DataCardKey5_3.Height+DataCardKey5_3.Y+4
+                ZIndex: =2
+
+    img_LoadingSpinner_CreateAccount_3 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(255, 255, 255, 0.2)
+        Height: =cnt_Screen_Login.Height
+        Image: |-
+            ="data:image/svg+xml;utf8, " & 
+            EncodeUrl("
+            <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='25px' height='25px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50' xml:space='preserve'>
+                <path fill='#0566b2' d='M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z' transform='rotate(275.098 25 25)'>
+                    <animateTransform attributeType='xml' attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='1.0s' repeatCount='indefinite'></animateTransform>
+                </path>
+            </svg>
+            ")
+            
+            
+            /*
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-pink-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            
+            */
+        PaddingBottom: =200
+        PaddingLeft: =200
+        PaddingRight: =200
+        PaddingTop: =200
+        Visible: =varLoadingSpinner
+        Width: =cnt_Screen_Login.Width
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =6
+
+    cnt_ConfirmExit As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Bold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =225
+        RadiusBottomLeft: =8
+        RadiusBottomRight: =8
+        RadiusTopLeft: =8
+        RadiusTopRight: =8
+        Visible: =varSair
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =9
+
+        lbl_ConfirmarSaida As label:
+            Align: =Align.Center
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Font: =App.Theme.Font
+            Height: =112
+            Size: =21
+            Text: ="Deseja realmente sair?"
+            Width: =Parent.Width
+            ZIndex: =1
+
+        btn_RejeitarSaida As Button:
+            Align: =Align.Center
+            BasePaletteColor: =RGBA(249, 83, 109, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =22
+            Height: =55
+            OnSelect: |-
+                =UpdateContext({varSair:false})
+            Text: ="Não"
+            Width: =160
+            X: =53
+            Y: =112
+            ZIndex: =2
+
+        btn_ConfirmarSaida As Button:
+            Align: =Align.Center
+            BasePaletteColor: =RGBA(8, 222, 8, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =22
+            Height: =55
+            OnSelect: |-
+                =Set(gbl_varUser,Blank());
+                Navigate(scr_Login,ScreenTransition.Fade);
+                UpdateContext({varSair:false})
+            Text: ="Sim"
+            Width: =160
+            X: =286
+            Y: =112
+            ZIndex: =3
+

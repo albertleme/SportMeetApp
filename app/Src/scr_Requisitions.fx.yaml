@@ -1,0 +1,307 @@
+scr_Requisitions As screen:
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    cnt_ContentMenu_3 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Regular
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: |-
+            =Switch(
+                scr_Login.Size,
+                1,
+                Parent.Width,
+                2,
+                Parent.Width,
+                3,
+                Parent.Width,
+                4,
+                640
+            )
+        X: =Parent.Width/2-Self.Width/2
+        ZIndex: =1
+
+        Container32_5 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(5, 102, 178, 1)
+            FillPortions: =0
+            Height: =100
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =1
+
+            Icon10_5 As icon.ChevronLeft:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.ArrowLeft
+                OnSelect: =Navigate(scr_MyEvents,ScreenTransition.Fade)
+                PaddingBottom: =20
+                PaddingLeft: =20
+                PaddingRight: =20
+                PaddingTop: =20
+                Width: =Parent.Height
+                ZIndex: =1
+
+            TextCanvas7_5 As Text:
+                DisplayMode: =DisplayMode.Edit
+                FillPortions: =1
+                FontColor: =RGBA(255, 255, 255, 1)
+                Height: =Parent.Height
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =26
+                Text: =varEvent.TituloEvento
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+            Icon9 As icon.GlobeRefresh:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =App.Theme.Colors.Darker30
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Icon: =Icon.GlobeRefresh
+                OnSelect: =Refresh(tbParticipants)
+                ZIndex: =3
+
+        "glr_Requests_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            BorderColor: =App.Theme.Colors.Darker40
+            DelayItemLoading: =true
+            Height: =Parent.Height
+            Items: =Filter(colParticipants,ID_Evento=varEvent.ID)
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Data
+            OnSelect: |-
+                =Set(varSelectedEvent,ThisItem);
+                UpdateContext(
+                    {
+                        varEvento: ThisItem
+                    }
+                );
+                Navigate(
+                    scr_Event,
+                    ScreenTransition.Fade
+                )
+            ShowScrollbar: =false
+            TemplatePadding: =30
+            TemplateSize: =225
+            Width: =Parent.Width
+            ZIndex: =4
+
+            Container19_1 As groupContainer.verticalAutoLayoutContainer:
+                DropShadow: =DropShadow.Semibold
+                Height: =Parent.TemplateHeight
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutMode: =LayoutMode.Auto
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.TemplateWidth
+                ZIndex: =8
+
+                Container34_1 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =Parent.Height/4
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                    Label13_1 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =
+                        Width: =10
+                        ZIndex: =1
+
+                    Container14_3 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.Regular
+                        FillPortions: =0
+                        Height: =Parent.Height-20
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =999
+                        RadiusBottomRight: =999
+                        RadiusTopLeft: =999
+                        RadiusTopRight: =999
+                        Width: =Self.Height
+                        ZIndex: =2
+
+                        Image6_3 As image:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =Parent.Height
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Solicitante,FotoPerfil),SampleImage)
+                            ImagePosition: =ImagePosition.Fill
+                            OnSelect: =Set(varProfile,LookUp(tbUsers,ID=ThisItem.ID_Solicitante));Navigate(scr_Profile,ScreenTransition.Fade)
+                            Width: =Self.Height
+                            ZIndex: =1
+
+                    "TextInputCanvas2_1 As 'Text input'":
+                        Appearance: ='TextInputCanvas.Appearance'.FilledLighter
+                        BasePaletteColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        FillPortions: =1
+                        FontSize: =28
+                        FontWeight: =FontWeight.Normal
+                        Height: =Parent.Height
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =320
+                        PaddingLeft: =15
+                        Value: =LookUp(tbUsers,ID=ThisItem.ID_Solicitante,Nome)
+                        Width: =320
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                    Icon7 As icon.Message:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(39, 113, 194, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Height: =Parent.Height-50
+                        Icon: =Icon.Message
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        Width: =Self.Height
+                        ZIndex: =4
+
+                    Label13_2 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =
+                        Width: =10
+                        ZIndex: =5
+
+                Container27 As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    FillPortions: =0
+                    Height: =80
+                    LayoutGap: =30
+                    LayoutMinHeight: =112
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingLeft: =80
+                    PaddingRight: =80
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Visible: =If(ThisItem.Status.Value="Em espera",true,false)
+                    ZIndex: =2
+
+                    Label14 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =
+                        Width: =20
+                        ZIndex: =1
+
+                    ButtonCanvas4 As Button:
+                        Align: =Align.Center
+                        AlignInContainer: =AlignInContainer.Center
+                        BasePaletteColor: =RGBA(249, 83, 109, 1)
+                        BorderRadiusBottomLeft: =10
+                        BorderRadiusBottomRight: =10
+                        BorderRadiusTopLeft: =10
+                        BorderRadiusTopRight: =10
+                        DisplayMode: =DisplayMode.Edit
+                        FontSize: =26
+                        Height: =Parent.Height-20
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =120
+                        OnSelect: |-
+                            =Patch(
+                                tbParticipants,
+                                LookUp(tbParticipants,ID=ThisItem.ID),
+                                {
+                                    Status: {
+                                        Value: "Rejeitado"
+                                    }
+                                }
+                            );
+                            Refresh(tbParticipants)
+                        Text: ="Rejeitar"
+                        VerticalAlign: =VerticalAlign.Middle
+                        Width: =200
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    ButtonCanvas5 As Button:
+                        Align: =Align.Center
+                        AlignInContainer: =AlignInContainer.Center
+                        BasePaletteColor: =RGBA(8, 222, 8, 1)
+                        BorderRadiusBottomLeft: =10
+                        BorderRadiusBottomRight: =10
+                        BorderRadiusTopLeft: =10
+                        BorderRadiusTopRight: =10
+                        DisplayMode: =DisplayMode.Edit
+                        FontSize: =26
+                        Height: =Parent.Height-20
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =120
+                        OnSelect: |-
+                            =Patch(
+                                tbParticipants,
+                                LookUp(
+                                    tbParticipants,
+                                    ID = ThisItem.ID
+                                ),
+                                {Status: {Id:2,Value: "Aprovado"}}
+                            );
+                            Refresh(tbParticipants)
+                        Text: ="Aprovar"
+                        VerticalAlign: =VerticalAlign.Middle
+                        Width: =200
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                Container28 As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Height: =225
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Visible: =If(ThisItem.Status.Value="Em espera",false,true)
+                    ZIndex: =3
+

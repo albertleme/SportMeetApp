@@ -1,0 +1,935 @@
+scr_Event As screen:
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =ClearCollect(
+            colParticipantsFilter,
+            Filter(
+                tbParticipants,
+                ID_Evento = varEvent.ID,
+                Status.Value = "Aprovado"
+            )
+        )
+
+    Rectangle1_5 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =App.Height
+        Width: =App.Width
+        ZIndex: =2
+
+    Container16 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Regular
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: |-
+            =Switch(
+                scr_Event.Size,
+                1,
+                Parent.Width,
+                2,
+                Parent.Width,
+                3,
+                Parent.Width,
+                4,
+                640
+            )
+        X: =Parent.Width/2-Self.Width/2
+        ZIndex: =3
+
+        frm_Event As form.PowerApps_CoreControls_Form:
+            BorderColor: =App.Theme.Colors.Darker40
+            DataSource: =tbEvent
+            DefaultMode: |-
+                =If(
+                    varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                    FormMode.Edit,
+                    FormMode.View
+                )
+            Item: =Coalesce(varEvent,LookUp(tbEvent,ID=varEvent.ID))
+            LayoutMinHeight: =250
+            LayoutMinWidth: =0
+            UseFluentV9Cards: =true
+            Width: =Parent.Width
+            Y: =40
+            ZIndex: =2
+
+            FotoEvento_DataCard1 As typedDataCard.fluentV9AddLargePictureCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="FotoEvento"
+                Default: =ThisItem.FotoEvento
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,FotoEvento)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =500
+                Required: =false
+                Update: =Image2.Image
+                Width: =640
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+                Image2 As image:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    BorderStyle: =BorderStyle.None
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =AddPicture1.Height
+                    Image: |-
+                        =Coalesce(
+                            Parent.Default,
+                            AddPicture1.Media,
+                            SampleImage
+                        )
+                        //If(IsBlank(AddPicture1.Media), Parent.Default, AddPicture1.Media)
+                    ImagePosition: =ImagePosition.Fill
+                    Tooltip: =Parent.DisplayName
+                    Width: =AddPicture1.Width
+                    X: =AddPicture1.X
+                    Y: =AddPicture1.Y
+                    ZIndex: =2
+
+                AddPicture1 As addMedia:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.None
+                    ChangePictureText: =""
+                    Color: =RGBA(0, 0, 0, 1)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =
+                    Height: =Parent.Height
+                    Text: =""
+                    Width: =Parent.Width
+                    ZIndex: =3
+
+            TituloEvento_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="TituloEvento"
+                Default: =ThisItem.TituloEvento
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,TituloEvento)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =118
+                MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, TituloEvento)
+                Required: =false
+                Update: =dtf_EventTitle.Value
+                Width: =640
+                WidthFit: =true
+                X: =0
+                Y: =1
+                ZIndex: =1
+
+                dtc_tituloEvento As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    Size: =26
+                    Text: ="Título do Evento"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "dtf_EventTitle As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =26
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =dtc_tituloEvento.Y + dtc_tituloEvento.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage9 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =dtf_EventTitle.Y + dtf_EventTitle.Height
+                    ZIndex: =3
+
+                StarVisible9 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =dtc_tituloEvento.Y
+                    ZIndex: =4
+
+            QtdParticipantes_DataCard1 As typedDataCard.fluentV9NumberEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="QtdParticipantes"
+                Default: =ThisItem.QtdParticipantes
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,QtdParticipantes)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(dtc_QtdParticipantes.Value)
+                Width: =640
+                X: =0
+                Y: =3
+                ZIndex: =1
+
+                DataCardKey1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =dtc_tituloEvento.Height
+                    Size: =26
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                ErrorMessage1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =dtc_QtdParticipantes.Y + dtc_QtdParticipantes.Height
+                    ZIndex: =3
+
+                StarVisible1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey1.Y
+                    ZIndex: =4
+
+                "dtc_QtdParticipantes As 'Number input'":
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =26
+                    Height: =dtf_EventTitle.Height
+                    Max: =999
+                    Precision: ='NumberInput.Precision'.'0'
+                    Value: =
+                    Width: =(Parent.Width - 48)/3
+                    X: =24
+                    Y: =DataCardKey1.Y + DataCardKey1.Height + 4
+                    ZIndex: =5
+
+            DataHorarioEvento_DataCard1 As typedDataCard.fluentV9DateTimeEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="DataHorarioEvento"
+                Default: =ThisItem.DataHorarioEvento
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,DataHorarioEvento)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =118
+                Required: =false
+                Update: =If(Not IsBlank(dtv_DateTimeEvent.SelectedDate), DateTime(Year(dtv_DateTimeEvent.SelectedDate), Month(dtv_DateTimeEvent.SelectedDate), Day(dtv_DateTimeEvent.SelectedDate), Value(HourValue1.Selected.Value), Value(MinuteValue1.Selected.Value), Second(dtv_DateTimeEvent.SelectedDate)))
+                Width: =Parent.Width
+                X: =0
+                Y: =4
+                ZIndex: =1
+
+                DataCardKey4 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    Size: =26
+                    Text: ="Data e Horário do Evento"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                HourValue1 As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =[Text(Hour(Parent.Default),"00")]
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =24
+                    Height: =64
+                    Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+                    Width: =dtv_DateTimeEvent.Width / 2 - 10
+                    X: =dtv_DateTimeEvent.X + dtv_DateTimeEvent.Width + 10
+                    Y: =dtv_DateTimeEvent.Y
+                    ZIndex: =3
+
+                Separator1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =HourValue1.Height
+                    Size: =20
+                    Text: |-
+                        =":"
+                    Width: =10
+                    X: =HourValue1.X + HourValue1.Width
+                    Y: =HourValue1.Y
+                    ZIndex: =4
+
+                MinuteValue1 As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =[Text(Minute(Parent.Default),"00")]
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =24
+                    Height: =64
+                    Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"]
+                    Width: =HourValue1.Width
+                    X: =HourValue1.X + HourValue1.Width + Separator1.Width
+                    Y: =HourValue1.Y
+                    ZIndex: =5
+
+                ErrorMessage4 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =dtv_DateTimeEvent.Y + dtv_DateTimeEvent.Height
+                    ZIndex: =6
+
+                StarVisible4 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey4.Y
+                    ZIndex: =7
+
+                dtv_DateTimeEvent As datepicker:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =0
+                    CalendarHeaderFill: =App.Theme.Colors.Primary
+                    Color: =RGBA(53, 61, 63, 1)
+                    DefaultDate: =Parent.Default
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Fill: =RGBA(244, 244, 244, 1)
+                    Font: =App.Theme.Font
+                    Height: =64
+                    HoverDateFill: =App.Theme.Colors.Lighter70
+                    IconBackground: =App.Theme.Colors.Primary
+                    IconFill: =App.Theme.Colors.PrimaryForeground
+                    SelectedDateFill: =App.Theme.Colors.Primary
+                    Size: =20
+                    Width: =296
+                    X: =24
+                    Y: =DataCardKey4.Y + DataCardKey4.Height + 4
+                    ZIndex: =8
+
+            "'Local: Nome_DataCard1' As typedDataCard.fluentV9TextualViewCard":
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="DispName"
+                Default: |-
+                    =ThisItem.'Local: Nome'
+                DisplayMode: =DisplayMode.Edit
+                DisplayName: |-
+                    =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,'Local: Nome')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =If(CriadorEvento.Visible,118,240)
+                Required: =false
+                Width: =640
+                X: =0
+                Y: =6
+                ZIndex: =1
+
+                DataCardKey6 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    Size: =26
+                    Text: ="Local"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue7 As 'Text input'":
+                    DisplayMode: =DisplayMode.View
+                    FontSize: =26
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey6.Y + DataCardKey6.Height + 4
+                    ZIndex: =2
+
+            CriadorEvento As typedDataCard.blankCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =300
+                Visible: =If(!IsBlank(ThisItem.ID_CriadorEvento),true,false)
+                Width: =640
+                X: =0
+                Y: =7
+                ZIndex: =1
+
+                cnt_CriadorEvento As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =175
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =12
+                    PaddingLeft: =12
+                    PaddingRight: =12
+                    PaddingTop: =12
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width-48
+                    X: =24
+                    Y: =DataCardKey6_1.Y + DataCardKey6_1.Height + 4
+                    ZIndex: =1
+
+                    Container17 As groupContainer.manualLayoutContainer:
+                        DropShadow: =DropShadow.Semibold
+                        FillPortions: =0
+                        Height: =225
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =999
+                        RadiusBottomRight: =999
+                        RadiusTopLeft: =999
+                        RadiusTopRight: =999
+                        Width: =Self.Height-10
+                        ZIndex: =1
+
+                        Image5 As image:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =Parent.Height
+                            Image: =LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,FotoPerfil)
+                            ImagePosition: =ImagePosition.Fill
+                            Width: =Parent.Width
+                            ZIndex: =1
+
+                    Label7 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        FillPortions: =1
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height-Parent.PaddingTop*2
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =0
+                        PaddingLeft: =20
+                        Size: =21
+                        Text: =LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,Nome)
+                        Width: =560
+                        ZIndex: =2
+
+                DataCardKey6_1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    Size: =26
+                    Text: ="Criador do Evento"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =24
+                    ZIndex: =2
+
+            ID_CriadorEvento_DataCard1 As typedDataCard.fluentV9NumberEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="ID_CriadorEvento"
+                Default: =ThisItem.ID_CriadorEvento
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,ID_CriadorEvento)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(dtc_CriadorEvento.Value)
+                Visible: =false
+                Width: =640
+                X: =0
+                Y: =8
+                ZIndex: =1
+
+                DataCardKey14 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =dtc_tituloEvento.Height
+                    Size: =26
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "dtc_CriadorEvento As 'Text input'":
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =26
+                    Height: =dtc_tituloEvento.Height
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: |-
+                        =//Se o evento já foi Criado, o ID será o do criador, caso contrário, será inserido o ID do usuário corrente
+                        Coalesce(Parent.Default,gbl_varUser.ID)
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey14.Y + DataCardKey14.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage13 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =dtc_CriadorEvento.Y + dtc_CriadorEvento.Height
+                    ZIndex: =3
+
+                StarVisible12 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey14.Y
+                    ZIndex: =4
+
+            ID_DataCard1 As typedDataCard.fluentV9TextualViewCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="ID"
+                Default: =ThisItem.ID
+                DisplayMode: =DisplayMode.View
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,ID)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Visible: =false
+                Width: =640
+                X: =0
+                Y: =9
+                ZIndex: =1
+
+                DataCardKey15 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "dtc_ID_Evento As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =DisplayMode.View
+                    Height: =32
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey15.Y + DataCardKey15.Height + 4
+                    ZIndex: =2
+
+            DataCard3 As typedDataCard.blankCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =225
+                Width: =640
+                X: =0
+                Y: =10
+                ZIndex: =1
+
+                DataCardKey6_2 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    Size: =26
+                    Text: ="Participantes"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "Gallery2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DelayItemLoading: =true
+                    Items: =colParticipantsFilter
+                    Layout: =Layout.Vertical
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =0
+                    TemplateSize: =104
+                    Width: =Parent.Width-48
+                    X: =24
+                    Y: =DataCardKey6_1.Y + DataCardKey6_1.Height + 4
+                    ZIndex: =2
+
+                    NextArrow1 As icon.ChevronRight:
+                        AccessibleLabel: =Self.Tooltip
+                        Color: =RGBA(39, 113, 194, 1)
+                        Height: =50
+                        Icon: =Icon.ArrowRight
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =8
+                        PaddingLeft: =8
+                        PaddingRight: =8
+                        PaddingTop: =8
+                        Tooltip: ="View item details"
+                        Width: =50
+                        X: =Parent.TemplateWidth - Self.Width - 12
+                        Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                        ZIndex: =4
+
+                    Container24 As groupContainer.manualLayoutContainer:
+                        DropShadow: =DropShadow.Semibold
+                        Height: =Parent.TemplateHeight-20
+                        RadiusBottomLeft: =999
+                        RadiusBottomRight: =999
+                        RadiusTopLeft: =999
+                        RadiusTopRight: =999
+                        Width: =Self.Height
+                        X: =10
+                        Y: =10
+                        ZIndex: =7
+
+                        Image9 As image:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =Parent.Height
+                            Image: |-
+                                =/*Coalesce(ThisItem.FotoPerfil.Full,SampleImage)*/
+                                
+                                Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Solicitante,FotoPerfil.Full),SampleImage)
+                            OnSelect: =
+                            RadiusBottomLeft: =8
+                            RadiusBottomRight: =8
+                            RadiusTopLeft: =8
+                            RadiusTopRight: =8
+                            Width: =Parent.Width
+                            ZIndex: =1
+
+                    Label9 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =70
+                        OnSelect: =Select(Parent)
+                        PaddingLeft: =12
+                        Size: =21
+                        Text: =LookUp(tbUsers,ID=ThisItem.ID_Solicitante,Nome)
+                        Width: =436
+                        X: =94
+                        Y: =17
+                        ZIndex: =8
+
+            Esporte_DataCard1 As typedDataCard.fluentV9ComboBoxEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Esporte"
+                Default: =ThisItem.Esporte
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,Esporte)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =dtc_Sport.Selected
+                Width: =Parent.Width
+                X: =0
+                Y: =2
+                ZIndex: =3
+
+                DataCardKey3 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =40
+                    Size: =26
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                dtc_Sport As Combobox.pcfdataset:
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Obrigatório.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    DefaultSelectedItems: =[Parent.Default]
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =26
+                    Height: =64
+                    Items: =Choices([@tbEvent].Esporte)
+                    Required: =false
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Width: =(Parent.Width - 48)/2
+                    X: =24
+                    Y: =DataCardKey3.Y + DataCardKey3.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage3 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =dtc_Sport.Y + dtc_Sport.Height
+                    ZIndex: =3
+
+                StarVisible3 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =20
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey3.Y
+                    ZIndex: =4
+
+            DescricaoEvento_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="DescricaoEvento"
+                Default: =ThisItem.DescricaoEvento
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,DescricaoEvento)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =220
+                MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, DescricaoEvento)
+                Required: =false
+                Update: =dtc_EventDescription.Value
+                Width: =Parent.Width
+                X: =0
+                Y: =5
+                ZIndex: =3
+
+                DataCardKey2 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =40
+                    Size: =26
+                    Text: ="Descrição"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "dtc_EventDescription As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =
+                    FontColor: =
+                    FontSize: =26
+                    Height: =160
+                    Mode: ='TextInputCanvas.Mode'.Multiline
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey2.Y + DataCardKey2.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage2 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =dtc_EventDescription.Y + dtc_EventDescription.Height
+                    ZIndex: =3
+
+                StarVisible2 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey2.Y
+                    ZIndex: =4
+
+    cnt_SaveEvent As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semibold
+        Height: =64
+        RadiusBottomLeft: =100
+        RadiusBottomRight: =100
+        RadiusTopLeft: =100
+        RadiusTopRight: =100
+        Width: =256
+        X: =Container16.Width+Container16.X-Self.Width-32
+        Y: =Parent.Height-Self.Height-32
+        ZIndex: =4
+
+        btn_SaveEvent As Button:
+            BasePaletteColor: =RGBA(5, 102, 178, 1)
+            BorderColor: =
+            DisplayMode: |-
+                =If(
+                    IsBlank(dtf_EventTitle.Value) Or
+                    IsBlank(dtc_Sport.Selected.Value) Or
+                    IsBlank(dtc_QtdParticipantes.Value) Or
+                    IsBlank(dtv_DateTimeEvent.SelectedDate),
+                    DisplayMode.Disabled,
+                    DisplayMode.Edit
+                )
+            FontColor: =
+            FontSize: =26
+            Height: =64
+            Icon: ="Save"
+            OnSelect: |-
+                =SubmitForm(frm_Event);
+                Navigate(scr_Home,ScreenTransition.Fade)
+            Text: ="Salvar"
+            Visible: |-
+                =If(
+                    /*varSelectedEvent.ID_CriadorEvento*/Value(dtc_CriadorEvento.Value) = gbl_varUser.ID,
+                    true,
+                    false
+                )
+            Width: =256
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+        btn_Request As Button:
+            AccessibleLabel: =If(btn_Request.DisplayMode=DisplayMode.Disabled,"Você já solicitou para participar desse evento","Solicitar participação no evento")
+            BasePaletteColor: =RGBA(5, 102, 178, 1)
+            BorderColor: =
+            DisplayMode: |-
+                =If(
+                    IsBlank(
+                        LookUp(
+                            tbParticipants,
+                            ID_Evento = dtc_ID_Evento.Value And ID_Solicitante = gbl_varUser.ID,
+                            ID
+                        )
+                    ),
+                    DisplayMode.Edit,
+                    DisplayMode.Disabled
+                )
+            FontColor: =
+            FontSize: =24
+            Height: =Parent.Height
+            Icon: =
+            OnSelect: |-
+                =Collect(
+                    tbParticipants,
+                    {
+                        ID_Evento: varEvent.ID,
+                        ID_Solicitante: gbl_varUser.ID,
+                        ID_Aprovador: varEvent.ID_CriadorEvento,
+                        ID_Esporte: varEvent.Esporte.Id
+                    }
+                );
+                Notify("Solicitação enviada! Agora é só esperar o dono do evento aprovar sua participação",NotificationType.Information)
+            Text: ="Participar"
+            Visible: |-
+                =//Verifica se o usuário não é o criador do evento e se já não solicitou a participação para liberar ou não o botão
+                If(
+                    Value(dtc_CriadorEvento.Value) = gbl_varUser.ID And IsBlank(
+                        LookUp(
+                            tbParticipants,
+                            ID_Evento = Value(dtc_ID_Evento.Value) And ID_Solicitante = gbl_varUser.ID,
+                            ID
+                        )
+                    ),
+                    false,
+                    true
+                )
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+    cnt_backEvent As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semibold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =64
+        RadiusBottomLeft: =64
+        RadiusBottomRight: =64
+        RadiusTopLeft: =64
+        RadiusTopRight: =64
+        Width: =64
+        X: =32
+        Y: =32
+        ZIndex: =5
+
+        ico_backEvent As icon.ChevronLeft:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(53, 61, 63, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Icon: =Icon.ChevronLeft
+            OnSelect: |-
+                =Back(ScreenTransition.Fade);
+                ResetForm(frm_Event)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="Sair"
+            ZIndex: =1
+

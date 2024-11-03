@@ -1,0 +1,257 @@
+scr_Chat As screen:
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    Container1 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        Container2 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            FillPortions: =0
+            Height: =140
+            LayoutGap: =12
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =12
+            PaddingLeft: =12
+            PaddingRight: =12
+            PaddingTop: =12
+            ZIndex: =1
+
+            Container9 As groupContainer.manualLayoutContainer:
+                FillPortions: =0
+                Height: =225
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                Width: |
+                    =50
+                ZIndex: =1
+
+                Icon1 As icon.ChevronLeft:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(53, 61, 63, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =Parent.Height
+                    Icon: =Icon.ChevronLeft
+                    OnSelect: =Back(ScreenTransition.Fade)
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+            Container5 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Semibold
+                FillPortions: =0
+                Height: =Parent.Height
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =100
+                RadiusBottomRight: =100
+                RadiusTopLeft: =100
+                RadiusTopRight: =100
+                Width: =Self.Height
+                ZIndex: =3
+
+                Image3 As image:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =Parent.Height
+                    ImagePosition: =ImagePosition.Fill
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+            Container6 As groupContainer.manualLayoutContainer:
+                Height: =Parent.Height
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                ZIndex: =4
+
+                Label1 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =70
+                    PaddingLeft: =10
+                    Size: =22
+                    Text: ="Nome"
+                    VerticalAlign: =VerticalAlign.Bottom
+                    Width: =Parent.Width
+                    ZIndex: =1
+
+                Label2 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    Height: =46
+                    PaddingLeft: =10
+                    Size: =21
+                    Text: ="Text"
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.Width
+                    Y: =70
+                    ZIndex: =2
+
+        Container3 As groupContainer.verticalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Height: =225
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =2
+
+            "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                BorderColor: =App.Theme.Colors.Darker40
+                DelayItemLoading: =true
+                Items: =CustomGallerySample
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =12
+                TemplateSize: =140
+                Width: =Parent.Width
+                ZIndex: =1
+
+                Container20 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =Parent.TemplateHeight
+                    LayoutGap: =12
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =12
+                    PaddingLeft: =12
+                    PaddingRight: =12
+                    PaddingTop: =12
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =3
+
+                    Container12 As groupContainer.manualLayoutContainer:
+                        DropShadow: =DropShadow.Semibold
+                        FillPortions: =0
+                        Height: =Parent.Height
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =100
+                        RadiusBottomRight: =100
+                        RadiusTopLeft: =100
+                        RadiusTopRight: =100
+                        Width: =Self.Height
+                        X: =Self.Y
+                        Y: =Parent.Height/2-Self.Height/2
+                        ZIndex: =1
+
+                        Image7 As image:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =Parent.Height
+                            ImagePosition: =ImagePosition.Fill
+                            Width: =Parent.Width
+                            ZIndex: =1
+
+                    Container13 As groupContainer.manualLayoutContainer:
+                        Height: =100
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =496
+                        X: =120
+                        Y: =20
+                        ZIndex: =2
+
+                        TextCanvas2 As Text:
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =Parent.Height
+                            PaddingLeft: =12
+                            PaddingRight: =12
+                            Size: =26
+                            Text: ="Mensagem"
+                            VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                            Width: =Parent.Width
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+        Container4 As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =150
+            LayoutGap: =12
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =12
+            PaddingLeft: =12
+            PaddingRight: =12
+            PaddingTop: =12
+            ZIndex: =3
+
+            Container10 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Semibold
+                Height: =225
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =10
+                RadiusBottomRight: =10
+                RadiusTopLeft: =10
+                RadiusTopRight: =10
+                ZIndex: =1
+
+                "TextInputCanvas1 As 'Text input'":
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =26
+                    Height: =Parent.Height
+                    Mode: ='TextInputCanvas.Mode'.Multiline
+                    Width: =Parent.Width
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+            Container11 As groupContainer.manualLayoutContainer:
+                FillPortions: =0
+                Height: =225
+                LayoutMinHeight: =112
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =10
+                RadiusBottomRight: =10
+                RadiusTopLeft: =10
+                RadiusTopRight: =10
+                Width: =100
+                ZIndex: =2
+
+                Icon2 As icon.Send:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(53, 61, 63, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =Parent.Height
+                    Icon: =Icon.Send
+                    PaddingBottom: =12
+                    PaddingLeft: =12
+                    PaddingRight: =12
+                    PaddingTop: =12
+                    Width: =Parent.Width
+                    ZIndex: =1
+

@@ -1,0 +1,564 @@
+scr_CreateAccount As screen:
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    Rectangle1_1 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(245, 245, 245, 1)
+        Height: =App.Height
+        Width: =App.Width
+        ZIndex: =1
+
+    Container31 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Regular
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =App.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: |-
+            =Switch(
+                scr_CreateAccount.Size,
+                1,
+                Parent.Width,
+                2,
+                Parent.Width,
+                3,
+                640,
+                4,
+                640
+            )
+        X: =Parent.Width/2-Self.Width/2
+        ZIndex: =2
+
+        Container32 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(5, 102, 178, 1)
+            FillPortions: =0
+            Height: =100
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =1
+
+            Icon10 As icon.ChevronLeft:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.ChevronLeft
+                OnSelect: =Back(ScreenTransition.Fade)
+                PaddingBottom: =20
+                PaddingLeft: =20
+                PaddingRight: =20
+                PaddingTop: =20
+                Width: =Parent.Height
+                ZIndex: =1
+
+            TextCanvas7 As Text:
+                DisplayMode: =DisplayMode.Edit
+                FillPortions: =1
+                FontColor: =RGBA(255, 255, 255, 1)
+                Height: =Parent.Height
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Size: =26
+                Text: ="Novo Usuário"
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =2
+
+        frm_CreateUser As form.PowerApps_CoreControls_Form:
+            BorderColor: =App.Theme.Colors.Darker40
+            DataSource: =tbUsers
+            LayoutMinHeight: =250
+            LayoutMinWidth: =320
+            OnSuccess: |-
+                =Notify("Sucesso");
+                Navigate(scr_Login,ScreenTransition.Fade)
+            UseFluentV9Cards: =true
+            Width: =Parent.Width
+            ZIndex: =2
+
+            Nome_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Nome"
+                Default: =ThisItem.Nome
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,Nome)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@tbUsers], DataSourceInfo.MaxLength, Nome)
+                Required: =true
+                Update: =DataCardValue4.Value
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+                DataCardKey5 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =44
+                    Size: =28
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 64
+                    Wrap: =false
+                    X: =32
+                    Y: =16
+                    ZIndex: =1
+
+                "DataCardValue4 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =30
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    TriggerOutput: ="Focus"
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 64
+                    X: =DataCardKey5.X
+                    Y: =DataCardKey5.Y + DataCardKey5.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage5 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue4.Y + DataCardValue4.Height
+                    ZIndex: =3
+
+                StarVisible5 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Size: =20
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =30
+                    X: =0
+                    Y: =23
+                    ZIndex: =4
+
+            Email_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Email"
+                Default: =ThisItem.Email
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,Email)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@tbUsers], DataSourceInfo.MaxLength, Email)
+                Required: =true
+                Update: =txt_Email_CreateAccount.Value
+                Width: =Parent.Width
+                X: =0
+                Y: =1
+                ZIndex: =1
+
+                DataCardKey9 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =44
+                    Size: =28
+                    Text: ="E-mail"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 64
+                    Wrap: =false
+                    X: =32
+                    Y: =16
+                    ZIndex: =1
+
+                "txt_Email_CreateAccount As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =30
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    TriggerOutput: ="Focus"
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 64
+                    X: =32
+                    Y: =DataCardKey9.Y + DataCardKey9.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage6 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =txt_Email_CreateAccount.Y + txt_Email_CreateAccount.Height
+                    ZIndex: =3
+
+                StarVisible6 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Size: =20
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =30
+                    X: =0
+                    Y: =23
+                    ZIndex: =4
+
+            Senha_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Senha"
+                Default: =ThisItem.Senha
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,Senha)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@tbUsers], DataSourceInfo.MaxLength, Senha)
+                Required: =true
+                Update: =txt_Senha_CreateAccount.Value
+                Width: =Parent.Width
+                X: =0
+                Y: =2
+                ZIndex: =1
+
+                DataCardKey10 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =44
+                    Size: =28
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 64
+                    Wrap: =false
+                    X: =32
+                    Y: =16
+                    ZIndex: =1
+
+                "txt_Senha_CreateAccount As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =30
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    TriggerOutput: ="Focus"
+                    Type: ='TextInputCanvas.Type'.Password
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 64
+                    X: =32
+                    Y: =DataCardKey10.Y + DataCardKey10.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage10 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =txt_Senha_CreateAccount.Y + txt_Senha_CreateAccount.Height
+                    ZIndex: =3
+
+                StarVisible10 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Size: =20
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =30
+                    X: =0
+                    Y: =23
+                    ZIndex: =4
+
+            DataCard1 As typedDataCard.blankCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =128
+                Width: =640
+                X: =0
+                Y: =3
+                ZIndex: =1
+
+                DataCardKey10_1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =44
+                    Size: =28
+                    Text: ="Confirmação de senha"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 64
+                    Wrap: =false
+                    X: =32
+                    Y: =16
+                    ZIndex: =1
+
+                "txt_ConfirmarSenha_CreateAccount As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =30
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    TriggerOutput: ="Focus"
+                    Type: ='TextInputCanvas.Type'.Password
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =
+                    Width: =Parent.Width - 64
+                    X: =DataCardKey10_1.X
+                    Y: =DataCardKey10_1.Y + DataCardKey10_1.Height + 4
+                    ZIndex: =2
+
+                StarVisible10_1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Size: =20
+                    Text: ="*"
+                    Visible: =true
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =30
+                    X: =0
+                    Y: =23
+                    ZIndex: =3
+
+            AdminUser_DataCard1 As typedDataCard.fluentV9ToggleEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="AdminUser"
+                Default: =ThisItem.AdminUser
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,AdminUser)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =DataCardValue1.Checked
+                Visible: =false
+                Width: =640
+                X: =0
+                Y: =4
+                ZIndex: =1
+
+                DataCardKey7 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =44
+                    Size: =28
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue1 As Toggle:
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    Checked: =Parent.Default
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =64
+                    Label: =""
+                    OnCheck: =false
+                    OnUncheck: =false
+                    ToggleSize: =30
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey7.Y + DataCardKey7.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage7 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue1.Y + DataCardValue1.Height
+                    ZIndex: =3
+
+                StarVisible7 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey7.Y
+                    ZIndex: =4
+
+    cnt_NewEvent_2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semibold
+        Height: =64
+        RadiusBottomLeft: =100
+        RadiusBottomRight: =100
+        RadiusTopLeft: =100
+        RadiusTopRight: =100
+        Width: =256
+        X: =Container31.X+Container31.Width-Self.Width-32
+        Y: =Parent.Height-Self.Height-32
+        ZIndex: =3
+
+        btn_NewEvent_2 As Button:
+            BasePaletteColor: =RGBA(5, 102, 178, 1)
+            BorderColor: =
+            DisplayMode: |-
+                =If(
+                    IsBlank(DataCardValue4.Value) Or IsBlank(txt_Email_CreateAccount.Value) Or IsBlank(txt_Senha_CreateAccount.Value),
+                    DisplayMode.Disabled,
+                    DisplayMode.Edit
+                )
+            FontColor: =
+            FontSize: =26
+            Height: =Parent.Height
+            Icon: ="Save"
+            OnSelect: |
+                =UpdateContext({varLoadingSpinner: true});
+                If(
+                    txt_Email_CreateAccount.Value = LookUp(
+                        tbUsers,
+                        Email = txt_Email_CreateAccount.Value,
+                        Email
+                    ),
+                    Notify("Usuário já cadastrado"),
+                    If(
+                        Not("@" in txt_Email_CreateAccount.Value),
+                        Notify("E-mail inválido"),
+                        If(
+                            txt_Senha_CreateAccount.Value <> txt_ConfirmarSenha_CreateAccount.Value,
+                            Notify("A senhas informadas não são equivalentes"),
+                            If(
+                                Len(txt_Senha_CreateAccount.Value) < 6 Or Len(txt_Senha_CreateAccount.Value) > 12,
+                                Notify("A senha deve possuir entre 6 e 12 caracteres"),
+                                If(
+                                    Not("!" in txt_Senha_CreateAccount.Value) And
+                                    Not("@" in txt_Senha_CreateAccount.Value) And
+                                    Not("#" in txt_Senha_CreateAccount.Value) And
+                                    Not("$" in txt_Senha_CreateAccount.Value) And
+                                    Not("%" in txt_Senha_CreateAccount.Value) And
+                                    Not("&" in txt_Senha_CreateAccount.Value) And
+                                    Not("*" in txt_Senha_CreateAccount.Value) And
+                                    Not("(" in txt_Senha_CreateAccount.Value) And
+                                    Not(")" in txt_Senha_CreateAccount.Value) And
+                                    Not("_" in txt_Senha_CreateAccount.Value) And
+                                    Not("-" in txt_Senha_CreateAccount.Value) And
+                                    Not("=" in txt_Senha_CreateAccount.Value) And
+                                    Not("+" in txt_Senha_CreateAccount.Value) And
+                                    Not("/" in txt_Senha_CreateAccount.Value) And
+                                    Not("." in txt_Senha_CreateAccount.Value) And
+                                    Not("," in txt_Senha_CreateAccount.Value) And
+                                    Not(";" in txt_Senha_CreateAccount.Value) And
+                                    Not(":" in txt_Senha_CreateAccount.Value) And
+                                    Not("?" in txt_Senha_CreateAccount.Value) And
+                                    Not("\" in txt_Senha_CreateAccount.Value) And
+                                    Not("|" in txt_Senha_CreateAccount.Value),
+                                    Notify("A senha deve conter no mínimo um caractere especial"),
+                                    SubmitForm(frm_CreateUser)
+                                )
+                            )
+                        )
+                    )
+                );
+                UpdateContext({varLoadingSpinner: false});
+            Text: ="Salvar"
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+    img_LoadingSpinner_CreateAccount As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(255, 255, 255, 0.2)
+        Height: =1136
+        Image: |-
+            ="data:image/svg+xml;utf8, " & 
+            EncodeUrl("
+            <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='25px' height='25px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50' xml:space='preserve'>
+                <path fill='#0566b2' d='M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z' transform='rotate(275.098 25 25)'>
+                    <animateTransform attributeType='xml' attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='1.0s' repeatCount='indefinite'></animateTransform>
+                </path>
+            </svg>
+            ")
+            
+            
+            /*
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-pink-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            
+            */
+        PaddingBottom: =200
+        PaddingLeft: =200
+        PaddingRight: =200
+        PaddingTop: =200
+        Visible: =varLoadingSpinner
+        Width: =640
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =4
+

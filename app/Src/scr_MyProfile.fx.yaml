@@ -1,0 +1,948 @@
+scr_MyProfile As screen:
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    cnt_MyProfile As groupContainer.verticalAutoLayoutContainer:
+        Height: =Parent.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        Width: =Parent.Width
+        ZIndex: =1
+
+        frm_MyProfile As form.PowerApps_CoreControls_Form:
+            BorderColor: =App.Theme.Colors.Darker40
+            DataSource: =tbUsers
+            Item: =LookUp(tbUsers,ID=gbl_varUser.ID)
+            LayoutMinHeight: =1000
+            LayoutMinWidth: =320
+            OnFailure: =Notify("Não foi possível salvar o registro",NotificationType.Information)
+            OnSuccess: |-
+                =Notify("Alterações registradas com sucesso!",NotificationType.Success)
+                
+                //Navigate(scr_Home,ScreenTransition.Fade)
+            UseFluentV9Cards: =true
+            Width: =640
+            ZIndex: =1
+
+            FotoPerfil As typedDataCard.fluentV9AddLargePictureCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="FotoPerfil"
+                Default: =ThisItem.FotoPerfil
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,FotoPerfil)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =400
+                Required: =false
+                Update: =Image1.Image
+                Width: =640
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+                DataCardKey18 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =48
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                ErrorMessage12 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =10
+                    Size: =12
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =Image1.Y + Image1.Height
+                    ZIndex: =2
+
+                StarVisible13 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =DataCardKey18.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    X: =0
+                    Y: =DataCardKey18.Y
+                    ZIndex: =3
+
+                Circle3 As circle:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Fill: =RGBA(39, 113, 194, 1)
+                    Height: =528
+                    Width: =Parent.Width*1.5
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =Parent.Height/2-Parent.Height
+                    ZIndex: =4
+
+                Container37 As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.Regular
+                    Height: =AddPicture2.Height
+                    RadiusBottomLeft: =999
+                    RadiusBottomRight: =999
+                    RadiusTopLeft: =999
+                    RadiusTopRight: =999
+                    Width: =AddPicture2.Width
+                    X: =AddPicture2.X
+                    Y: =AddPicture2.Y
+                    ZIndex: =6
+
+                Image1 As image:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =AddPicture2.Height
+                    Image: |-
+                        =//If(IsBlank(AddPicture2.Media), Parent.Default, AddPicture2.Media)
+                        Coalesce(AddPicture2.Media,ThisItem.FotoPerfil.Full,SampleImage)
+                    ImagePosition: =ImagePosition.Fill
+                    RadiusBottomLeft: =999
+                    RadiusBottomRight: =999
+                    RadiusTopLeft: =999
+                    RadiusTopRight: =999
+                    Tooltip: =Parent.DisplayName
+                    Width: =AddPicture2.Width
+                    X: =AddPicture2.X
+                    Y: =AddPicture2.Y
+                    ZIndex: =7
+
+                AddPicture2 As addMedia:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    ChangePictureText: =""
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(0, 0, 0, 0)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =320
+                    HoverBorderColor: =
+                    HoverColor: =
+                    HoverFill: =
+                    PressedBorderColor: =
+                    PressedColor: =
+                    PressedFill: =
+                    Text: =""
+                    Tooltip: ="Trocar Foto"
+                    Width: =Self.Height
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =DataCardKey18.Y + DataCardKey18.Height + 5
+                    ZIndex: =8
+
+                cnt_VoltarProfile As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.Bold
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =64
+                    RadiusBottomLeft: =999
+                    RadiusBottomRight: =999
+                    RadiusTopLeft: =999
+                    RadiusTopRight: =999
+                    Width: =64
+                    X: |
+                        =20
+                    Y: =20
+                    ZIndex: =10
+
+                    ico_VoltarProfile As icon.BackArrow:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(53, 61, 63, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Icon: =Icon.ArrowLeft
+                        OnSelect: =Back(ScreenTransition.Fade)
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        Tooltip: ="Voltar"
+                        ZIndex: =1
+
+                cnt_SaveMyProfile As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.Bold
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =64
+                    RadiusBottomLeft: =999
+                    RadiusBottomRight: =999
+                    RadiusTopLeft: =999
+                    RadiusTopRight: =999
+                    Width: =64
+                    X: =Parent.Width-Self.Width-20
+                    Y: =40
+                    ZIndex: =11
+
+                    ico_SaveMyProfile As icon.Save:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(53, 61, 63, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Icon: =Icon.Save
+                        OnSelect: =SubmitForm(frm_MyProfile)
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        ZIndex: =1
+
+            Interesses As typedDataCard.blankCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =225
+                Width: =640
+                X: =0
+                Y: =5
+                ZIndex: =1
+
+                cnt_Interesses_Edit As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =40
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.Width - 80
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =10
+                    ZIndex: =1
+
+                    dtc_Interesses As Text:
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FillPortions: =1
+                        FontColor: =
+                        Height: =40
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Size: =26
+                        Text: ="Interesses"
+                        Weight: ='TextCanvas.Weight'.Regular
+                        Width: =Parent.Width - 80
+                        Wrap: =false
+                        X: =Parent.Width/2-Self.Width/2
+                        Y: =10
+                        ZIndex: =1
+
+                    ico_Interesses As icon.Edit:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(53, 61, 63, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledColor: =RGBA(244, 244, 244, 1)
+                        Height: =Parent.Height
+                        Icon: =Icon.Edit
+                        OnSelect: |-
+                            =UpdateContext({varInteresses:true});
+                            NewForm(frm_Interesses);
+                            ForAll(
+                                tbInteresses,
+                                If(
+                                    ID_Usuario=gbl_varUser.ID,
+                                    Collect(
+                                        colInteresses,
+                                        {
+                                            value:ID_Esporte
+                                        }
+                                    )
+                                )
+                            )
+                            
+                            //ClearCollect(colInteresses,{value:Blank()})
+                        PaddingBottom: =6
+                        PaddingLeft: =6
+                        PaddingRight: =6
+                        PaddingTop: =6
+                        Width: =Self.Height*1.5
+                        ZIndex: =2
+
+                "Gallery6 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DelayItemLoading: =true
+                    Items: =Filter(tbInteresses,ID_Usuario=gbl_varUser.ID)
+                    Layout: =Layout.Vertical
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =0
+                    TemplateSize: =104
+                    Width: =Parent.Width-48
+                    X: =24
+                    Y: =57
+                    ZIndex: =2
+
+                    cnt_Interest As groupContainer.manualLayoutContainer:
+                        DropShadow: =DropShadow.Light
+                        Height: =100
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =Parent.TemplateWidth
+                        Y: =4
+                        ZIndex: =7
+
+                        cnt_InterestImage As groupContainer.manualLayoutContainer:
+                            DropShadow: =DropShadow.Semibold
+                            Height: =Parent.Height-20
+                            RadiusBottomLeft: =999
+                            RadiusBottomRight: =999
+                            RadiusTopLeft: =999
+                            RadiusTopRight: =999
+                            Width: =Self.Height
+                            X: =10
+                            Y: =Parent.Height/2-Self.Height/2
+                            ZIndex: =2
+
+                            img_InterestImage As image:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                DisabledFill: =RGBA(244, 244, 244, 1)
+                                Height: =80
+                                Image: =LookUp(tbSports,ID=ThisItem.ID_Esporte,Icone.Full)
+                                Width: =Parent.Width
+                                ZIndex: =1
+
+                        Label6 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =80
+                            PaddingLeft: =15
+                            Size: =21
+                            Text: =LookUp(tbSports,ID=ThisItem.ID_Esporte,NomeEsporte)
+                            Width: =1
+                            Y: =10
+                            ZIndex: =3
+
+            Nome As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Nome"
+                Default: =ThisItem.Nome
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,Nome)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@tbUsers], DataSourceInfo.MaxLength, Nome)
+                Required: =true
+                Update: =DataCardValue24_1.Value
+                Width: =Parent.Width
+                X: =0
+                Y: =1
+                ZIndex: =2
+
+                DataCardKey26_1 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =40
+                    Size: =26
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 80
+                    Wrap: =false
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue24_1 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =
+                    FontColor: =
+                    FontSize: =26
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 80
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =DataCardKey26_1.Y + DataCardKey26_1.Height + 4
+                    ZIndex: =2
+
+                StarVisible19_1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =DataCardKey26_1.Height
+                    Size: =26
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =DataCardKey26_1.X
+                    X: =DataCardKey26_1.X-Self.Width
+                    Y: =DataCardKey26_1.Y
+                    ZIndex: =4
+
+            Email As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Email"
+                Default: =ThisItem.Email
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,Email)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@tbUsers], DataSourceInfo.MaxLength, Email)
+                Required: =true
+                Update: =DataCardValue29_1.Value
+                Width: =Parent.Width
+                X: =0
+                Y: =2
+                ZIndex: =2
+
+                DataCardKey31_1 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =40
+                    Size: =26
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 80
+                    Wrap: =false
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue29_1 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =
+                    FontColor: =
+                    FontSize: =26
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 80
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =DataCardKey31_1.Y + DataCardKey31_1.Height + 4
+                    ZIndex: =2
+
+                StarVisible24_1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =DataCardKey31_1.Height
+                    Size: =26
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =DataCardKey31_1.X
+                    X: =DataCardKey31_1.X-Self.Width
+                    Y: =DataCardKey31_1.Y
+                    ZIndex: =4
+
+            Sexo As typedDataCard.fluentV9ComboBoxEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Sexo"
+                Default: =ThisItem.Sexo
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,Sexo)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =DataCardValue25_1.Selected
+                Width: =Parent.Width
+                X: =0
+                Y: =3
+                ZIndex: =2
+
+                DataCardKey27_1 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =40
+                    Size: =26
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 80
+                    Wrap: =false
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue25_1 As Combobox.pcfdataset:
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    DefaultSelectedItems: =[Parent.Default]
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =26
+                    Height: =64
+                    Items: =Choices([@tbUsers].Sexo)
+                    Required: =false
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Width: =Parent.Width - 80
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =DataCardKey27_1.Y + DataCardKey27_1.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage20_1 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue25_1.Y + DataCardValue25_1.Height
+                    ZIndex: =3
+
+                StarVisible20_1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =20
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey27_1.Y
+                    ZIndex: =4
+
+            DataNascimento As typedDataCard.fluentV9DateEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="DataNascimento"
+                Default: =ThisItem.DataNascimento
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,DataNascimento)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =DataCardValue26_1.SelectedDate
+                Width: =Parent.Width
+                X: =0
+                Y: =4
+                ZIndex: =2
+
+                DataCardKey28_1 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =40
+                    Size: =26
+                    Text: ="Data de Nascimento"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 80
+                    Wrap: =false
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue26_1 As 'Date picker'":
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    EndDate: =Date(Year(Today())+100, 12, 31)
+                    Fill: =
+                    FontColor: =
+                    FontSize: =26
+                    Height: =64
+                    Placeholder: ="Selecione uma data..."
+                    SelectedDate: =Parent.Default
+                    StartDate: =Date(1900, 1, 1)
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Width: =Parent.Width - 80
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =DataCardKey28_1.Y + DataCardKey28_1.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage21_1 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue26_1.Y + DataCardValue26_1.Height
+                    ZIndex: =3
+
+                StarVisible21_1 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey28_1.Y
+                    ZIndex: =4
+
+    Rectangle4 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(0, 0, 0, 0.5)
+        Height: =Parent.Height
+        OnSelect: |-
+            =UpdateContext({varInteresses:false})
+        Visible: =varInteresses
+        Width: =Parent.Width
+        ZIndex: =2
+
+    Container22 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =500
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =varInteresses
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =3
+
+        Container25 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =64
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =1
+
+            Label4_1 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(139, 154, 159, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                LayoutMinWidth: =0
+                PaddingLeft: =24
+                Size: =16
+                Text: ="Interesses"
+                Width: =560
+                ZIndex: =1
+
+            Icon5_2 As icon.Reset:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(139, 154, 159, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.Leave
+                OnSelect: |-
+                    =UpdateContext({varInteresses:false});
+                    ResetForm(frm_Interesses);
+                    Refresh(tbInteresses)
+                PaddingBottom: =20
+                PaddingLeft: =20
+                PaddingRight: =20
+                PaddingTop: =20
+                Tooltip: ="Cancelar"
+                Width: =Self.Height
+                ZIndex: =3
+
+        frm_Interesses As form.PowerApps_CoreControls_Form:
+            BorderColor: =App.Theme.Colors.Darker40
+            DataSource: =tbInteresses
+            LayoutMinHeight: =250
+            LayoutMinWidth: =320
+            UseFluentV9Cards: =true
+            Width: =400
+            ZIndex: =2
+
+            DataCard2 As typedDataCard.blankCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =436
+                Width: =500
+                X: =0
+                Y: =2
+                ZIndex: =1
+
+                drp_Interesse As Dropdown.pcfdataset:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    Items: =AddColumns(tbSports,colEsporte,NomeEsporte)
+                    Width: =332
+                    X: =24
+                    Y: =lbx_Interesses.Y + lbx_Interesses.Height + 12
+                    ZIndex: =1
+
+                    NomeEsporte2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="NomeEsporte"
+                        FieldName: ="NomeEsporte"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =11
+
+                    QtdParticipantes2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="QtdParticipantes"
+                        FieldName: ="QtdParticipantes"
+                        FieldType: ="n"
+                        FieldVariantName: ="textualColumn"
+                        Order: =2
+                        ZIndex: =12
+
+                    Icone2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="Icone"
+                        FieldName: ="Icone"
+                        FieldType: ="I"
+                        FieldVariantName: ="textualColumn"
+                        Order: =3
+                        ZIndex: =13
+
+                    Anexos2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="Anexos"
+                        FieldName: ="{Attachments}"
+                        FieldType: ="r*"
+                        FieldVariantName: ="textualColumn"
+                        Order: =4
+                        ZIndex: =14
+
+                ButtonCanvas2 As Button:
+                    BasePaletteColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =drp_Interesse.Height
+                    OnSelect: |-
+                        =If(
+                            !IsBlank(drp_Interesse.Selected.NomeEsporte) And IsBlank(
+                                LookUp(
+                                    tbInteresses,
+                                    ID_Esporte = drp_Interesse.Selected.ID And ID_Usuario = gbl_varUser.ID
+                                )
+                            ),
+                            Collect(
+                                tbInteresses,
+                                {
+                                    ID_Usuario: gbl_varUser.ID,
+                                    ID_Esporte: drp_Interesse.Selected.ID
+                                }
+                            ),
+                            Notify(
+                                "Selecione um esporte diferente",
+                                NotificationType.Information
+                            )
+                        );
+                        Refresh(tbInteresses)
+                    Text: ="Adicionar"
+                    Width: =100
+                    X: =drp_Interesse.Width+drp_Interesse.X+24
+                    Y: =drp_Interesse.Y
+                    ZIndex: =3
+
+                lbx_Interesses As listbox:
+                    BorderColor: =RGBA(214, 221, 224, 1)
+                    BorderThickness: =1
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledSelectionColor: =RGBA(244, 244, 244, 1)
+                    DisabledSelectionFill: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    Height: =326
+                    HoverColor: =RGBA(0, 0, 0, 1)
+                    HoverFill: =App.Theme.Colors.Lighter70
+                    Items: |-
+                        =AddColumns(
+                            Filter(
+                                tbInteresses,
+                                ID_Usuario = gbl_varUser.ID
+                            ),
+                            colEsporte,
+                            LookUp(
+                                tbSports,
+                                ID = ID_Esporte,
+                                NomeEsporte
+                            )
+                        )
+                    PressedColor: =App.Theme.Colors.PrimaryForeground
+                    PressedFill: =App.Theme.Colors.Darker30
+                    SelectionColor: =App.Theme.Colors.PrimaryForeground
+                    SelectionFill: =App.Theme.Colors.Primary
+                    Size: =16
+                    Width: =332
+                    X: =24
+                    Y: |
+                        =10
+                    ZIndex: =4
+
+                ButtonCanvas3 As Button:
+                    AcceptsFocus: =
+                    BasePaletteColor: =RGBA(249, 83, 109, 1)
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    OnSelect: |-
+                        =RemoveIf(
+                            tbInteresses,
+                            ID_Esporte = LookUp(
+                                tbSports,
+                                NomeEsporte = lbx_Interesses.Selected.colEsporte,
+                                ID
+                            ),
+                            ID_Usuario = gbl_varUser.ID
+                        )
+                    Text: ="Remover"
+                    Width: =100
+                    X: =380
+                    Y: =10
+                    ZIndex: =5
+
+            ID_Usuario_DataCard1 As typedDataCard.fluentV9NumberEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="ID_Usuario"
+                Default: =ThisItem.ID_Usuario
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbInteresses],DataSourceInfo.DisplayName,ID_Usuario)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(DataCardValue2.Value)
+                Visible: =false
+                Width: =500
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+                DataCardKey8 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue2 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =32
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Coalesce(Parent.Default,gbl_varUser.ID)
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey8.Y + DataCardKey8.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage8 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue2.Y + DataCardValue2.Height
+                    ZIndex: =3
+
+                StarVisible8 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey8.Y
+                    ZIndex: =4
+
+            ID_Esporte_DataCard1 As typedDataCard.fluentV9NumberEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="ID_Esporte"
+                Default: =ThisItem.ID_Esporte
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbInteresses],DataSourceInfo.DisplayName,ID_Esporte)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(DataCardValue3.Value)
+                Visible: =false
+                Width: =500
+                X: =0
+                Y: =1
+                ZIndex: =3
+
+                DataCardKey12 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue3 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =32
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Coalesce(Parent.Default,LookUp(tbSports,NomeEsporte=drp_Interesse.Selected.colEsporte,ID))
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey12.Y + DataCardKey12.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage14 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue3.Y + DataCardValue3.Height
+                    ZIndex: =3
+
+                StarVisible14 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey12.Y
+                    ZIndex: =4
+

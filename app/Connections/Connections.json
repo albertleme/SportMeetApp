@@ -1,0 +1,92 @@
+{
+  "4467bfc5-30f4-4a00-96ad-dadc66b64d15": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write",
+      "providers/PowerPlatform.Governance/Operations/Delete"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/jayawan/releases/v1.0.1697/1.0.1697.3786/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://fatecspgov.sharepoint.com/sites/SportMeetApp": {
+        "dataSources": {
+          "tbEvent": {
+            "tableName": "3f59a319-e942-471e-a00c-d6ce31399e7a"
+          },
+          "tbInteresses": {
+            "tableName": "a5d4688b-a2c0-4dfc-8e38-1f599c7ef529"
+          },
+          "tbMenuItens": {
+            "tableName": "fdbf5497-85f1-45bf-8cb8-2629c8a77853"
+          },
+          "tbParticipants": {
+            "tableName": "210849d1-7a95-4008-b625-35a658ee0206"
+          },
+          "tbSports": {
+            "tableName": "ae223f19-5d95-4b17-935d-48554f24b386"
+          },
+          "tbUsers": {
+            "tableName": "da658175-0b9b-4530-8ab7-52fd22320c83"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "tbMenuItens",
+      "tbSports",
+      "tbEvent",
+      "tbParticipants",
+      "tbInteresses",
+      "tbUsers"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "4467bfc5-30f4-4a00-96ad-dadc66b64d15"
+  },
+  "6ae5ab09-4ba3-4dda-a41a-d04f722a5d18": {
+    "appActions": [
+      "SendEmailV2"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Outlook",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1716/1.0.1716.3922/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Outlook"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "6ae5ab09-4ba3-4dda-a41a-d04f722a5d18"
+  },
+  "ece112ea-def9-4d2d-99b1-ed1e851fda9a": {
+    "appActions": [
+      "MyProfile_V2"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1717/1.0.1717.3929/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "ece112ea-def9-4d2d-99b1-ed1e851fda9a"
+  }
+}
