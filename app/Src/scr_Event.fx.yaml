@@ -42,12 +42,6 @@ scr_Event As screen:
         frm_Event As form.PowerApps_CoreControls_Form:
             BorderColor: =App.Theme.Colors.Darker40
             DataSource: =tbEvent
-            DefaultMode: |-
-                =If(
-                    varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
-                    FormMode.Edit,
-                    FormMode.View
-                )
             Item: =Coalesce(varEvent,LookUp(tbEvent,ID=varEvent.ID))
             LayoutMinHeight: =250
             LayoutMinWidth: =0
@@ -61,7 +55,12 @@ scr_Event As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="FotoEvento"
                 Default: =ThisItem.FotoEvento
-                DisplayMode: =Parent.DisplayMode
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,FotoEvento)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =500
@@ -110,7 +109,12 @@ scr_Event As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="TituloEvento"
                 Default: =ThisItem.TituloEvento
-                DisplayMode: =Parent.DisplayMode
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,TituloEvento)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =118
@@ -176,7 +180,12 @@ scr_Event As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="QtdParticipantes"
                 Default: =ThisItem.QtdParticipantes
-                DisplayMode: =Parent.DisplayMode
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,QtdParticipantes)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
@@ -238,7 +247,12 @@ scr_Event As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="DataHorarioEvento"
                 Default: =ThisItem.DataHorarioEvento
-                DisplayMode: =Parent.DisplayMode
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,DataHorarioEvento)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =118
@@ -346,7 +360,12 @@ scr_Event As screen:
                 DataField: ="DispName"
                 Default: |-
                     =ThisItem.'Local: Nome'
-                DisplayMode: =DisplayMode.Edit
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 DisplayName: |-
                     =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,'Local: Nome')
                 Fill: =RGBA(0, 0, 0, 0)
@@ -429,6 +448,9 @@ scr_Event As screen:
                             Height: =Parent.Height
                             Image: =LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,FotoPerfil)
                             ImagePosition: =ImagePosition.Fill
+                            OnSelect: |-
+                                =Set(varProfile,LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento));
+                                Navigate(scr_Profile,ScreenTransition.Fade)
                             Width: =Parent.Width
                             ZIndex: =1
 
@@ -464,7 +486,12 @@ scr_Event As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="ID_CriadorEvento"
                 Default: =ThisItem.ID_CriadorEvento
-                DisplayMode: =Parent.DisplayMode
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,ID_CriadorEvento)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
@@ -529,7 +556,12 @@ scr_Event As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="ID"
                 Default: =ThisItem.ID
-                DisplayMode: =DisplayMode.View
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,ID)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
@@ -567,7 +599,12 @@ scr_Event As screen:
             DataCard3 As typedDataCard.blankCard:
                 BorderColor: =App.Theme.Colors.Darker40
                 BorderStyle: =BorderStyle.Solid
-                DisplayMode: =DisplayMode.Edit
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =225
                 Width: =640
@@ -665,7 +702,12 @@ scr_Event As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="Esporte"
                 Default: =ThisItem.Esporte
-                DisplayMode: =Parent.DisplayMode
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,Esporte)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
@@ -738,7 +780,12 @@ scr_Event As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="DescricaoEvento"
                 Default: =ThisItem.DescricaoEvento
-                DisplayMode: =Parent.DisplayMode
+                DisplayMode: |-
+                    =If(
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        DisplayMode.Edit,
+                        DisplayMode.View
+                    )
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,DescricaoEvento)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =220
