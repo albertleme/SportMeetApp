@@ -66,6 +66,7 @@ scr_Chat As screen:
                     DisabledBorderColor: =RGBA(166, 166, 166, 1)
                     DisabledFill: =RGBA(244, 244, 244, 1)
                     Height: =Parent.Height
+                    Image: =Coalesce(LookUp(tbUsers,ID=varProfile.ID,FotoPerfil),SampleImage)
                     ImagePosition: =ImagePosition.Fill
                     Width: =Parent.Width
                     ZIndex: =1
@@ -85,7 +86,7 @@ scr_Chat As screen:
                     Height: =70
                     PaddingLeft: =10
                     Size: =22
-                    Text: ="Nome"
+                    Text: =LookUp(tbUsers,ID=varProfile.ID,Nome)
                     VerticalAlign: =VerticalAlign.Bottom
                     Width: =Parent.Width
                     ZIndex: =1
@@ -98,7 +99,7 @@ scr_Chat As screen:
                     Height: =46
                     PaddingLeft: =10
                     Size: =21
-                    Text: ="Text"
+                    Text: =LookUp(tbUsers,ID=varProfile.ID,Email)
                     VerticalAlign: =VerticalAlign.Top
                     Width: =Parent.Width
                     Y: =70

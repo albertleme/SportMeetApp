@@ -181,10 +181,14 @@ scr_Requisitions As screen:
                         DisabledColor: =RGBA(244, 244, 244, 1)
                         Height: =Parent.Height-50
                         Icon: =Icon.Message
-                        PaddingBottom: =10
-                        PaddingLeft: =10
-                        PaddingRight: =10
-                        PaddingTop: =10
+                        OnSelect: |-
+                            =Set(varProfile,LookUp(tbUsers,ID=ThisItem.ID_Solicitante));
+                            Navigate(scr_Chat,ScreenTransition.Fade)
+                        PaddingBottom: =20
+                        PaddingLeft: =20
+                        PaddingRight: =20
+                        PaddingTop: =20
+                        Tooltip: ="Conversar com "&LookUp(tbUsers,ID=ThisItem.ID_Solicitante,Nome)
                         Width: =Self.Height
                         ZIndex: =4
 
