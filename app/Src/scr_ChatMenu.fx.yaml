@@ -90,7 +90,7 @@ scr_ChatMenu As screen:
                     DisabledBorderColor: =RGBA(166, 166, 166, 1)
                     DisabledFill: =RGBA(244, 244, 244, 1)
                     Height: =Parent.Height
-                    Image: =LookUp(tbUsers,ID=gbl_varUser.ID,FotoPerfil)
+                    Image: =Coalesce(LookUp(tbUsers,ID=gbl_varUser.ID,FotoPerfil),SampleImage)
                     ImagePosition: =ImagePosition.Fill
                     Width: =Parent.Width
                     ZIndex: =1
@@ -121,7 +121,7 @@ scr_ChatMenu As screen:
                     PaddingBottom: =0
                     PaddingLeft: =10
                     Size: =22
-                    Text: =Office365Users.MyProfileV2().displayName
+                    Text: =LookUp(tbUsers,ID=gbl_varUser.ID,Nome)
                     VerticalAlign: =VerticalAlign.Bottom
                     Width: =Parent.Width
                     ZIndex: =1
@@ -137,7 +137,7 @@ scr_ChatMenu As screen:
                     LayoutMinWidth: =560
                     PaddingLeft: =10
                     Size: =21
-                    Text: =User().Email
+                    Text: =LookUp(tbUsers,ID=gbl_varUser.ID,Email)
                     VerticalAlign: =VerticalAlign.Top
                     Width: =Parent.Width
                     Y: =47
@@ -159,7 +159,11 @@ scr_ChatMenu As screen:
             "Gallery1_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
                 BorderColor: =App.Theme.Colors.Darker40
                 DelayItemLoading: =true
-                Items: =Filter(tbUsers,ID=LookUp(tbMessages,ID_Remetente=gbl_varUser.ID Or ID_Destinatario=gbl_varUser.ID,ID_Destinatario))
+                Items: |-
+                    =Filter(
+                        tbMessages,
+                        ID=LookUp(tbMessages,ID_Remetente=gbl_varUser.ID Or ID_Destinatario=gbl_varUser.ID,ID_Destinatario)
+                    )
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
@@ -185,9 +189,10 @@ scr_ChatMenu As screen:
                     ZIndex: =3
 
                     Container12_1 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Semibold
                         FillPortions: =0
-                        Height: =Parent.Height
+                        Height: =Parent.Height-40
                         LayoutMinHeight: =112
                         LayoutMinWidth: =250
                         RadiusBottomLeft: =100
@@ -204,7 +209,7 @@ scr_ChatMenu As screen:
                             DisabledBorderColor: =RGBA(166, 166, 166, 1)
                             DisabledFill: =RGBA(244, 244, 244, 1)
                             Height: =Parent.Height
-                            Image: =Coalesce(ThisItem.FotoPerfil,SampleImage)
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Destinatario Or ID=ThisItem.ID_Remetente,FotoPerfil),SampleImage)
                             ImagePosition: =ImagePosition.Fill
                             Width: =Parent.Width
                             ZIndex: =1
@@ -228,7 +233,7 @@ scr_ChatMenu As screen:
                             PaddingLeft: =12
                             PaddingRight: =12
                             Size: =26
-                            Text: =ThisItem.Nome
+                            Text: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Destinatario Or ID=ThisItem.ID_Remetente,Nome),SampleImage)
                             VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                             Width: =Parent.Width
                             X: =0

@@ -44,7 +44,9 @@ scr_Chat As screen:
                     DisabledColor: =RGBA(244, 244, 244, 1)
                     Height: =Parent.Height
                     Icon: =Icon.ArrowLeft
-                    OnSelect: =Back(ScreenTransition.Fade)
+                    OnSelect: |-
+                        =Back(ScreenTransition.Fade);
+                        Reset(TextInputCanvas1)
                     PaddingBottom: =10
                     PaddingLeft: =6
                     PaddingRight: =6
@@ -200,7 +202,7 @@ scr_Chat As screen:
                                 =
                                 If(ThisItem.ID_Remetente=gbl_varUser.ID,'TextCanvas.Align'.End,'TextCanvas.Align'.Start)
                             DisplayMode: =DisplayMode.Edit
-                            Height: =Parent.Height
+                            Height: =95
                             PaddingLeft: =20
                             PaddingRight: =20
                             Size: =26
@@ -210,6 +212,29 @@ scr_Chat As screen:
                             X: =0
                             Y: =0
                             ZIndex: =1
+
+                        Label15 As label:
+                            Align: |-
+                                =
+                                If(ThisItem.ID_Remetente=gbl_varUser.ID,Align.Left,Align.Right)
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(139, 154, 159, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =25
+                            PaddingBottom: =10
+                            PaddingLeft: =16
+                            PaddingRight: =16
+                            PaddingTop: =10
+                            Text: |-
+                                =Text(ThisItem.Criado,"dd/mm hh:mm")
+                            Width: =Parent.Width
+                            X: |-
+                                =
+                                
+                                If(ThisItem.ID_Remetente=gbl_varUser.ID,0,Parent.Width-Self.Width)
+                            Y: =Parent.Height-Self.Height
+                            ZIndex: =2
 
                     Container12_3 As groupContainer.manualLayoutContainer:
                         AlignInContainer: =AlignInContainer.Center
