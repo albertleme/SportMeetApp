@@ -136,13 +136,13 @@ scr_Chat As screen:
                 ZIndex: =1
 
                 Container13 As groupContainer.horizontalAutoLayoutContainer:
-                    DropShadow: =DropShadow.Light
                     Height: =Parent.TemplateHeight
+                    LayoutGap: =10
                     LayoutMode: =LayoutMode.Auto
-                    RadiusBottomLeft: =4
-                    RadiusBottomRight: =4
-                    RadiusTopLeft: =4
-                    RadiusTopRight: =4
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
                     Width: =Parent.TemplateWidth
                     ZIndex: =1
 
@@ -184,11 +184,13 @@ scr_Chat As screen:
                             ZIndex: =1
 
                     Container13_2 As groupContainer.manualLayoutContainer:
-                        Height: =Parent.Height
-                        RadiusBottomLeft: =4
-                        RadiusBottomRight: =4
-                        RadiusTopLeft: =4
-                        RadiusTopRight: =4
+                        DropShadow: =DropShadow.Regular
+                        Fill: =If(ThisItem.ID_Remetente=gbl_varUser.ID,RGBA(125, 125, 220, 0.20),RGBA(230, 230, 230, 0.8))
+                        Height: =Parent.Height-20
+                        RadiusBottomLeft: =30
+                        RadiusBottomRight: =30
+                        RadiusTopLeft: =30
+                        RadiusTopRight: =30
                         Width: =Parent.Width
                         X: =Container12_2.Width-Container12_2.X
                         ZIndex: =3
@@ -275,6 +277,7 @@ scr_Chat As screen:
                     FontSize: =26
                     Height: =Parent.Height
                     Mode: ='TextInputCanvas.Mode'.Multiline
+                    TriggerOutput: ="Focus"
                     Width: =Parent.Width
                     X: =0
                     Y: =0
