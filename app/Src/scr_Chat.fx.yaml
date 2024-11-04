@@ -131,33 +131,27 @@ scr_Chat As screen:
                 Width: =Parent.Width
                 ZIndex: =1
 
-                Container20 As groupContainer.horizontalAutoLayoutContainer:
-                    Height: =Parent.TemplateHeight
-                    LayoutGap: =12
+                Container13 As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    Height: =100
                     LayoutMode: =LayoutMode.Auto
-                    PaddingBottom: =12
-                    PaddingLeft: =12
-                    PaddingRight: =12
-                    PaddingTop: =12
                     RadiusBottomLeft: =4
                     RadiusBottomRight: =4
                     RadiusTopLeft: =4
                     RadiusTopRight: =4
-                    Width: =Parent.TemplateWidth
-                    ZIndex: =3
+                    Width: =616
+                    ZIndex: =1
 
-                    Container12 As groupContainer.manualLayoutContainer:
+                    Container12_2 As groupContainer.manualLayoutContainer:
                         DropShadow: =DropShadow.Semibold
-                        FillPortions: =0
-                        Height: =Parent.Height
-                        LayoutMinHeight: =112
-                        LayoutMinWidth: =250
+                        Height: =80
                         RadiusBottomLeft: =100
                         RadiusBottomRight: =100
                         RadiusTopLeft: =100
                         RadiusTopRight: =100
+                        Visible: =If(ThisItem.ID_Remetente=gbl_varUser.ID,false,true)
                         Width: =Self.Height
-                        X: =Self.Y
+                        X: =10
                         Y: =Parent.Height/2-Self.Height/2
                         ZIndex: =1
 
@@ -171,30 +165,50 @@ scr_Chat As screen:
                             Width: =Parent.Width
                             ZIndex: =1
 
-                    Container13 As groupContainer.manualLayoutContainer:
-                        Height: =100
-                        LayoutMinHeight: =112
-                        LayoutMinWidth: =250
+                    Container13_2 As groupContainer.manualLayoutContainer:
+                        Height: =Parent.Height
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
                         RadiusTopLeft: =4
                         RadiusTopRight: =4
-                        Width: =496
-                        X: =120
-                        Y: =20
+                        Width: =Parent.Width
+                        X: =Container12_2.Width-Container12_2.X
                         ZIndex: =2
 
                         TextCanvas2 As Text:
+                            Align: ='TextCanvas.Align'.Start
                             DisplayMode: =DisplayMode.Edit
                             Height: =Parent.Height
-                            PaddingLeft: =12
-                            PaddingRight: =12
+                            PaddingLeft: =20
+                            PaddingRight: =20
                             Size: =26
                             Text: =ThisItem.Mensagem
                             VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                             Width: =Parent.Width
                             X: =0
                             Y: =0
+                            ZIndex: =1
+
+                    Container12_3 As groupContainer.manualLayoutContainer:
+                        DropShadow: =DropShadow.Semibold
+                        Height: =80
+                        RadiusBottomLeft: =100
+                        RadiusBottomRight: =100
+                        RadiusTopLeft: =100
+                        RadiusTopRight: =100
+                        Width: =Self.Height
+                        X: =10
+                        Y: =Parent.Height/2-Self.Height/2
+                        ZIndex: =3
+
+                        Image7_2 As image:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =Parent.Height
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Remetente,FotoPerfil),SampleImage)
+                            ImagePosition: =ImagePosition.Fill
+                            Width: =Parent.Width
                             ZIndex: =1
 
         Container4 As groupContainer.horizontalAutoLayoutContainer:
