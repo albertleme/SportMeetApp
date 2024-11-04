@@ -126,21 +126,34 @@ scr_Chat As screen:
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
                 LoadingSpinner: =LoadingSpinner.Data
-                TemplatePadding: =12
+                TemplatePadding: =0
                 TemplateSize: =140
                 Width: =Parent.Width
                 ZIndex: =1
 
                 Container13 As groupContainer.horizontalAutoLayoutContainer:
                     DropShadow: =DropShadow.Light
-                    Height: =100
+                    Height: =Parent.TemplateHeight
                     LayoutMode: =LayoutMode.Auto
                     RadiusBottomLeft: =4
                     RadiusBottomRight: =4
                     RadiusTopLeft: =4
                     RadiusTopRight: =4
-                    Width: =616
+                    Width: =Parent.TemplateWidth
                     ZIndex: =1
+
+                    Label13 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =
+                        Width: =10
+                        ZIndex: =1
 
                     Container12_2 As groupContainer.manualLayoutContainer:
                         AlignInContainer: =AlignInContainer.Center
@@ -154,7 +167,7 @@ scr_Chat As screen:
                         Width: =Self.Height
                         X: =10
                         Y: =Parent.Height/2-Self.Height/2
-                        ZIndex: =1
+                        ZIndex: =2
 
                         Image7 As image:
                             BorderColor: =App.Theme.Colors.Darker40
@@ -174,7 +187,7 @@ scr_Chat As screen:
                         RadiusTopRight: =4
                         Width: =Parent.Width
                         X: =Container12_2.Width-Container12_2.X
-                        ZIndex: =2
+                        ZIndex: =3
 
                         TextCanvas2 As Text:
                             Align: |-
@@ -204,7 +217,7 @@ scr_Chat As screen:
                         Width: =Self.Height
                         X: =10
                         Y: =Parent.Height/2-Self.Height/2
-                        ZIndex: =3
+                        ZIndex: =4
 
                         Image7_2 As image:
                             BorderColor: =App.Theme.Colors.Darker40
@@ -215,6 +228,19 @@ scr_Chat As screen:
                             ImagePosition: =ImagePosition.Fill
                             Width: =Parent.Width
                             ZIndex: =1
+
+                    Label13_3 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =
+                        Width: =10
+                        ZIndex: =5
 
         Container4 As groupContainer.horizontalAutoLayoutContainer:
             FillPortions: =0
@@ -271,7 +297,9 @@ scr_Chat As screen:
                     Height: =Parent.Height
                     Icon: =Icon.Send
                     OnSelect: |-
-                        =Collect(tbMessages,{ID_Remetente:gbl_varUser.ID,ID_Destinatario:varProfile.ID,Mensagem:TextInputCanvas1.Value})
+                        =Collect(tbMessages,{ID_Remetente:gbl_varUser.ID,ID_Destinatario:varProfile.ID,Mensagem:TextInputCanvas1.Value});
+                        
+                        Reset(TextInputCanvas1)
                     PaddingBottom: =12
                     PaddingLeft: =12
                     PaddingRight: =12
