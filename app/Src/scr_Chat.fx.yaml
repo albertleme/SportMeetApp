@@ -277,6 +277,7 @@ scr_Chat As screen:
                     FontSize: =26
                     Height: =Parent.Height
                     Mode: ='TextInputCanvas.Mode'.Multiline
+                    Placeholder: ="Digite sua mensagem..."
                     TriggerOutput: ="Focus"
                     Width: =Parent.Width
                     X: =0
@@ -307,6 +308,7 @@ scr_Chat As screen:
                         =Collect(tbMessages,{ID_Remetente:gbl_varUser.ID,ID_Destinatario:varProfile.ID,Mensagem:TextInputCanvas1.Value});
                         
                         Reset(TextInputCanvas1)
+                    Tooltip: ="Enviar mensagem"
                     Width: =Parent.Width
                     ZIndex: =1
 
