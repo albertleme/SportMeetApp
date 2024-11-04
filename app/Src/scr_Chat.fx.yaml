@@ -166,6 +166,7 @@ scr_Chat As screen:
                             DisabledBorderColor: =RGBA(166, 166, 166, 1)
                             DisabledFill: =RGBA(244, 244, 244, 1)
                             Height: =Parent.Height
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Destinatario,FotoPerfil),SampleImage)
                             ImagePosition: =ImagePosition.Fill
                             Width: =Parent.Width
                             ZIndex: =1
@@ -189,7 +190,7 @@ scr_Chat As screen:
                             PaddingLeft: =12
                             PaddingRight: =12
                             Size: =26
-                            Text: ="Mensagem"
+                            Text: =ThisItem.Mensagem
                             VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                             Width: =Parent.Width
                             X: =0
@@ -244,11 +245,14 @@ scr_Chat As screen:
 
                 Icon2 As icon.Send:
                     BorderColor: =App.Theme.Colors.Darker40
-                    Color: =RGBA(53, 61, 63, 1)
+                    Color: =RGBA(39, 113, 194, 1)
                     DisabledBorderColor: =RGBA(166, 166, 166, 1)
                     DisabledColor: =RGBA(244, 244, 244, 1)
+                    DisplayMode: =If(IsBlank(TextInputCanvas1.Value),DisplayMode.Disabled,DisplayMode.Edit)
                     Height: =Parent.Height
                     Icon: =Icon.Send
+                    OnSelect: |-
+                        =Collect(tbMessages,{ID_Remetente:gbl_varUser.ID,ID_Destinatario:varProfile.ID,Mensagem:TextInputCanvas1.Value})
                     PaddingBottom: =12
                     PaddingLeft: =12
                     PaddingRight: =12
