@@ -25,6 +25,9 @@
           "tbMenuItens": {
             "tableName": "fdbf5497-85f1-45bf-8cb8-2629c8a77853"
           },
+          "tbMessages": {
+            "tableName": "b67cb676-6c4d-4702-97ca-46de00ec0c5e"
+          },
           "tbParticipants": {
             "tableName": "210849d1-7a95-4008-b625-35a658ee0206"
           },
@@ -43,7 +46,8 @@
       "tbEvent",
       "tbParticipants",
       "tbInteresses",
-      "tbUsers"
+      "tbUsers",
+      "tbMessages"
     ],
     "dependencies": {},
     "dependents": [],
