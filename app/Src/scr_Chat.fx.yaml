@@ -250,7 +250,7 @@ scr_Chat As screen:
 
         Container4 As groupContainer.horizontalAutoLayoutContainer:
             FillPortions: =0
-            Height: =150
+            Height: =80
             LayoutGap: =12
             LayoutMinHeight: =112
             LayoutMinWidth: =250
@@ -263,8 +263,8 @@ scr_Chat As screen:
 
             Container10 As groupContainer.manualLayoutContainer:
                 DropShadow: =DropShadow.Semibold
-                Height: =225
-                LayoutMinHeight: =112
+                Height: =Parent.Height
+                LayoutMinHeight: =0
                 LayoutMinWidth: =250
                 RadiusBottomLeft: =10
                 RadiusBottomRight: =10
@@ -285,8 +285,8 @@ scr_Chat As screen:
 
             Container11 As groupContainer.manualLayoutContainer:
                 FillPortions: =0
-                Height: =225
-                LayoutMinHeight: =112
+                Height: =Parent.Height
+                LayoutMinHeight: =0
                 LayoutMinWidth: =250
                 RadiusBottomLeft: =10
                 RadiusBottomRight: =10
@@ -307,10 +307,6 @@ scr_Chat As screen:
                         =Collect(tbMessages,{ID_Remetente:gbl_varUser.ID,ID_Destinatario:varProfile.ID,Mensagem:TextInputCanvas1.Value});
                         
                         Reset(TextInputCanvas1)
-                    PaddingBottom: =12
-                    PaddingLeft: =12
-                    PaddingRight: =12
-                    PaddingTop: =12
                     Width: =Parent.Width
                     ZIndex: =1
 
