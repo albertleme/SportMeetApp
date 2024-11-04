@@ -159,7 +159,7 @@ scr_ChatMenu As screen:
             "Gallery1_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
                 BorderColor: =App.Theme.Colors.Darker40
                 DelayItemLoading: =true
-                Items: =CustomGallerySample
+                Items: =Filter(tbUsers,ID=LookUp(tbMessages,ID_Remetente=gbl_varUser.ID Or ID_Destinatario=gbl_varUser.ID,ID_Destinatario))
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
@@ -204,6 +204,7 @@ scr_ChatMenu As screen:
                             DisabledBorderColor: =RGBA(166, 166, 166, 1)
                             DisabledFill: =RGBA(244, 244, 244, 1)
                             Height: =Parent.Height
+                            Image: =Coalesce(ThisItem.FotoPerfil,SampleImage)
                             ImagePosition: =ImagePosition.Fill
                             Width: =Parent.Width
                             ZIndex: =1
@@ -227,7 +228,7 @@ scr_ChatMenu As screen:
                             PaddingLeft: =12
                             PaddingRight: =12
                             Size: =26
-                            Text: ="Mensagem"
+                            Text: =ThisItem.Nome
                             VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                             Width: =Parent.Width
                             X: =0
@@ -252,9 +253,9 @@ scr_ChatMenu As screen:
                             DisabledBorderColor: =RGBA(166, 166, 166, 1)
                             DisabledColor: =RGBA(244, 244, 244, 1)
                             Height: =Parent.Height
-                            Icon: =Icon.ChevronRight
+                            Icon: =Icon.ArrowRight
                             OnSelect: |-
-                                =UpdateContext({varChatUser:""});
+                                =Set(varProfile,ThisItem);
                                 Navigate(scr_Chat,ScreenTransition.Fade)
                             PaddingBottom: =12
                             PaddingLeft: =12

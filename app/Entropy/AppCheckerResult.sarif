@@ -3594,36 +3594,6 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "scr_ChatMenu.varChatUser"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "scr_ChatMenu.varChatUser",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "varChatUser",
-                "module": "scr_ChatMenu",
-                "type": "scr_ChatMenu"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-UnusedVariables",
-          "ruleIndex": 8
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
                   "fullyQualifiedName": "scr_ChatMenu.Container1_1.Width"
                 }
               ],
