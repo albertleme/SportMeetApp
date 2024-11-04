@@ -90,7 +90,7 @@ scr_ChatMenu As screen:
                     DisabledBorderColor: =RGBA(166, 166, 166, 1)
                     DisabledFill: =RGBA(244, 244, 244, 1)
                     Height: =Parent.Height
-                    Image: =User().Image
+                    Image: =LookUp(tbUsers,ID=gbl_varUser.ID,FotoPerfil)
                     ImagePosition: =ImagePosition.Fill
                     Width: =Parent.Width
                     ZIndex: =1
