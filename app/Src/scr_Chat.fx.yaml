@@ -165,6 +165,8 @@ scr_Chat As screen:
                         AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Semibold
                         Height: =80
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
                         RadiusBottomLeft: =100
                         RadiusBottomRight: =100
                         RadiusTopLeft: =100
@@ -189,6 +191,8 @@ scr_Chat As screen:
                         DropShadow: =DropShadow.Regular
                         Fill: =If(ThisItem.ID_Remetente=gbl_varUser.ID,RGBA(125, 125, 220, 0.20),RGBA(230, 230, 230, 0.8))
                         Height: =Parent.Height-20
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
                         RadiusBottomLeft: =30
                         RadiusBottomRight: =30
                         RadiusTopLeft: =30
@@ -240,6 +244,8 @@ scr_Chat As screen:
                         AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Semibold
                         Height: =80
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
                         RadiusBottomLeft: =100
                         RadiusBottomRight: =100
                         RadiusTopLeft: =100
