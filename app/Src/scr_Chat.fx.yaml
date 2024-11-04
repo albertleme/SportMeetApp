@@ -143,6 +143,7 @@ scr_Chat As screen:
                     ZIndex: =1
 
                     Container12_2 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Semibold
                         Height: =80
                         RadiusBottomLeft: =100
@@ -176,7 +177,9 @@ scr_Chat As screen:
                         ZIndex: =2
 
                         TextCanvas2 As Text:
-                            Align: ='TextCanvas.Align'.Start
+                            Align: |-
+                                =
+                                If(ThisItem.ID_Remetente=gbl_varUser.ID,'TextCanvas.Align'.End,'TextCanvas.Align'.Start)
                             DisplayMode: =DisplayMode.Edit
                             Height: =Parent.Height
                             PaddingLeft: =20
@@ -190,12 +193,14 @@ scr_Chat As screen:
                             ZIndex: =1
 
                     Container12_3 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Semibold
                         Height: =80
                         RadiusBottomLeft: =100
                         RadiusBottomRight: =100
                         RadiusTopLeft: =100
                         RadiusTopRight: =100
+                        Visible: =If(ThisItem.ID_Remetente=gbl_varUser.ID,true,false)
                         Width: =Self.Height
                         X: =10
                         Y: =Parent.Height/2-Self.Height/2
