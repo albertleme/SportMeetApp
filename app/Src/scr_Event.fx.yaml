@@ -449,8 +449,7 @@ scr_Event As screen:
                             Image: =LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,FotoPerfil)
                             ImagePosition: =ImagePosition.Fill
                             OnSelect: |-
-                                =Set(varProfile,LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento));
-                                Navigate(scr_Profile,ScreenTransition.Fade)
+                                =Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento)})
                             Width: =Parent.Width
                             ZIndex: =1
 
