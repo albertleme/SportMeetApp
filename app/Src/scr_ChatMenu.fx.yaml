@@ -168,18 +168,18 @@ scr_ChatMenu As screen:
                 BorderColor: =App.Theme.Colors.Darker40
                 DelayItemLoading: =true
                 Items: |-
-                    =Filter(
-                        colMessages,
-                        ID = LookUp(
-                            colMessages,
-                            ID_Remetente = gbl_varUser.ID Or ID_Destinatario = gbl_varUser.ID,
-                            If(
-                                ID_Remetente = gbl_varUser.ID,
-                                ID_Remetente,
-                                ID_Destinatario
-                            )
+                    =/*Filter(
+                        tbMessages,
+                        ID_Destinatario = LookUp(
+                            tbMessages,
+                            ID_Remetente = gbl_varUser.ID And ID_Destinatario = gbl_varUser.ID Or ID_Remetente = varProfile.ID And ID_Destinatario = gbl_varUser.ID,
+                            ID_Destinatario
                         )
-                    )
+                    )*/
+                    
+                    Distinct(
+                        colMessages,
+                        ID_Destinatario)
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
@@ -229,7 +229,7 @@ scr_ChatMenu As screen:
                                 =Coalesce(
                                     LookUp(
                                         tbUsers,
-                                        ID = ThisItem.ID_Destinatario Or ID = ThisItem.ID_Remetente,
+                                        ID = ThisItem.Value Or ID = ThisItem.Value,
                                         FotoPerfil
                                     ),
                                     SampleImage
@@ -260,7 +260,7 @@ scr_ChatMenu As screen:
                             Text: |-
                                 =LookUp(
                                     tbUsers,
-                                    ID = ThisItem.ID_Destinatario Or ID = ThisItem.ID_Remetente,
+                                    ID = ThisItem.Value Or ID = ThisItem.Value,
                                     Nome
                                 )
                             VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
@@ -289,8 +289,7 @@ scr_ChatMenu As screen:
                             Height: =Parent.Height
                             Icon: =Icon.ArrowRight
                             OnSelect: |-
-                                =Set(varProfile,ThisItem);
-                                Navigate(scr_Chat,ScreenTransition.Fade)
+                                =Navigate(scr_Chat,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.Value)})
                             PaddingBottom: =12
                             PaddingLeft: =12
                             PaddingRight: =12
