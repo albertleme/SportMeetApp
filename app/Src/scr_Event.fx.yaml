@@ -57,7 +57,7 @@ scr_Event As screen:
                 Default: =ThisItem.FotoEvento
                 DisplayMode: |-
                     =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento.Value),
                         DisplayMode.Edit,
                         DisplayMode.View
                     )
@@ -111,7 +111,7 @@ scr_Event As screen:
                 Default: =ThisItem.TituloEvento
                 DisplayMode: |-
                     =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento.Value),
                         DisplayMode.Edit,
                         DisplayMode.View
                     )
@@ -182,7 +182,7 @@ scr_Event As screen:
                 Default: =ThisItem.QtdParticipantes
                 DisplayMode: |-
                     =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento.Value),
                         DisplayMode.Edit,
                         DisplayMode.View
                     )
@@ -249,7 +249,7 @@ scr_Event As screen:
                 Default: =ThisItem.DataHorarioEvento
                 DisplayMode: |-
                     =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento.Value),
                         DisplayMode.Edit,
                         DisplayMode.View
                     )
@@ -362,7 +362,7 @@ scr_Event As screen:
                     =ThisItem.'Local: Nome'
                 DisplayMode: |-
                     =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento.Value),
                         DisplayMode.Edit,
                         DisplayMode.View
                     )
@@ -708,7 +708,7 @@ scr_Event As screen:
                 Default: =ThisItem.Esporte
                 DisplayMode: |-
                     =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento.Value),
                         DisplayMode.Edit,
                         DisplayMode.View
                     )
@@ -786,7 +786,7 @@ scr_Event As screen:
                 Default: =ThisItem.DescricaoEvento
                 DisplayMode: |-
                     =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
+                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento.Value),
                         DisplayMode.Edit,
                         DisplayMode.View
                     )
