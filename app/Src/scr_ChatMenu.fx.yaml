@@ -162,7 +162,11 @@ scr_ChatMenu As screen:
                 Items: |-
                     =Filter(
                         tbMessages,
-                        ID=LookUp(tbMessages,ID_Remetente=gbl_varUser.ID Or ID_Destinatario=gbl_varUser.ID,ID_Destinatario)
+                        ID = LookUp(
+                            tbMessages,
+                            ID_Remetente = gbl_varUser.ID Or ID_Destinatario = gbl_varUser.ID,
+                            If(ID_Remetente<>gbl_varUser.ID,ID_Destinatario,ID_Remetente)
+                        )
                     )
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
@@ -209,7 +213,15 @@ scr_ChatMenu As screen:
                             DisabledBorderColor: =RGBA(166, 166, 166, 1)
                             DisabledFill: =RGBA(244, 244, 244, 1)
                             Height: =Parent.Height
-                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Destinatario Or ID=ThisItem.ID_Remetente,FotoPerfil),SampleImage)
+                            Image: |-
+                                =Coalesce(
+                                    LookUp(
+                                        tbUsers,
+                                        ID = ThisItem.ID_Destinatario Or ID = ThisItem.ID_Remetente,
+                                        FotoPerfil
+                                    ),
+                                    SampleImage
+                                )
                             ImagePosition: =ImagePosition.Fill
                             Width: =Parent.Width
                             ZIndex: =1
