@@ -152,7 +152,10 @@ scr_Requisitions As screen:
                             Height: =Parent.Height
                             Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Solicitante,FotoPerfil),SampleImage)
                             ImagePosition: =ImagePosition.Fill
-                            OnSelect: =Set(varProfile,LookUp(tbUsers,ID=ThisItem.ID_Solicitante));Navigate(scr_Profile,ScreenTransition.Fade)
+                            OnSelect: |-
+                                =//Set(varProfile,LookUp(tbUsers,ID=ThisItem.ID_Solicitante));
+                                
+                                Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Solicitante)})
                             Width: =Self.Height
                             ZIndex: =1
 

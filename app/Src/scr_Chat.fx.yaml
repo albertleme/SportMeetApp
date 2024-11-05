@@ -74,6 +74,10 @@ scr_Chat As screen:
                     Height: =Parent.Height
                     Image: =Coalesce(LookUp(tbUsers,ID=varProfile.ID,FotoPerfil),SampleImage)
                     ImagePosition: =ImagePosition.Fill
+                    OnSelect: |-
+                        =//Set(varProfile,LookUp(tbUsers,ID=varProfile.ID));
+                        
+                        Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=varProfile.ID)})
                     Width: =Parent.Width
                     ZIndex: =1
 
@@ -169,6 +173,7 @@ scr_Chat As screen:
                     Container12_2 As groupContainer.manualLayoutContainer:
                         AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Semibold
+                        FillPortions: =0
                         Height: =80
                         LayoutMinHeight: =112
                         LayoutMinWidth: =250
@@ -177,7 +182,7 @@ scr_Chat As screen:
                         RadiusTopLeft: =100
                         RadiusTopRight: =100
                         Visible: =If(ThisItem.ID_Remetente=gbl_varUser.ID,false,true)
-                        Width: =Self.Height
+                        Width: =80
                         X: =10
                         Y: =Parent.Height/2-Self.Height/2
                         ZIndex: =2
@@ -248,6 +253,7 @@ scr_Chat As screen:
                     Container12_3 As groupContainer.manualLayoutContainer:
                         AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Semibold
+                        FillPortions: =0
                         Height: =80
                         LayoutMinHeight: =112
                         LayoutMinWidth: =250
@@ -256,7 +262,7 @@ scr_Chat As screen:
                         RadiusTopLeft: =100
                         RadiusTopRight: =100
                         Visible: =If(ThisItem.ID_Remetente=gbl_varUser.ID,true,false)
-                        Width: =Self.Height
+                        Width: =80
                         X: =10
                         Y: =Parent.Height/2-Self.Height/2
                         ZIndex: =4

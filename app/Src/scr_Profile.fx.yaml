@@ -1,7 +1,14 @@
 scr_Profile As screen:
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
-    OnVisible: =ClearCollect(colInteressesFilter,Filter(tbInteresses,ID_Usuario=gbl_varUser.ID))
+    OnVisible: |-
+        =ClearCollect(
+            colInteressesFilter,
+            Filter(
+                tbInteresses,
+                ID_Usuario = gbl_varUser.ID
+            )
+        )
 
     cnt_MyProfile_1 As groupContainer.verticalAutoLayoutContainer:
         Height: =Parent.Height
