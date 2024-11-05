@@ -15,7 +15,7 @@ scr_Chat As screen:
         ZIndex: =1
 
         Container2 As groupContainer.horizontalAutoLayoutContainer:
-            DropShadow: =DropShadow.Regular
+            DropShadow: =DropShadow.Semibold
             Fill: =RGBA(39, 113, 194, 1)
             FillPortions: =0
             Height: =140
@@ -40,7 +40,7 @@ scr_Chat As screen:
 
                 Icon1 As icon.ChevronLeft:
                     BorderColor: =App.Theme.Colors.Darker40
-                    Color: =RGBA(53, 61, 63, 1)
+                    Color: =RGBA(255, 255, 255, 1)
                     DisabledBorderColor: =RGBA(166, 166, 166, 1)
                     DisabledColor: =RGBA(244, 244, 244, 1)
                     Height: =Parent.Height
@@ -242,6 +242,7 @@ scr_Chat As screen:
                             PaddingLeft: =16
                             PaddingRight: =16
                             PaddingTop: =10
+                            Size: =13
                             Text: |-
                                 =Text(ThisItem.Criado,"dd/mm hh:mm")
                             Width: =Parent.Width
