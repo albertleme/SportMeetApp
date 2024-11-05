@@ -41,10 +41,10 @@ scr_Requisitions As screen:
                 Height: =Parent.Height
                 Icon: =Icon.ArrowLeft
                 OnSelect: =Navigate(scr_MyEvents,ScreenTransition.Fade)
-                PaddingBottom: =20
-                PaddingLeft: =20
-                PaddingRight: =20
-                PaddingTop: =20
+                PaddingBottom: =24
+                PaddingLeft: =24
+                PaddingRight: =24
+                PaddingTop: =24
                 Width: =Parent.Height
                 ZIndex: =1
 
@@ -65,11 +65,17 @@ scr_Requisitions As screen:
 
             Icon9 As icon.GlobeRefresh:
                 BorderColor: =App.Theme.Colors.Darker40
-                Color: =App.Theme.Colors.Darker30
+                Color: =RGBA(255, 255, 255, 1)
                 DisabledBorderColor: =RGBA(166, 166, 166, 1)
                 DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
                 Icon: =Icon.GlobeRefresh
                 OnSelect: =Refresh(tbParticipants)
+                PaddingBottom: =24
+                PaddingLeft: =24
+                PaddingRight: =24
+                PaddingTop: =24
+                Width: =Self.Height
                 ZIndex: =3
 
         "glr_Requests_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
