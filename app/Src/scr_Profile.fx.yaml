@@ -598,7 +598,10 @@ scr_Profile As screen:
             DisabledBorderColor: =RGBA(166, 166, 166, 1)
             DisabledColor: =RGBA(244, 244, 244, 1)
             Icon: =Icon.Message
-            OnSelect: =Navigate(scr_Chat,ScreenTransition.Fade)
+            OnSelect: |-
+                =//Set(varProfile,LookUp(tbUsers,ID=));
+                
+                Navigate(scr_Chat,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=varProfile.ID)})
             PaddingBottom: =10
             PaddingLeft: =10
             PaddingRight: =10
