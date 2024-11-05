@@ -20,7 +20,6 @@ scr_Profile As screen:
         frm_MyProfile_1 As form.PowerApps_CoreControls_Form:
             BorderColor: =App.Theme.Colors.Darker40
             DataSource: =tbUsers
-            DefaultMode: =FormMode.View
             Item: =varProfile
             LayoutMinHeight: =1000
             LayoutMinWidth: =320
@@ -32,6 +31,30 @@ scr_Profile As screen:
             UseFluentV9Cards: =true
             Width: =640
             ZIndex: =1
+
+            DataCard4 As typedDataCard.blankCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =150
+                Width: =640
+                X: =0
+                Y: =6
+                ZIndex: =1
+
+                ButtonCanvas6 As Button:
+                    BasePaletteColor: =RGBA(249, 83, 109, 1)
+                    DisplayMode: =DisplayMode.Edit
+                    FontSize: =22
+                    Height: =64
+                    OnSelect: |-
+                        =UpdateContext({bolDenuncia:true})
+                    Text: ="Denunciar"
+                    Width: =Parent.Width - 80
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =Parent.Height/2-Self.Height/2
+                    ZIndex: =1
 
             FotoPerfil_1 As typedDataCard.fluentV9AddLargePictureCard:
                 BorderColor: =App.Theme.Colors.Darker40
@@ -152,7 +175,7 @@ scr_Profile As screen:
                 BorderStyle: =BorderStyle.Solid
                 DisplayMode: =DisplayMode.Edit
                 Fill: =RGBA(0, 0, 0, 0)
-                Height: =225
+                Height: =Gallery6_1.AllItemsCount
                 Visible: =true
                 Width: =640
                 X: =0
@@ -192,6 +215,7 @@ scr_Profile As screen:
                 "Gallery6_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
                     BorderColor: =App.Theme.Colors.Darker40
                     DelayItemLoading: =true
+                    Height: =Gallery6_1.AllItemsCount*110+6
                     Items: =colInteressesFilter
                     Layout: =Layout.Vertical
                     LoadingSpinner: =LoadingSpinner.Data
@@ -608,4 +632,220 @@ scr_Profile As screen:
             PaddingTop: =10
             Tooltip: ="Voltar"
             ZIndex: =1
+
+    Rectangle2 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(0, 0, 0, 0.4)
+        Height: =1136
+        OnSelect: |-
+            =UpdateContext({bolDenuncia:false})
+        Visible: =bolDenuncia
+        Width: =640
+        ZIndex: =4
+
+    Container12 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Bold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =If(RadioGroupCanvas1.Selected.Value="Outros",530+Container36.Height,530)
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =8
+        RadiusBottomRight: =8
+        RadiusTopLeft: =8
+        RadiusTopRight: =8
+        Visible: =bolDenuncia
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =5
+
+        Container20 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =60
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =1
+
+        RadioGroupCanvas1 As Radio.pcfdataset:
+            BasePaletteColor: =
+            DisplayMode: =DisplayMode.Edit
+            FillPortions: =1
+            FontSize: =27
+            Height: =100
+            Items: |-
+                =    [
+                        "Assédio",
+                        "Comportamento inadequado",
+                        "Spam",
+                        "Falsidade de identidade",
+                        "Discriminação racial ou de gênero",
+                        "Comportamento de trapaça",
+                        "Outros"
+                    ]
+            LayoutMinHeight: =100
+            LayoutMinWidth: =320
+            OnChange: =Reset(TextInputCanvas3)
+            RadioSize: =30
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =2
+
+        Container36 As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =70
+            LayoutMinHeight: =50
+            LayoutMinWidth: =0
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =20
+            PaddingRight: =20
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =If(RadioGroupCanvas1.Selected.Value="Outros",true,false)
+            ZIndex: =3
+
+            "TextInputCanvas3 As 'Text input'":
+                AlignInContainer: =AlignInContainer.Stretch
+                BorderColor: =RGBA(139, 154, 159, 1)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =1
+                DisplayMode: =DisplayMode.Edit
+                FillPortions: =1
+                FontSize: =26
+                Height: =Parent.Height
+                LayoutMinHeight: =32
+                LayoutMinWidth: =320
+                Placeholder: ="Descreva a denúncia"
+                Width: =Parent.Width
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+        Container35 As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =100
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =100
+            PaddingRight: =100
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =4
+
+            ButtonCanvas10 As Button:
+                AlignInContainer: =AlignInContainer.Center
+                BasePaletteColor: =RGBA(5, 102, 178, 1)
+                DisplayMode: =DisplayMode.Edit
+                FillPortions: =1
+                FontSize: =26
+                Height: =50
+                Icon: ="Send"
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                OnSelect: |-
+                    =Office365Outlook.SendEmailV2(
+                        "albertlemebrito@gmail.com",
+                        "Denúncia contra o usuário " & Upper(varProfile.Nome) & " - " & Text(
+                            Today(),
+                            "dd/mm/yyyy"
+                        ),
+                        "<!DOCTYPE html>
+                        <html lang=""pt-BR"">
+                        <head>
+                            <meta charset=""UTF-8"">
+                            <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                            <title>Denúncia de Usuário</title>
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    color: #333;
+                                    background-color: #f8f9fa;
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                                .container {
+                                    max-width: 600px;
+                                    margin: 0 auto;
+                                    padding: 20px;
+                                    background-color: #ffffff;
+                                    border: 1px solid #dddddd;
+                                    border-radius: 8px;
+                                }
+                                .header {
+                                    text-align: center;
+                                    padding-bottom: 20px;
+                                    border-bottom: 1px solid #dddddd;
+                                }
+                                .header h1 {
+                                    margin: 0;
+                                    color: #d9534f;
+                                }
+                                .content {
+                                    padding: 20px 0;
+                                }
+                                .content h2 {
+                                    color: #333;
+                                    font-size: 18px;
+                                    margin-bottom: 10px;
+                                }
+                                .content p {
+                                    font-size: 16px;
+                                    line-height: 1.5;
+                                }
+                                .content .field-label {
+                                    font-weight: bold;
+                                    color: #555;
+                                }
+                                .footer {
+                                    text-align: center;
+                                    padding-top: 20px;
+                                    font-size: 14px;
+                                    color: #777;
+                                    border-top: 1px solid #dddddd;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <div class=""container"">
+                                <div class=""header"">
+                                    <h1>Denúncia de Usuário</h1>
+                                </div>
+                                <div class=""content"">
+                                    <h2>Detalhes da Denúncia</h2>
+                                    <p><span class=""field-label"">Nome do Denunciado:</span>" & varProfile.Nome & "</p>
+                                    <p><span class=""ield-label"">Horário da Denúncia:</span>" & Text(
+                            Today(),
+                            "dd/mm/yyyy"
+                        ) & "</p>
+                                    <p><span class=""field-label"">Nome do Denunciante:</span>" & gbl_varUser.Nome & "</p>
+                                    <p><span class=""field-label"">Email do Denunciado:</span>" & varProfile.Email & "</p>
+                                    <p><span class=""field-label"">Email do Denunciante:</span>" & gbl_varUser.Email & "</p>
+                                    <p><span class=""field-label"">Motivo da Denúncia:</span>" & RadioGroupCanvas1.Selected.Value & "</p>
+                                </div>
+                                <div class=""footer"">
+                                    <p>Esta é uma mensagem automática. Por favor, não responda a este email.</p>
+                                </div>
+                            </div>
+                        </body>
+                        </html>"
+                    )
+                PaddingBottom: =
+                PaddingLeft: =
+                PaddingRight: =
+                PaddingTop: =
+                Text: ="Enviar"
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =1
 

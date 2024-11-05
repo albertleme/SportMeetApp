@@ -285,6 +285,21 @@
     "OverridableProperties": {},
     "Version": "1.5.0"
   },
+  "Radio": {
+    "CustomGroupControlTemplateName": "",
+    "FirstParty": true,
+    "Id": "http://microsoft.com/appmagic/powercontrol/PowerApps_CoreControls_RadioGroupCanvas",
+    "IsComponentTemplate": false,
+    "IsCustomGroupControlTemplate": false,
+    "IsPcfControl": true,
+    "IsPremiumPcfControl": false,
+    "IsWidgetTemplate": false,
+    "LastModifiedTimestamp": "0",
+    "Name": "PowerApps_CoreControls_RadioGroupCanvas",
+    "OverridableProperties": {},
+    "TemplateDisplayName": "Radio",
+    "Version": "0.0.22"
+  },
   "rectangle": {
     "CustomGroupControlTemplateName": "",
     "FirstParty": true,
