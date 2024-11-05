@@ -1,6 +1,14 @@
 scr_ChatMenu As screen:
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =ClearCollect(
+            colMessages,
+            Filter(
+                tbMessages,
+                ID_Remetente = gbl_varUser.ID Or gbl_varUser.ID = ID_Destinatario
+            )
+        )
 
     Rectangle1_4 As rectangle:
         BorderColor: =App.Theme.Colors.Darker40
@@ -161,11 +169,15 @@ scr_ChatMenu As screen:
                 DelayItemLoading: =true
                 Items: |-
                     =Filter(
-                        tbMessages,
+                        colMessages,
                         ID = LookUp(
-                            tbMessages,
+                            colMessages,
                             ID_Remetente = gbl_varUser.ID Or ID_Destinatario = gbl_varUser.ID,
-                            If(ID_Remetente<>gbl_varUser.ID,ID_Destinatario,ID_Remetente)
+                            If(
+                                ID_Remetente = gbl_varUser.ID,
+                                ID_Remetente,
+                                ID_Destinatario
+                            )
                         )
                     )
                 Layout: =Layout.Vertical
@@ -245,7 +257,12 @@ scr_ChatMenu As screen:
                             PaddingLeft: =12
                             PaddingRight: =12
                             Size: =26
-                            Text: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Destinatario Or ID=ThisItem.ID_Remetente,Nome),SampleImage)
+                            Text: |-
+                                =LookUp(
+                                    tbUsers,
+                                    ID = ThisItem.ID_Destinatario Or ID = ThisItem.ID_Remetente,
+                                    Nome
+                                )
                             VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                             Width: =Parent.Width
                             X: =0

@@ -127,7 +127,12 @@ scr_Chat As screen:
             "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
                 BorderColor: =App.Theme.Colors.Darker40
                 DelayItemLoading: =true
-                Items: =Filter(tbMessages,ID_Remetente = gbl_varUser.ID Or ID_Destinatario = varProfile.ID)
+                Items: |-
+                    =Filter(
+                        tbMessages,
+                        ID_Remetente = gbl_varUser.ID And ID_Destinatario = varProfile.ID Or
+                        ID_Remetente = varProfile.ID And ID_Destinatario = gbl_varUser.ID
+                    )
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
