@@ -2,7 +2,9 @@ scr_MyEvents As screen:
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
     OnVisible: |-
-        =ClearCollect(
+        =Refresh(tbEvent);
+        Refresh(tbParticipants);
+        ClearCollect(
             colMyEvents,
             Filter(
                 tbEvent,
@@ -384,8 +386,8 @@ scr_MyEvents As screen:
                         Color: |-
                             =Switch(
                                 Self.Icon,
-                                Icon.Airplane,
-                                Color.Blue,
+                                Icon.Clock,
+                                RGBA(220,220,220,1),
                                 Icon.CheckBadge,
                                 Color.Green,
                                 Icon.CancelBadge,
@@ -402,7 +404,7 @@ scr_MyEvents As screen:
                                     Status.Value
                                 ),
                                 "Em espera",
-                                Icon.Airplane,
+                                Icon.Clock,
                                 "Aprovado",
                                 Icon.CheckBadge,
                                 "Rejeitado",

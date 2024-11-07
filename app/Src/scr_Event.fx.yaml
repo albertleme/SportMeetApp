@@ -610,6 +610,7 @@ scr_Event As screen:
                     */
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =225
+                Visible: =If(CountRows(Gallery2.AllItems)<>0,true,false)
                 Width: =640
                 X: =0
                 Y: =10
