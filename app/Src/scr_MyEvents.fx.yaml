@@ -388,13 +388,14 @@ scr_MyEvents As screen:
                                 Self.Icon,
                                 Icon.Clock,
                                 RGBA(220,220,220,1),
-                                Icon.CheckBadge,
-                                Color.Green,
-                                Icon.CancelBadge,
-                                Color.Red
+                                Icon.Check,
+                                RGBA(100,200,100,1),
+                                Icon.Cancel,
+                                RGBA(200,100,100,1)
                             )
                         DisabledBorderColor: =RGBA(166, 166, 166, 1)
                         DisabledColor: =RGBA(244, 244, 244, 1)
+                        DisplayMode: =DisplayMode.View
                         Height: =Parent.Height
                         Icon: |-
                             =Switch(
@@ -406,7 +407,7 @@ scr_MyEvents As screen:
                                 "Em espera",
                                 Icon.Clock,
                                 "Aprovado",
-                                Icon.CheckBadge,
+                                Icon.Check,
                                 "Rejeitado",
                                 Icon.CancelBadge
                             )
@@ -510,6 +511,13 @@ scr_MyEvents As screen:
                             PressedFill: =
                             Size: =24
                             Text: =
+                            Tooltip: |-
+                                =Switch(
+                                    Value(Label10.Text),
+                                    1,
+                                    "Há " & Label10.Text & " pedido de participação nesse evento",
+                                    "Há " & Label10.Text & " pedidos de participação nesse evento"
+                                )
                             Width: =Parent.Width
                             ZIndex: =2
 
