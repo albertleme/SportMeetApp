@@ -438,7 +438,7 @@ scr_Profile As screen:
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
                 Required: =false
-                Update: =DataCardValue25_2.Selected
+                Update: =
                 Width: =Parent.Width
                 X: =0
                 Y: =3
@@ -459,22 +459,6 @@ scr_Profile As screen:
                     Y: =10
                     ZIndex: =1
 
-                DataCardValue25_2 As Combobox.pcfdataset:
-                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
-                    Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
-                    DefaultSelectedItems: =[Parent.Default]
-                    DisplayMode: =DisplayMode.View
-                    Fill: =
-                    FontSize: =26
-                    Height: =64
-                    Items: =Choices([@tbUsers].Sexo)
-                    Required: =false
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Width: =Parent.Width - 80
-                    X: =Parent.Width/2-Self.Width/2
-                    Y: =DataCardKey27_2.Y + DataCardKey27_2.Height + 4
-                    ZIndex: =2
-
                 ErrorMessage20_2 As Text:
                     BorderColor: =
                     DisplayMode: =DisplayMode.Edit
@@ -486,7 +470,7 @@ scr_Profile As screen:
                     Width: =Parent.Width - 48
                     Wrap: =true
                     X: =24
-                    Y: =DataCardValue25_2.Y + DataCardValue25_2.Height
+                    Y: =DataCardValue24_2.Y + DataCardValue24_2.Height
                     ZIndex: =3
 
                 StarVisible20_2 As Text:
@@ -502,6 +486,26 @@ scr_Profile As screen:
                     X: =0
                     Y: =DataCardKey27_2.Y
                     ZIndex: =4
+
+                "DataCardValue24_3 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    Appearance: ='TextInputCanvas.Appearance'.FilledLighter
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =Parent.DisplayMode
+                    Fill: =
+                    FontColor: =
+                    FontSize: =27
+                    FontWeight: =FontWeight.Semibold
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =ThisItem.Sexo.Value
+                    Width: =Parent.Width - 80
+                    X: =Parent.Width/2-Self.Width/2
+                    Y: =DataCardKey26_2.Y + DataCardKey26_2.Height + 4
+                    ZIndex: =5
 
             DataNascimento_1 As typedDataCard.fluentV9DateEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
@@ -570,13 +574,25 @@ scr_Profile As screen:
                     Font: =App.Theme.Font
                     Height: =70
                     Size: =26
-                    Text: |-
-                        =DateDiff(ThisItem.DataNascimento,Today(),TimeUnit.Years)&
-                        If(DateDiff(Today(),ThisItem.DataNascimento,TimeUnit.Years)=1," ano"," anos")
+                    Text: =
                     Width: =560
                     X: =40
                     Y: =50
                     ZIndex: =5
+
+                TextCanvas1 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =DataCardValue24_2.Height
+                    PaddingLeft: =15
+                    Size: =27
+                    Text: |-
+                        =DateDiff(ThisItem.DataNascimento,Today(),TimeUnit.Years)&
+                        If(DateDiff(Today(),ThisItem.DataNascimento,TimeUnit.Years)=1," ano"," anos")
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =DataCardValue24_2.Width
+                    X: =40
+                    Y: =50
+                    ZIndex: =6
 
     cnt_VoltarProfile_1 As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Bold
