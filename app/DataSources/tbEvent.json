@@ -3,7 +3,7 @@
     "ApiId": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
     "CdpRevision": {
       "BaseUrl": "/",
-      "LastChangedTimeString": "2024-10-17T01:31:11.1370000Z",
+      "LastChangedTimeString": "2024-08-23T21:33:02.8540000Z",
       "RevisionNumber": 1
     },
     "ConnectedDataSourceInfoNameMapping": {
@@ -25,6 +25,8 @@
       "{VersionNumber}": "Número da versão",
       "Author": "Criado por",
       "Author#Claims": "Criado por Claims",
+      "Cidade": "Cidade",
+      "Cidade#Id": "Cidade Id",
       "City": "Local: Cidade",
       "ComplianceAssetId": "ID de Ativo de Conformidade",
       "CountryOrRegion": "Local: País/Região",
@@ -34,12 +36,14 @@
       "DispName": "Local: Nome",
       "Editor": "Modificado por",
       "Editor#Claims": "Modificado por Claims",
+      "Endereco": "Endereco",
       "Esporte": "Esporte",
       "Esporte#Id": "Esporte Id",
       "FotoEvento": "FotoEvento",
       "ID": "ID",
       "ID_CriadorEvento": "ID_CriadorEvento",
       "Modified": "Modificado",
+      "Numero": "Numero",
       "OData__ColorTag": "Pressione Delete para excluir o ícone.",
       "PostalCode": "Local: CEP",
       "QtdParticipantes": "QtdParticipantes",

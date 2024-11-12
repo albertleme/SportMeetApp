@@ -638,7 +638,7 @@ scr_Profile As screen:
         Fill: =RGBA(0, 0, 0, 0.4)
         Height: =1136
         OnSelect: |-
-            =UpdateContext({bolDenuncia:false})
+            =UpdateContext({bolDenuncia:false});Reset(TextInputCanvas3);Reset(RadioGroupCanvas1)
         Visible: =bolDenuncia
         Width: =640
         ZIndex: =4
@@ -670,6 +670,37 @@ scr_Profile As screen:
             RadiusTopLeft: =4
             RadiusTopRight: =4
             ZIndex: =1
+
+            Icon13 As icon.Support:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(139, 154, 159, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                DisplayMode: =DisplayMode.View
+                Height: =Parent.Height
+                Icon: =Icon.Support
+                PaddingBottom: =12
+                PaddingLeft: =12
+                PaddingRight: =12
+                PaddingTop: =12
+                Width: =Self.Height
+                ZIndex: =1
+
+            Label16 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(139, 154, 159, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisplayMode: =DisplayMode.View
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                LayoutMinWidth: =0
+                Size: =18
+                Text: ="Enviar denúncia"
+                Width: =
+                ZIndex: =2
 
         RadioGroupCanvas1 As Radio.pcfdataset:
             BasePaletteColor: =
