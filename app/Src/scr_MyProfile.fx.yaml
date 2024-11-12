@@ -1,6 +1,14 @@
 scr_MyProfile As screen:
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =ClearCollect(
+            colInteressesFilter,
+            Filter(
+                tbInteresses,
+                ID_Usuario = gbl_varUser.ID
+            )
+        )
 
     cnt_MyProfile As groupContainer.verticalAutoLayoutContainer:
         Height: =Parent.Height
@@ -267,7 +275,9 @@ scr_MyProfile As screen:
                 "Gallery6 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
                     BorderColor: =App.Theme.Colors.Darker40
                     DelayItemLoading: =true
-                    Items: =Filter(tbInteresses,ID_Usuario=gbl_varUser.ID)
+                    Items: |-
+                        =colInteressesFilter
+                        //Filter(tbInteresses,ID_Usuario=gbl_varUser.ID)
                     Layout: =Layout.Vertical
                     LoadingSpinner: =LoadingSpinner.Data
                     TemplatePadding: =0
@@ -278,7 +288,6 @@ scr_MyProfile As screen:
                     ZIndex: =2
 
                     cnt_Interest As groupContainer.manualLayoutContainer:
-                        DropShadow: =DropShadow.Light
                         Height: =100
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
@@ -321,6 +330,20 @@ scr_MyProfile As screen:
                             Width: =1
                             Y: =10
                             ZIndex: =3
+
+                        Label18 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =90
+                            PaddingLeft: =15
+                            Size: =21
+                            Text: =LookUp(tbSports,ID=ThisItem.ID_Esporte,NomeEsporte)
+                            Width: =502
+                            X: =90
+                            Y: =10
+                            ZIndex: =4
 
             Nome As typedDataCard.fluentV9TextualEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
