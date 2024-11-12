@@ -713,6 +713,7 @@ scr_Profile As screen:
 
             "TextInputCanvas3 As 'Text input'":
                 AlignInContainer: =AlignInContainer.Stretch
+                BasePaletteColor: =
                 BorderColor: =RGBA(139, 154, 159, 1)
                 BorderStyle: =BorderStyle.None
                 BorderThickness: =1
@@ -830,7 +831,11 @@ scr_Profile As screen:
                                     <p><span class=""field-label"">Nome do Denunciante:</span>" & gbl_varUser.Nome & "</p>
                                     <p><span class=""field-label"">Email do Denunciado:</span>" & varProfile.Email & "</p>
                                     <p><span class=""field-label"">Email do Denunciante:</span>" & gbl_varUser.Email & "</p>
-                                    <p><span class=""field-label"">Motivo da Denúncia:</span>" & RadioGroupCanvas1.Selected.Value & "</p>
+                                    <p><span class=""field-label"">Motivo da Denúncia:</span>" & RadioGroupCanvas1.Selected.Value & "</p>"&
+                                    If(RadioGroupCanvas1.Selected.Value="Outros",
+                                        "<p><span class=""field-label"">Comentário:</span>" & TextInputCanvas3.Value & "</p>"
+                                    )
+                                    &"
                                 </div>
                                 <div class=""footer"">
                                     <p>Esta é uma mensagem automática. Por favor, não responda a este email.</p>
