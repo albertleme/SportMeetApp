@@ -464,6 +464,7 @@ scr_Profile As screen:
                     Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
                     DefaultSelectedItems: =[Parent.Default]
                     DisplayMode: =DisplayMode.View
+                    Fill: =
                     FontSize: =26
                     Height: =64
                     Items: =Choices([@tbUsers].Sexo)
