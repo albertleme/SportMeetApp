@@ -103,20 +103,6 @@ scr_Chat As screen:
                     Width: =Parent.Width
                     ZIndex: =1
 
-                Label2 As label:
-                    BorderColor: =App.Theme.Colors.Darker40
-                    Color: =RGBA(255, 255, 255, 1)
-                    DisabledColor: =RGBA(166, 166, 166, 1)
-                    Font: =App.Theme.Font
-                    Height: =46
-                    PaddingLeft: =10
-                    Size: =21
-                    Text: =LookUp(tbUsers,ID=varProfile.ID,Email)
-                    VerticalAlign: =VerticalAlign.Top
-                    Width: =Parent.Width
-                    Y: =70
-                    ZIndex: =2
-
         Container3 As groupContainer.verticalAutoLayoutContainer:
             DropShadow: =DropShadow.Light
             Height: =225

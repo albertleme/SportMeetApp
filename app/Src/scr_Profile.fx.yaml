@@ -6,7 +6,7 @@ scr_Profile As screen:
             colInteressesFilter,
             Filter(
                 tbInteresses,
-                ID_Usuario = gbl_varUser.ID
+                ID_Usuario = varProfile.ID
             )
         )
 
