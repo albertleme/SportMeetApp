@@ -830,6 +830,7 @@ scr_Event As screen:
                     Height: =64
                     Items: =Choices([@tbEvent].Esporte)
                     Required: =false
+                    TriggerOutput: ="Keypress"
                     ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
                     Width: =(Parent.Width - 48)/2
                     X: =24

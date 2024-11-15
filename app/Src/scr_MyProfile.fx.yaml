@@ -514,6 +514,7 @@ scr_MyProfile As screen:
                     Height: =64
                     Items: =Choices([@tbUsers].Sexo)
                     Required: =false
+                    TriggerOutput: ="Keypress"
                     ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
                     Width: =Parent.Width - 80
                     X: =Parent.Width/2-Self.Width/2
