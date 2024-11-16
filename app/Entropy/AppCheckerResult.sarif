@@ -734,66 +734,6 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "scr_Requisitions.cnt_ContentMenu_3.Container32_5.Icon9.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "scr_Requisitions.cnt_ContentMenu_3.Container32_5.Icon9.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "scr_Requisitions",
-                "type": "scr_Requisitions.cnt_ContentMenu_3.Container32_5.Icon9"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "scr_Requisitions.cnt_ContentMenu_3.Container32_5.Icon9.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "scr_Requisitions.cnt_ContentMenu_3.Container32_5.Icon9.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "scr_Requisitions",
-                "type": "scr_Requisitions.cnt_ContentMenu_3.Container32_5.Icon9"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 1
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
                   "fullyQualifiedName": "scr_Requisitions.cnt_ContentMenu_3.glr_Requests_1.AccessibleLabel"
                 }
               ],
@@ -4213,6 +4153,66 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "scr_Requisitions.img_LoadingSpinner_CreateAccount_6.Width"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_Requisitions.img_LoadingSpinner_CreateAccount_6.Width",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Width",
+                "module": "scr_Requisitions",
+                "type": "scr_Requisitions.img_LoadingSpinner_CreateAccount_6"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "scr_Requisitions.img_LoadingSpinner_CreateAccount_6.Height"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_Requisitions.img_LoadingSpinner_CreateAccount_6.Height",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Height",
+                "module": "scr_Requisitions",
+                "type": "scr_Requisitions.img_LoadingSpinner_CreateAccount_6"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "scr_MyEvents.varEvento"
                 }
               ],
@@ -4267,36 +4267,6 @@
           },
           "ruleId": "app-InefficientDelayLoading",
           "ruleIndex": 6
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "scr_Home.varEvento"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "scr_Home.varEvento",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "varEvento",
-                "module": "scr_Home",
-                "type": "scr_Home"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-UnusedVariables",
-          "ruleIndex": 3
         },
         {
           "locations": [
@@ -4676,6 +4646,66 @@
                 "member": "Y",
                 "module": "scr_NewEvent",
                 "type": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "scr_MyEvents.img_LoadingSpinner_CreateAccount_5.Width"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_MyEvents.img_LoadingSpinner_CreateAccount_5.Width",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Width",
+                "module": "scr_MyEvents",
+                "type": "scr_MyEvents.img_LoadingSpinner_CreateAccount_5"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "scr_MyEvents.img_LoadingSpinner_CreateAccount_5.Height"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_MyEvents.img_LoadingSpinner_CreateAccount_5.Height",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Height",
+                "module": "scr_MyEvents",
+                "type": "scr_MyEvents.img_LoadingSpinner_CreateAccount_5"
               }
             }
           ],

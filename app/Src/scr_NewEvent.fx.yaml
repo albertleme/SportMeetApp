@@ -181,6 +181,7 @@ scr_NewEvent As screen:
                 DisplayMode: =DisplayMode.Edit
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =225
+                Visible: =If(Gallery2_1.AllItemsCount<>0,true,false)
                 Width: =640
                 X: =0
                 Y: =11
@@ -850,7 +851,7 @@ scr_NewEvent As screen:
                 BorderStyle: =BorderStyle.Solid
                 DisplayMode: =DisplayMode.Edit
                 Fill: =RGBA(0, 0, 0, 0)
-                Height: =270
+                Height: =300
                 Visible: =If(!IsBlank(ThisItem.ID_CriadorEvento),true,false)
                 Width: =640
                 X: =0

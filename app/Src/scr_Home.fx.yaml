@@ -208,19 +208,7 @@ scr_Home As screen:
             LayoutMinWidth: =320
             LoadingSpinner: =LoadingSpinner.Data
             OnSelect: |-
-                =Set(
-                    varEvent,
-                    ThisItem
-                );
-                UpdateContext(
-                    {
-                        varEvento: ThisItem
-                    }
-                );
-                Navigate(
-                    scr_Event,
-                    ScreenTransition.Fade
-                )
+                =Navigate(scr_Event,ScreenTransition.Fade,{varEvent:ThisItem})
             ShowScrollbar: =false
             TemplatePadding: =30
             TemplateSize: =220
