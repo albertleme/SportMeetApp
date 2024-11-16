@@ -177,6 +177,7 @@ scr_Event As screen:
                 MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, Endereco)
                 Required: =false
                 Update: =DataCardValue5.Value
+                Visible: =If(IsBlank(ThisItem.Endereco),false,true)
                 Width: =640
                 X: =0
                 Y: =6
@@ -196,6 +197,7 @@ scr_Event As screen:
 
                 "DataCardValue5 As 'Text input'":
                     AccessibleLabel: =Parent.DisplayName
+                    Appearance: ='TextInputCanvas.Appearance'.FilledLighter
                     DisplayMode: =Parent.DisplayMode
                     FontSize: =26
                     Height: =64
@@ -242,6 +244,7 @@ scr_Event As screen:
                 MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, Numero)
                 Required: =false
                 Update: =DataCardValue6.Value
+                Visible: =If(IsBlank(ThisItem.Numero),false,true)
                 Width: =640
                 X: =0
                 Y: =7
@@ -261,6 +264,7 @@ scr_Event As screen:
 
                 "DataCardValue6 As 'Text input'":
                     AccessibleLabel: =Parent.DisplayName
+                    Appearance: ='TextInputCanvas.Appearance'.FilledLighter
                     DisplayMode: =Parent.DisplayMode
                     FontSize: =26
                     Height: =64
@@ -423,6 +427,7 @@ scr_Event As screen:
                 Height: =70
                 Required: =false
                 Update: =Value(dtc_QtdParticipantes.Value)
+                Visible: =If(IsBlank(ThisItem.QtdParticipantes),false,true)
                 Width: =640
                 X: =0
                 Y: =3
@@ -1021,6 +1026,7 @@ scr_Event As screen:
                 MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, DescricaoEvento)
                 Required: =false
                 Update: =dtc_EventDescription.Value
+                Visible: =If(IsBlank(ThisItem.DescricaoEvento),false,true)
                 Width: =Parent.Width
                 X: =0
                 Y: =5
