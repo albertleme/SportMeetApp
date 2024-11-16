@@ -445,12 +445,14 @@ scr_MyProfile As screen:
 
                 "DataCardValue29_1 As 'Text input'":
                     AccessibleLabel: =Parent.DisplayName
+                    Appearance: ='TextInputCanvas.Appearance'.FilledLighter
                     BasePaletteColor: =
                     BorderColor: =
                     DisplayMode: =Parent.DisplayMode
                     Fill: =
                     FontColor: =
                     FontSize: =26
+                    FontWeight: =FontWeight.Semibold
                     Height: =64
                     Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
                     Required: =Parent.Required
@@ -684,10 +686,6 @@ scr_MyProfile As screen:
             LayoutMinHeight: =112
             LayoutMinWidth: =250
             LayoutMode: =LayoutMode.Auto
-            RadiusBottomLeft: =4
-            RadiusBottomRight: =4
-            RadiusTopLeft: =4
-            RadiusTopRight: =4
             ZIndex: =1
 
             Label4_1 As label:
@@ -727,6 +725,7 @@ scr_MyProfile As screen:
 
                 drp_Interesse As Dropdown.pcfdataset:
                     DisplayMode: =DisplayMode.Edit
+                    FontSize: =20
                     Height: =40
                     Items: =AddColumns(tbSports,colEsporte,NomeEsporte)
                     Width: =332
@@ -790,7 +789,14 @@ scr_MyProfile As screen:
                                 NotificationType.Information
                             )
                         );
-                        Refresh(tbInteresses)
+                        Refresh(tbInteresses);
+                        ClearCollect(
+                            colInteressesFilter,
+                            Filter(
+                                tbInteresses,
+                                ID_Usuario = gbl_varUser.ID
+                            )
+                        )
                     Text: ="Adicionar"
                     Width: =100
                     X: =drp_Interesse.Width+drp_Interesse.X+24
@@ -824,7 +830,7 @@ scr_MyProfile As screen:
                     PressedFill: =App.Theme.Colors.Darker30
                     SelectionColor: =App.Theme.Colors.PrimaryForeground
                     SelectionFill: =App.Theme.Colors.Primary
-                    Size: =16
+                    Size: =18
                     Width: =332
                     X: =24
                     Y: |
@@ -845,6 +851,13 @@ scr_MyProfile As screen:
                                 ID
                             ),
                             ID_Usuario = gbl_varUser.ID
+                        );
+                        ClearCollect(
+                            colInteressesFilter,
+                            Filter(
+                                tbInteresses,
+                                ID_Usuario = gbl_varUser.ID
+                            )
                         )
                     Text: ="Remover"
                     Width: =100
