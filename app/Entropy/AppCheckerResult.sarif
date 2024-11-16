@@ -3764,6 +3764,96 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "scr_NewEvent",
+                "type": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "scr_NewEvent",
+                "type": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1.NextArrow1_1.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1.NextArrow1_1.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "scr_NewEvent",
+                "type": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1.NextArrow1_1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "App.varProfile"
                 }
               ],
@@ -4556,6 +4646,36 @@
                 "member": "Height",
                 "module": "scr_NewEvent",
                 "type": "scr_NewEvent.img_LoadingSpinner_CreateAccount_4"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1.Y"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1.Y",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Y",
+                "module": "scr_NewEvent",
+                "type": "scr_NewEvent.Container16_1.frm_Event_1.DataCard5.Gallery2_1"
               }
             }
           ],
