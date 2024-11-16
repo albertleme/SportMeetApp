@@ -45,6 +45,116 @@ scr_Event As screen:
             Item: =Coalesce(varEvent,LookUp(tbEvent,ID=varEvent.ID))
             LayoutMinHeight: =250
             LayoutMinWidth: =0
+            OnSuccess: |-
+                =Office365Outlook.SendEmailV2(
+                    ForAll(colAllParticipants As P,If(Evento.
+                    
+                    ,
+                    "Novo evento",
+                    "<!DOCTYPE html>
+                    <html lang=""pt-BR"">
+                    <head>
+                        <meta charset=""UTF-8"">
+                        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                background-color: #f4f4f9;
+                                margin: 0;
+                                padding: 0;
+                            }
+                            .email-container {
+                                background-color: #ffffff;
+                                width: 100%;
+                                max-width: 600px;
+                                margin: 20px auto;
+                                border: 1px solid #ddd;
+                                border-radius: 8px;
+                                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                            }
+                            .header {
+                                background-color: #4CAF50;
+                                color: white;
+                                text-align: center;
+                                padding: 20px 10px;
+                                border-radius: 8px 8px 0 0;
+                            }
+                            .header h1 {
+                                margin: 0;
+                                font-size: 24px;
+                            }
+                            .content {
+                                padding: 20px;
+                                color: #333;
+                            }
+                            .content h2 {
+                                font-size: 20px;
+                                color: #4CAF50;
+                                margin-bottom: 10px;
+                            }
+                            .event-details {
+                                background-color: #f9f9f9;
+                                border: 1px solid #ddd;
+                                border-radius: 8px;
+                                padding: 15px;
+                                margin-top: 10px;
+                            }
+                            .event-details p {
+                                margin: 8px 0;
+                                font-size: 16px;
+                            }
+                            .conditional-message {
+                                background-color: #e6ffe6;
+                                border-left: 5px solid #4CAF50;
+                                padding: 10px;
+                                margin-top: 15px;
+                                border-radius: 5px;
+                                font-size: 16px;
+                            }
+                            .footer {
+                                text-align: center;
+                                padding: 15px 10px;
+                                color: #666;
+                                font-size: 14px;
+                                border-top: 1px solid #ddd;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class=""email-container"">
+                            <div class=""header"">
+                                <h1>🎉 Novo Evento Criado! 🎉</h1>
+                            </div>
+                            <div class=""content"">
+                                <h2>Olá,</h2>
+                                <p>Um usuário acabou de criar um novo evento no app. Confira os detalhes abaixo:</p>
+                                <div class=""event-details"">
+                                    <p><strong>📅 Data:</strong> 20 de novembro de 2024</p>
+                                    <p><strong>⏰ Horário:</strong> 15:00</p>
+                                    <p><strong>📍 Local:</strong> Parque Central</p>
+                                    <p><strong>🏀 Esporte:</strong> Basquete</p>
+                                </div>
+                
+                                <!-- Condicional baseado no tipo de esporte -->
+                                <div class=""conditional-message"">
+                                    <!-- Exemplo para basquete -->
+                                    <p>🏀 Parece que você gosta de esportes de equipe! Este evento de basquete pode ser uma ótima oportunidade para você se divertir com amigos e praticar habilidades. Não perca!</p>
+                
+                                    <!-- Exemplo alternativo para outros esportes (exemplo comentado) -->
+                                    <!-- 
+                                    <p>⚽ Um evento de futebol foi criado! Se você é apaixonado por correr atrás da bola, essa pode ser uma chance incrível de se reunir com outros amantes do esporte.</p>
+                                    -->
+                                </div>
+                
+                                <p style=""margin-top: 15px;"">Prepare-se para participar ou compartilhar este evento com seus amigos!</p>
+                            </div>
+                            <div class=""footer"">
+                                <p>Este é um email automático. Por favor, não responda a este endereço.</p>
+                            </div>
+                        </div>
+                    </body>
+                    </html>"
+                )
             UseFluentV9Cards: =true
             Width: =Parent.Width
             Y: =40
@@ -999,8 +1109,8 @@ scr_Event As screen:
                 =If(
                     IsBlank(
                         LookUp(
-                            tbParticipants,
-                            ID_Evento = dtc_ID_Evento.Value And ID_Solicitante = gbl_varUser.ID,
+                            colAllParticipants,
+                            Value(ID_Evento) = Value(dtc_ID_Evento.Value) And Value(ID_Solicitante) = gbl_varUser.ID,
                             ID
                         )
                     ),

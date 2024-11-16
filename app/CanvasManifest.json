@@ -108,7 +108,7 @@
       "zeroalltabindexes": true
     },
     "Author": "",
-    "BindingErrorCount": 0,
+    "BindingErrorCount": 4,
     "ContainsThirdPartyPcfControls": false,
     "DefaultConnectedDataSourceMaxGetRowsCount": 2000,
     "DocumentAppType": "Phone",
@@ -127,7 +127,7 @@
     "ManualOfflineProfileId": "",
     "Name": "Sport Meet App",
     "OriginatingVersion": "1.343",
-    "ParserErrorCount": 0,
+    "ParserErrorCount": 3,
     "ShowStatusBar": true
   },
   "PublishInfo": {
