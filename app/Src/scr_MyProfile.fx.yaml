@@ -243,7 +243,7 @@ scr_MyProfile As screen:
 
                     ico_Interesses As icon.Edit:
                         BorderColor: =App.Theme.Colors.Darker40
-                        Color: =RGBA(53, 61, 63, 1)
+                        Color: =RGBA(39, 113, 194, 1)
                         DisabledBorderColor: =RGBA(166, 166, 166, 1)
                         DisabledColor: =RGBA(244, 244, 244, 1)
                         Height: =Parent.Height
@@ -560,7 +560,7 @@ scr_MyProfile As screen:
                 DisplayMode: =Parent.DisplayMode
                 DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,DataNascimento)
                 Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
+                Height: =130
                 Required: =false
                 Update: =DataCardValue26_1.SelectedDate
                 Width: =Parent.Width
@@ -725,7 +725,7 @@ scr_MyProfile As screen:
 
                 drp_Interesse As Dropdown.pcfdataset:
                     DisplayMode: =DisplayMode.Edit
-                    FontSize: =20
+                    FontSize: =19
                     Height: =40
                     Items: =AddColumns(tbSports,colEsporte,NomeEsporte)
                     Width: =332
@@ -768,6 +768,7 @@ scr_MyProfile As screen:
                 ButtonCanvas2 As Button:
                     BasePaletteColor: =
                     DisplayMode: =DisplayMode.Edit
+                    FontSize: =18
                     Height: =drp_Interesse.Height
                     OnSelect: |-
                         =If(
@@ -804,11 +805,12 @@ scr_MyProfile As screen:
                     ZIndex: =3
 
                 lbx_Interesses As listbox:
-                    BorderColor: =RGBA(214, 221, 224, 1)
-                    BorderThickness: =1
+                    BorderColor: =RGBA(139, 154, 159, 1)
+                    BorderThickness: =0
                     DisabledBorderColor: =RGBA(166, 166, 166, 1)
                     DisabledSelectionColor: =RGBA(244, 244, 244, 1)
                     DisabledSelectionFill: =RGBA(166, 166, 166, 1)
+                    FocusedBorderThickness: =
                     Font: =App.Theme.Font
                     Height: =326
                     HoverColor: =RGBA(0, 0, 0, 1)
@@ -841,6 +843,7 @@ scr_MyProfile As screen:
                     AcceptsFocus: =
                     BasePaletteColor: =RGBA(249, 83, 109, 1)
                     DisplayMode: =DisplayMode.Edit
+                    FontSize: =18
                     Height: =40
                     OnSelect: |-
                         =RemoveIf(
