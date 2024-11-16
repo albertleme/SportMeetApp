@@ -47,10 +47,15 @@ scr_Event As screen:
             LayoutMinWidth: =0
             OnSuccess: |-
                 =Office365Outlook.SendEmailV2(
-                    ForAll(colAllParticipants As P,If(Evento.
-                    
-                    ,
-                    "Novo evento",
+                    Concat(
+                        Filter(
+                            tbInteresses,
+                            ID_Esporte = Last(tbEvent).Esporte.Id
+                        ),
+                        ID_Usuario,
+                        "; "
+                    ),
+                    "🏅 Novo evento de " & Last(tbEvent).Esporte.Value & " foi criado! Venha participar!",
                     "<!DOCTYPE html>
                     <html lang=""pt-BR"">
                     <head>

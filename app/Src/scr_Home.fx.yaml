@@ -508,16 +508,11 @@ scr_Home As screen:
                 OnSelect: |-
                     =Switch(
                         ThisItem.ID,
-                        1,
-                        Navigate(
-                            scr_Home,
-                            ScreenTransition.Fade
-                        ),
                         2,
                         Navigate(
-                            scr_Event,
+                            scr_NewEvent,
                             ScreenTransition.Fade
-                        ) + ResetForm(frm_Event) + NewForm(frm_Event);
+                        ) + ResetForm(frm_Event_1) + NewForm(frm_Event_1);
                         ,
                         3,
                         Navigate(
