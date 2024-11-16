@@ -91,7 +91,7 @@ scr_MyEvents As screen:
             BorderColor: =App.Theme.Colors.Darker40
             DelayItemLoading: =true
             Height: =Parent.Height
-            Items: =colMyEvents
+            Items: =Sort(colMyEvents,DataHorarioEvento,SortOrder.Ascending)
             Layout: =Layout.Vertical
             LayoutMinHeight: =287
             LayoutMinWidth: =320
