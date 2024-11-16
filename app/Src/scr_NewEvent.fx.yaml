@@ -175,6 +175,17 @@ scr_NewEvent As screen:
             Y: =40
             ZIndex: =1
 
+            DataCard5 As typedDataCard.blankCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =225
+                Width: =640
+                X: =0
+                Y: =11
+                ZIndex: =1
+
             Endereco_DataCard1_1 As typedDataCard.fluentV9TextualEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
                 BorderStyle: =BorderStyle.Solid
@@ -364,12 +375,7 @@ scr_NewEvent As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="TituloEvento"
                 Default: =ThisItem.TituloEvento
-                DisplayMode: |-
-                    =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento_1.Value),
-                        DisplayMode.Edit,
-                        DisplayMode.View
-                    )
+                DisplayMode: =DisplayMode.View
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,TituloEvento)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =118
@@ -435,12 +441,7 @@ scr_NewEvent As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="Esporte"
                 Default: =ThisItem.Esporte
-                DisplayMode: |-
-                    =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento_1.Value),
-                        DisplayMode.Edit,
-                        DisplayMode.View
-                    )
+                DisplayMode: =DisplayMode.View
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,Esporte)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70

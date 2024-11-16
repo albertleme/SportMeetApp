@@ -203,8 +203,10 @@ scr_MyEvents As screen:
                         Height: =Parent.Height
                         Icon: =Icon.ArrowRight
                         OnSelect: |-
-                            =Set(varEvent,ThisItem);
-                            Navigate(scr_Event,ScreenTransition.Fade)
+                            =If(ThisItem.ID_CriadorEvento = gbl_varUser.ID,
+                                Navigate(scr_NewEvent,ScreenTransition.Fade,{varEvent:ThisItem}),
+                                Navigate(scr_Event,ScreenTransition.Fade,{varEvent:ThisItem})
+                            )
                         PaddingBottom: =20
                         PaddingLeft: =20
                         PaddingRight: =20
