@@ -49,7 +49,7 @@ scr_MyEvents As screen:
             DropShadow: =DropShadow.Regular
             Fill: =RGBA(5, 102, 178, 1)
             FillPortions: =0
-            Height: =100
+            Height: =80
             LayoutMinHeight: =112
             LayoutMinWidth: =250
             LayoutMode: =LayoutMode.Auto
@@ -77,6 +77,7 @@ scr_MyEvents As screen:
                 Height: =Parent.Height
                 LayoutMinHeight: =32
                 LayoutMinWidth: =96
+                PaddingLeft: =10
                 Size: =26
                 Text: |-
                     ="Meus Eventos
@@ -314,6 +315,7 @@ scr_MyEvents As screen:
                         LayoutMinWidth: =96
                         PaddingLeft: =5
                         Size: =26
+                        Text: =ThisItem.Endereco&" - "&ThisItem.Cidade.Value
                         Width: =96
                         X: =0
                         Y: =0

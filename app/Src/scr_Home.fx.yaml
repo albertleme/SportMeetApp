@@ -3,7 +3,9 @@ scr_Home As screen:
     LoadingSpinnerColor: =App.Theme.Colors.Primary
     OnVisible: |-
         =UpdateContext({varLoadingSpinner: true});
-        UpdateContext({varLoadingSpinner: false})
+        UpdateContext({varLoadingSpinner: false});
+        ClearCollect(colEvents,tbEvent);
+        ClearCollect(colAllParticipants,tbParticipants)
 
     cnt_ContentMenu As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.Regular
@@ -27,6 +29,7 @@ scr_Home As screen:
         ZIndex: =2
 
         cnt_Header As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Regular
             Fill: =RGBA(39, 113, 194, 1)
             FillPortions: =0
             Height: =100
@@ -62,10 +65,10 @@ scr_Home As screen:
                     Icon: =Icon.Leave
                     OnSelect: |-
                         =UpdateContext({varSair:true})
-                    PaddingBottom: =10
-                    PaddingLeft: =10
-                    PaddingRight: =10
-                    PaddingTop: =10
+                    PaddingBottom: =16
+                    PaddingLeft: =16
+                    PaddingRight: =16
+                    PaddingTop: =16
                     Tooltip: ="Sair"
                     Width: =Parent.Width
                     ZIndex: =1
@@ -120,10 +123,10 @@ scr_Home As screen:
                             Blank(),
                             Reset(drp_Sport_Home)
                         )
-                    PaddingBottom: =20
-                    PaddingLeft: =20
-                    PaddingRight: =20
-                    PaddingTop: =20
+                    PaddingBottom: =16
+                    PaddingLeft: =16
+                    PaddingRight: =16
+                    PaddingTop: =16
                     Width: =Parent.Width
                     ZIndex: =1
 
@@ -416,7 +419,7 @@ scr_Home As screen:
                     =If(
                         CountRows(
                             Filter(
-                                tbParticipants,
+                                colAllParticipants,
                                 Value(ID_Evento) = Value(ThisItem.ID)
                             )
                         ) = ThisItem.QtdParticipantes,
@@ -486,7 +489,6 @@ scr_Home As screen:
             ZIndex: =4
 
         cnt_FooterMenu As groupContainer.horizontalAutoLayoutContainer:
-            DropShadow: =DropShadow.Regular
             FillPortions: =0
             Height: =100
             LayoutMinHeight: =112
@@ -535,7 +537,7 @@ scr_Home As screen:
                         Blank()
                     )
                 TemplatePadding: =0
-                TemplateSize: =Parent.Width/CountRows(tbMenuItens)
+                TemplateSize: =Parent.Width/CountRows(colMenuItems)
                 Transition: =Transition.Pop
                 Width: =Parent.Width
                 ZIndex: =1
@@ -554,6 +556,7 @@ scr_Home As screen:
                     PaddingRight: =12
                     PaddingTop: =12
                     PressedColor: =RGBA(5, 102, 178, 1)
+                    Visible: =If(ThisItem.ID=5,false,true)
                     Width: =Parent.TemplateWidth
                     ZIndex: =1
 
@@ -573,6 +576,59 @@ scr_Home As screen:
                     X: =0
                     Y: =60
                     ZIndex: =2
+
+                Container29 As groupContainer.manualLayoutContainer:
+                    DropShadow: =DropShadow.Regular
+                    Height: =ico_ItemMenuIcon.Height
+                    RadiusBottomLeft: =999
+                    RadiusBottomRight: =999
+                    RadiusTopLeft: =999
+                    RadiusTopRight: =999
+                    Visible: =If(ThisItem.ID=5,true,false)
+                    Width: =Self.Height
+                    X: =Parent.TemplateWidth/2-Self.Width/2
+                    Y: =2
+                    ZIndex: =4
+
+                    Image10 As image:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        Height: =Parent.Height
+                        Image: =LookUp(tbUsers,ID=gbl_varUser.ID,FotoPerfil.Full)
+                        ImagePosition: =ImagePosition.Fill
+                        OnSelect: =
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                Button2 As button:
+                    BorderColor: =
+                    BorderThickness: =0
+                    Color: =
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(0, 0, 0, 0)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.Height
+                    HoverBorderColor: =
+                    HoverColor: =
+                    HoverFill: =
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    PressedBorderColor: =
+                    PressedColor: =
+                    PressedFill: =
+                    Size: =24
+                    Text: =
+                    Visible: =If(ThisItem.ID=5,true,false)
+                    Width: =Parent.Width
+                    ZIndex: =5
 
     Rectangle3 As rectangle:
         BorderColor: =App.Theme.Colors.Darker40
@@ -599,7 +655,7 @@ scr_Home As screen:
     cnt_Filters As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.ExtraBold
         Fill: =RGBA(255, 255, 255, 1)
-        Height: =cnt_ContentMenu.Height*0.75
+        Height: =cnt_ContentMenu.Height*0.55
         LayoutDirection: =LayoutDirection.Vertical
         LayoutMode: =LayoutMode.Auto
         RadiusTopLeft: =24
@@ -612,7 +668,7 @@ scr_Home As screen:
 
         Container23 As groupContainer.horizontalAutoLayoutContainer:
             FillPortions: =0
-            Height: =80
+            Height: =64
             LayoutMinHeight: =112
             LayoutMinWidth: =250
             LayoutMode: =LayoutMode.Auto
@@ -632,8 +688,8 @@ scr_Home As screen:
                 LayoutMinHeight: =70
                 LayoutMinWidth: =560
                 PaddingLeft: =24
-                Size: =24
-                Text: ="Filtros"
+                Size: =22
+                Text: ="Filtrar Eventos"
                 Width: =560
                 ZIndex: =1
 
@@ -644,10 +700,10 @@ scr_Home As screen:
                 DisabledColor: =RGBA(244, 244, 244, 1)
                 Height: =Parent.Height
                 Icon: =Icon.Reset
-                PaddingBottom: =20
-                PaddingLeft: =20
-                PaddingRight: =20
-                PaddingTop: =20
+                PaddingBottom: =16
+                PaddingLeft: =16
+                PaddingRight: =16
+                PaddingTop: =16
                 Tooltip: ="Limpar Filtros"
                 Width: =Self.Height
                 ZIndex: =2
@@ -677,7 +733,7 @@ scr_Home As screen:
 
             drp_Sport_Home As Dropdown.pcfdataset:
                 DisplayMode: =DisplayMode.Edit
-                FontSize: =26
+                FontSize: =22
                 Height: =64
                 Items: =tbSports
                 Width: =Parent.Width - 64
@@ -764,46 +820,11 @@ scr_Home As screen:
                 IconBackground: =App.Theme.Colors.Primary
                 IconFill: =App.Theme.Colors.PrimaryForeground
                 SelectedDateFill: =App.Theme.Colors.Primary
-                Size: =19
+                Size: =18
                 Width: =575
                 X: =DataCardKey5_1.X
                 Y: =DataCardKey5_1.Height+DataCardKey5_1.Y+4
                 ZIndex: =6
-
-        Container18_2 As groupContainer.manualLayoutContainer:
-            FillPortions: =0
-            Height: =128
-            LayoutMinHeight: =112
-            LayoutMinWidth: =250
-            RadiusBottomLeft: =4
-            RadiusBottomRight: =4
-            RadiusTopLeft: =4
-            RadiusTopRight: =4
-            ZIndex: =5
-
-            DataCardKey5_3 As Text:
-                DisplayMode: =DisplayMode.Edit
-                Height: =44
-                Size: =28
-                Text: ="Apenas Eventos Públicos?"
-                Weight: ='TextCanvas.Weight'.Regular
-                Width: =Parent.Width - 64
-                Wrap: =false
-                X: =32
-                Y: =16
-                ZIndex: =1
-
-            Toggle1 As Toggle:
-                DisplayMode: =DisplayMode.Edit
-                FontSize: =26
-                Height: =64
-                Label: =If(Self.Checked,"Sim","Não")
-                OnCheck: =false
-                OnUncheck: =false
-                Width: =Parent.Width-64
-                X: =DataCardKey5_3.X
-                Y: =DataCardKey5_3.Height+DataCardKey5_3.Y+4
-                ZIndex: =2
 
     img_LoadingSpinner_CreateAccount_3 As image:
         BorderColor: =App.Theme.Colors.Darker40
