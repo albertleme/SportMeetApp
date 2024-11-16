@@ -184,7 +184,7 @@ scr_MyProfile As screen:
                     RadiusTopRight: =999
                     Width: =64
                     X: =Parent.Width-Self.Width-20
-                    Y: =40
+                    Y: =20
                     ZIndex: =11
 
                     ico_SaveMyProfile As icon.Save:
