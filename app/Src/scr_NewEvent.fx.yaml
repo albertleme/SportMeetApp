@@ -46,6 +46,12 @@ scr_NewEvent As screen:
         frm_Event_1 As form.PowerApps_CoreControls_Form:
             BorderColor: =App.Theme.Colors.Darker40
             DataSource: =tbEvent
+            DefaultMode: |-
+                =If(
+                    varEvent.DataHorarioEvento < Today(),
+                    FormMode.View,
+                    FormMode.Edit
+                )
             Item: =Coalesce(varEvent,LookUp(tbEvent,ID=varEvent.ID))
             LayoutMinHeight: =250
             LayoutMinWidth: =0
@@ -1135,6 +1141,12 @@ scr_NewEvent As screen:
         RadiusBottomRight: =100
         RadiusTopLeft: =100
         RadiusTopRight: =100
+        Visible: |-
+            =If(
+                varEvent.DataHorarioEvento < Today(),
+                false,
+                true
+            )
         Width: =256
         X: =Container16_1.Width+Container16_1.X-Self.Width-32
         Y: =Parent.Height-Self.Height-32
