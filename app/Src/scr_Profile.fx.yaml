@@ -897,6 +897,16 @@ scr_Profile As screen:
                             </div>
                         </body>
                         </html>"
+                    );
+                    Collect(
+                        tbDenuncias,
+                        {
+                            ID_Denunciado:varProfile.ID,
+                            ID_Denunciante:gbl_varUser.ID,
+                            MotivoDenuncia:{Value:RadioGroupCanvas1.Selected.Value},
+                            DetalhesDenuncia:TextInputCanvas3.Value,
+                            DataHorarioDenuncia:Today()
+                        }
                     )
                 PaddingBottom: =
                 PaddingLeft: =

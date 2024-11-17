@@ -1,6 +1,7 @@
 scr_Denuncias As screen:
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =
 
     Container1_2 As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.Regular
@@ -100,4 +101,344 @@ scr_Denuncias As screen:
             RadiusTopLeft: =4
             RadiusTopRight: =4
             ZIndex: =2
+
+            "glr_Requests_2 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                BorderColor: =App.Theme.Colors.Darker40
+                DelayItemLoading: =true
+                Height: =Parent.Height
+                Items: =tbDenuncias
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =287
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                OnSelect: |-
+                    =Set(varSelectedEvent,ThisItem);
+                    UpdateContext(
+                        {
+                            varEvento: ThisItem
+                        }
+                    );
+                    Navigate(
+                        scr_Event,
+                        ScreenTransition.Fade
+                    )
+                ShowScrollbar: =false
+                TemplatePadding: =30
+                TemplateSize: =180
+                Width: =Parent.Width
+                ZIndex: =1
+
+                Container19_2 As groupContainer.verticalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Semibold
+                    Height: =Parent.TemplateHeight
+                    LayoutDirection: =LayoutDirection.Vertical
+                    LayoutMode: =LayoutMode.Auto
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =8
+
+                    Container34_2 As groupContainer.horizontalAutoLayoutContainer:
+                        FillPortions: =0
+                        Height: =100
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                        Label13_6 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =Parent.Height
+                            LayoutMinHeight: =70
+                            LayoutMinWidth: =560
+                            Size: =21
+                            Text: =
+                            Width: =10
+                            ZIndex: =1
+
+                        Container14_4 As groupContainer.manualLayoutContainer:
+                            AlignInContainer: =AlignInContainer.Center
+                            DropShadow: =DropShadow.Regular
+                            FillPortions: =0
+                            Height: =Parent.Height-20
+                            LayoutMinHeight: =0
+                            LayoutMinWidth: =250
+                            RadiusBottomLeft: =999
+                            RadiusBottomRight: =999
+                            RadiusTopLeft: =999
+                            RadiusTopRight: =999
+                            Width: =Self.Height
+                            ZIndex: =2
+
+                            Image6_4 As image:
+                                BorderColor: =App.Theme.Colors.Darker40
+                                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                                DisabledFill: =RGBA(244, 244, 244, 1)
+                                Height: =Parent.Height
+                                Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Denunciado,FotoPerfil),SampleImage)
+                                ImagePosition: =ImagePosition.Fill
+                                OnSelect: |-
+                                    =//Set(varProfile,LookUp(tbUsers,ID=ThisItem.ID_Solicitante));
+                                    
+                                    Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Denunciado)})
+                                Width: =Self.Height
+                                ZIndex: =1
+
+                            Button3_2 As button:
+                                BorderColor: =
+                                BorderStyle: =BorderStyle.None
+                                BorderThickness: =0
+                                Color: =
+                                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                                DisabledColor: =RGBA(0, 0, 0, 0)
+                                DisabledFill: =RGBA(0, 0, 0, 0)
+                                Fill: =RGBA(0, 0, 0, 0)
+                                FocusedBorderThickness: =
+                                Font: =App.Theme.Font
+                                FontWeight: =FontWeight.Semibold
+                                Height: =Parent.Height
+                                HoverBorderColor: =
+                                HoverColor: =
+                                HoverFill: =
+                                OnSelect: |-
+                                    =Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Denunciado)})
+                                PressedBorderColor: =
+                                PressedColor: =
+                                PressedFill: =
+                                Size: =24
+                                Text: =
+                                Width: =Parent.Width
+                                ZIndex: =2
+
+                        "TextInputCanvas2_2 As 'Text input'":
+                            Appearance: ='TextInputCanvas.Appearance'.FilledLighter
+                            BasePaletteColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            FillPortions: =1
+                            FontSize: =28
+                            FontWeight: =FontWeight.Normal
+                            Height: =Parent.Height
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =320
+                            PaddingLeft: =15
+                            Value: =LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Nome)
+                            Width: =320
+                            X: =0
+                            Y: =0
+                            ZIndex: =3
+
+                        Icon7_2 As icon.Message:
+                            AlignInContainer: =AlignInContainer.Center
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(39, 113, 194, 1)
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(244, 244, 244, 1)
+                            Height: =Parent.Height-20
+                            Icon: =Icon.Message
+                            OnSelect: |-
+                                =Navigate(scr_Chat,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Denunciado)})
+                            PaddingBottom: =20
+                            PaddingLeft: =20
+                            PaddingRight: =20
+                            PaddingTop: =20
+                            Tooltip: ="Conversar com "&LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Nome)
+                            Width: =Self.Height
+                            ZIndex: =4
+
+                        Label13_7 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =Parent.Height
+                            LayoutMinHeight: =70
+                            LayoutMinWidth: =560
+                            Size: =21
+                            Text: =
+                            Width: =10
+                            ZIndex: =5
+
+                    Container27_1 As groupContainer.horizontalAutoLayoutContainer:
+                        FillPortions: =0
+                        Height: =80
+                        LayoutGap: =30
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingLeft: =80
+                        PaddingRight: =80
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Visible: =!LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Bloqueado)
+                        ZIndex: =2
+
+                        Label14_1 As label:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            FillPortions: =1
+                            Font: =App.Theme.Font
+                            Height: =Parent.Height
+                            LayoutMinHeight: =70
+                            LayoutMinWidth: =250
+                            Size: =21
+                            Text: =
+                            Width: =20
+                            ZIndex: =1
+
+                        ButtonCanvas4_1 As Button:
+                            Align: =Align.Center
+                            AlignInContainer: =AlignInContainer.Center
+                            BasePaletteColor: =RGBA(8, 222, 8, 1)
+                            BorderRadiusBottomLeft: =10
+                            BorderRadiusBottomRight: =10
+                            BorderRadiusTopLeft: =10
+                            BorderRadiusTopRight: =10
+                            DisplayMode: =DisplayMode.Edit
+                            FontSize: =26
+                            Height: =Parent.Height-30
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =120
+                            OnSelect: |-
+                                =UpdateContext({varLoadingSpinner:true});
+                                Patch(
+                                    tbUsers,
+                                    LookUp(
+                                        tbUsers,
+                                        ID = ThisItem.ID_Denunciado
+                                    ),
+                                    {Bloqueado: false}
+                                );
+                                Refresh(tbUsers);
+                                Refresh(tbDenuncias);
+                                UpdateContext({varLoadingSpinner:false});
+                            Text: ="Rejeitar"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Bloqueado)
+                            Width: =200
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        ButtonCanvas5_1 As Button:
+                            AccessibleLabel: =
+                            Align: =Align.Center
+                            AlignInContainer: =AlignInContainer.Center
+                            BasePaletteColor: =RGBA(249, 83, 109, 1)
+                            BorderRadiusBottomLeft: =10
+                            BorderRadiusBottomRight: =10
+                            BorderRadiusTopLeft: =10
+                            BorderRadiusTopRight: =10
+                            DisplayMode: =DisplayMode.Edit
+                            FontSize: =26
+                            Height: =Parent.Height-30
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =120
+                            OnSelect: |-
+                                =UpdateContext({varLoadingSpinner:true});
+                                Patch(
+                                    tbUsers,
+                                    LookUp(
+                                        tbUsers,
+                                        ID = ThisItem.ID_Denunciado
+                                    ),
+                                    {Bloqueado: true}
+                                );
+                                Refresh(tbUsers);
+                                Refresh(tbDenuncias);
+                                UpdateContext({varLoadingSpinner:false});
+                            Text: ="Bloquear"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =!LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Bloqueado)
+                            Width: =200
+                            X: =0
+                            Y: =0
+                            ZIndex: =3
+
+    img_LoadingSpinner_CreateAccount_8 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(255, 255, 255, 0.2)
+        Height: =cnt_Screen_Login.Height
+        Image: |-
+            ="data:image/svg+xml;utf8, " & 
+            EncodeUrl("
+            <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='25px' height='25px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50' xml:space='preserve'>
+                <path fill='#0566b2' d='M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z' transform='rotate(275.098 25 25)'>
+                    <animateTransform attributeType='xml' attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='1.0s' repeatCount='indefinite'></animateTransform>
+                </path>
+            </svg>
+            ")
+            
+            
+            /*
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-red-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-pink-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div role="status">
+                <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                </svg>
+                <span class="sr-only">Loading...</span>
+            </div>
+            
+            */
+        PaddingBottom: =200
+        PaddingLeft: =200
+        PaddingRight: =200
+        PaddingTop: =200
+        Visible: =varLoadingSpinner
+        Width: =cnt_Screen_Login.Width
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =2
 

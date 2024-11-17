@@ -106,12 +106,13 @@ scr_Home As screen:
                 RadiusBottomRight: =40
                 RadiusTopLeft: =40
                 RadiusTopRight: =40
+                Visible: =gbl_varUser.AdminUser
                 Width: =Self.Height
                 ZIndex: =3
 
                 icoFilter_1 As icon.OptionsList:
                     BorderColor: =App.Theme.Colors.Darker40
-                    Color: =RGBA(53, 61, 63, 1)
+                    Color: =RGBA(215, 58, 60, 1)
                     DisabledBorderColor: =RGBA(166, 166, 166, 1)
                     DisabledColor: =RGBA(244, 244, 244, 1)
                     Height: =Parent.Height
