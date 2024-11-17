@@ -345,7 +345,7 @@ scr_NewEvent As screen:
                 Update: =DataCardValue5_1.Value
                 Width: =640
                 X: =0
-                Y: =0
+                Y: =5
                 ZIndex: =2
 
                 DataCardKey6_3 As Text:
@@ -410,7 +410,7 @@ scr_NewEvent As screen:
                 Update: =DataCardValue6_1.Value
                 Width: =640
                 X: =0
-                Y: =1
+                Y: =6
                 ZIndex: =7
 
                 DataCardKey11_1 As Text:
@@ -479,7 +479,7 @@ scr_NewEvent As screen:
                 Update: =Image2_1.Image
                 Width: =640
                 X: =0
-                Y: =2
+                Y: =0
                 ZIndex: =12
 
                 Image2_1 As image:
@@ -530,7 +530,7 @@ scr_NewEvent As screen:
                 Width: =640
                 WidthFit: =true
                 X: =0
-                Y: =3
+                Y: =1
                 ZIndex: =15
 
                 StarVisible9_1 As Text:
@@ -594,7 +594,7 @@ scr_NewEvent As screen:
                 Update: =dtc_Sport_1.Selected
                 Width: =Parent.Width
                 X: =0
-                Y: =4
+                Y: =3
                 ZIndex: =20
 
                 StarVisible3_1 As Text:
@@ -668,7 +668,7 @@ scr_NewEvent As screen:
                 Update: =Value(dtc_QtdParticipantes_1.Value)
                 Width: =640
                 X: =0
-                Y: =5
+                Y: =4
                 ZIndex: =25
 
                 StarVisible1_1 As Text:
@@ -730,7 +730,7 @@ scr_NewEvent As screen:
                 Update: =If(Not IsBlank(dtv_DateTimeEvent_1.SelectedDate), DateTime(Year(dtv_DateTimeEvent_1.SelectedDate), Month(dtv_DateTimeEvent_1.SelectedDate), Day(dtv_DateTimeEvent_1.SelectedDate), Value(HourValue1_1.Selected.Value), Value(MinuteValue1_1.Selected.Value), Second(dtv_DateTimeEvent_1.SelectedDate)))
                 Width: =Parent.Width
                 X: =0
-                Y: =6
+                Y: =2
                 ZIndex: =30
 
                 StarVisible4_1 As Text:
