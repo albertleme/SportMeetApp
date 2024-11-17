@@ -1,7 +1,7 @@
 scr_NewEvent As screen:
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
-    OnVisible: |-
+    OnVisible: |+
         =UpdateContext({varLoadingSpinner:true});
         ClearCollect(
             colParticipantsFilter,
@@ -11,7 +11,9 @@ scr_NewEvent As screen:
                 Status.Value = "Aprovado"
             )
         );
-        UpdateContext({varLoadingSpinner:false})
+        UpdateContext({varLoadingSpinner:false});
+        
+        
 
     Rectangle1_6 As rectangle:
         BorderColor: =App.Theme.Colors.Darker40
@@ -296,6 +298,38 @@ scr_NewEvent As screen:
                             X: =
                             Y: =
                             ZIndex: =3
+
+                        NextArrow1_3 As icon.ChevronRight:
+                            AccessibleLabel: =Self.Tooltip
+                            Color: =RGBA(215, 58, 60, 1)
+                            Height: =Parent.Height-20
+                            Icon: =Icon.Trash
+                            OnSelect: |-
+                                =UpdateContext({varLoadingSpinner:true});
+                                UpdateIf(
+                                    tbParticipants,
+                                    ID_Solicitante = ThisItem.ID_Solicitante And ID_Evento = varEvent.ID,
+                                    {Status: {Value: "Rejeitado"}}
+                                );
+                                ClearCollect(
+                                    colParticipantsFilter,
+                                    Filter(
+                                        tbParticipants,
+                                        ID_Evento = varEvent.ID,
+                                        Status.Value = "Aprovado"
+                                    )
+                                );
+                                UpdateContext({varLoadingSpinner:false})
+                            PaddingBottom: =8
+                            PaddingLeft: =8
+                            PaddingRight: =8
+                            PaddingTop: =8
+                            Tooltip: ="View item details"
+                            Visible: =If(varEvent.ID_CriadorEvento=gbl_varUser.ID,true,false)
+                            Width: =Self.Height-10
+                            X: =
+                            Y: =
+                            ZIndex: =6
 
             Endereco_DataCard1_1 As typedDataCard.fluentV9TextualEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
