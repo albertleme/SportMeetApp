@@ -18,7 +18,7 @@ scr_Chat As screen:
             DropShadow: =DropShadow.Semibold
             Fill: =RGBA(39, 113, 194, 1)
             FillPortions: =0
-            Height: =140
+            Height: =100
             LayoutGap: =12
             LayoutMinHeight: =100
             LayoutMinWidth: =250
@@ -32,7 +32,7 @@ scr_Chat As screen:
             Container9 As groupContainer.manualLayoutContainer:
                 FillPortions: =0
                 Height: =225
-                LayoutMinHeight: =112
+                LayoutMinHeight: =0
                 LayoutMinWidth: =250
                 Width: |
                     =50
@@ -59,7 +59,7 @@ scr_Chat As screen:
                 DropShadow: =DropShadow.ExtraBold
                 FillPortions: =0
                 Height: =Parent.Height
-                LayoutMinHeight: =112
+                LayoutMinHeight: =0
                 LayoutMinWidth: =250
                 RadiusBottomLeft: =100
                 RadiusBottomRight: =100
@@ -85,7 +85,7 @@ scr_Chat As screen:
 
             Container6 As groupContainer.manualLayoutContainer:
                 Height: =Parent.Height
-                LayoutMinHeight: =112
+                LayoutMinHeight: =0
                 LayoutMinWidth: =250
                 ZIndex: =4
 
