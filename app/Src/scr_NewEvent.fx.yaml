@@ -360,6 +360,79 @@ scr_NewEvent As screen:
                             Y: =
                             ZIndex: =6
 
+            FotoEvento_DataCard2 As typedDataCard.fluentV9AddLargePictureCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="FotoEvento"
+                Default: =ThisItem.FotoEvento
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,'FotoEvento')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =50
+                Required: =false
+                Update: =Image12.Image
+                Width: =640
+                X: =0
+                Y: =0
+                ZIndex: =1
+
+                DataCardKey16 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =48
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 60
+                    Wrap: =false
+                    X: =30
+                    Y: =10
+                    ZIndex: =1
+
+                Image12 As image:
+                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =AddPicture3.Height
+                    Image: =If(IsBlank(AddPicture3.Media), Parent.Default, AddPicture3.Media)
+                    Tooltip: =Parent.DisplayName
+                    Width: =AddPicture3.Width
+                    X: =AddPicture3.X
+                    Y: =AddPicture3.Y
+                    ZIndex: =2
+
+                AddPicture3 As addMedia:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =320
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =DataCardKey16.Y + DataCardKey16.Height + 5
+                    ZIndex: =3
+
+                ErrorMessage17 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =10
+                    Size: =12
+                    Text: =Parent.Error
+                    Visible: =Parent.DisplayMode=DisplayMode.Edit
+                    Width: =Parent.Width - 60
+                    X: =30
+                    Y: =Image12.Y + Image12.Height
+                    ZIndex: =4
+
+                StarVisible17 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =DataCardKey16.Height
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    Wrap: =false
+                    X: =0
+                    Y: =DataCardKey16.Y
+                    ZIndex: =5
+
             Cancelado_DataCard1 As typedDataCard.fluentV9ToggleEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
                 BorderStyle: =BorderStyle.Solid
@@ -553,55 +626,6 @@ scr_NewEvent As screen:
                     Y: =DataCardKey11_1.Y
                     ZIndex: =11
 
-            FotoEvento_DataCard1_1 As typedDataCard.fluentV9AddLargePictureCard:
-                BorderColor: =App.Theme.Colors.Darker40
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="FotoEvento"
-                Default: =ThisItem.FotoEvento
-                DisplayMode: =DisplayMode.Edit
-                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,FotoEvento)
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =500
-                Required: =false
-                Update: =Image2_1.Image
-                Width: =640
-                X: =0
-                Y: =0
-                ZIndex: =12
-
-                Image2_1 As image:
-                    BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
-                    BorderStyle: =BorderStyle.None
-                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
-                    DisabledFill: =RGBA(244, 244, 244, 1)
-                    DisplayMode: =Parent.DisplayMode
-                    Height: =AddPicture1_1.Height
-                    Image: |-
-                        =/*Coalesce(
-                            Parent.Default,
-                            AddPicture1_1.Media,
-                            SampleImage
-                        )*/
-                        If(IsBlank(AddPicture1.Media), Parent.Default, AddPicture1.Media)
-                    ImagePosition: =ImagePosition.Fill
-                    Tooltip: =Parent.DisplayName
-                    Width: =AddPicture1_1.Width
-                    X: =AddPicture1_1.X
-                    Y: =AddPicture1_1.Y
-                    ZIndex: =13
-
-                AddPicture1_1 As addMedia:
-                    BorderColor: =App.Theme.Colors.Darker40
-                    BorderStyle: =BorderStyle.None
-                    ChangePictureText: =""
-                    Color: =RGBA(0, 0, 0, 0)
-                    Fill: =RGBA(0, 0, 0, 0)
-                    FocusedBorderThickness: =
-                    Height: =Parent.Height
-                    Text: =Blank()
-                    Width: =Parent.Width
-                    ZIndex: =14
-
             TituloEvento_DataCard1_1 As typedDataCard.fluentV9TextualEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
                 BorderStyle: =BorderStyle.Solid
@@ -681,7 +705,7 @@ scr_NewEvent As screen:
                 Update: =dtc_Sport_1.Selected
                 Width: =Parent.Width
                 X: =0
-                Y: =3
+                Y: =2
                 ZIndex: =20
 
                 StarVisible3_1 As Text:
@@ -755,7 +779,7 @@ scr_NewEvent As screen:
                 Update: =Value(dtc_QtdParticipantes_1.Value)
                 Width: =640
                 X: =0
-                Y: =4
+                Y: =3
                 ZIndex: =25
 
                 StarVisible1_1 As Text:
@@ -817,7 +841,7 @@ scr_NewEvent As screen:
                 Update: =If(Not IsBlank(dtv_DateTimeEvent_1.SelectedDate), DateTime(Year(dtv_DateTimeEvent_1.SelectedDate), Month(dtv_DateTimeEvent_1.SelectedDate), Day(dtv_DateTimeEvent_1.SelectedDate), Value(HourValue1_1.Selected.Value), Value(MinuteValue1_1.Selected.Value), Second(dtv_DateTimeEvent_1.SelectedDate)))
                 Width: =Parent.Width
                 X: =0
-                Y: =2
+                Y: =4
                 ZIndex: =30
 
                 StarVisible4_1 As Text:

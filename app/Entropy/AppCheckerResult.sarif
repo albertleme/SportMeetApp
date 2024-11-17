@@ -2204,19 +2204,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard1_1.AddPicture1_1.AccessibleLabel"
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard2.AddPicture3.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard1_1.AddPicture1_1.AccessibleLabel",
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard2.AddPicture3.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "scr_NewEvent",
-                "type": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard1_1.AddPicture1_1"
+                "type": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard2.AddPicture3"
               }
             }
           ],
@@ -4766,36 +4766,6 @@
                 "member": "Width",
                 "module": "scr_NewEvent",
                 "type": "scr_NewEvent.Rectangle3_1"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-InefficientDelayLoading",
-          "ruleIndex": 5
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard1_1.Image2_1.Image"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard1_1.Image2_1.Image",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "Image",
-                "module": "scr_NewEvent",
-                "type": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard1_1.Image2_1"
               }
             }
           ],
