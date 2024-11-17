@@ -4783,6 +4783,36 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard1_1.Image2_1.Image"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard1_1.Image2_1.Image",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "Image",
+                "module": "scr_NewEvent",
+                "type": "scr_NewEvent.Container16_1.frm_Event_1.FotoEvento_DataCard1_1.Image2_1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-InefficientDelayLoading",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "scr_MyEvents.varEvento"
                 }
               ],

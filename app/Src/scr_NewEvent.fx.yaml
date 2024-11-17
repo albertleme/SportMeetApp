@@ -577,12 +577,12 @@ scr_NewEvent As screen:
                     DisplayMode: =Parent.DisplayMode
                     Height: =AddPicture1_1.Height
                     Image: |-
-                        =Coalesce(
+                        =/*Coalesce(
                             Parent.Default,
                             AddPicture1_1.Media,
                             SampleImage
-                        )
-                        //If(IsBlank(AddPicture1.Media), Parent.Default, AddPicture1.Media)
+                        )*/
+                        If(IsBlank(AddPicture1.Media), Parent.Default, AddPicture1.Media)
                     ImagePosition: =ImagePosition.Fill
                     Tooltip: =Parent.DisplayName
                     Width: =AddPicture1_1.Width
@@ -594,11 +594,11 @@ scr_NewEvent As screen:
                     BorderColor: =App.Theme.Colors.Darker40
                     BorderStyle: =BorderStyle.None
                     ChangePictureText: =""
-                    Color: =RGBA(0, 0, 0, 1)
+                    Color: =RGBA(0, 0, 0, 0)
                     Fill: =RGBA(0, 0, 0, 0)
                     FocusedBorderThickness: =
                     Height: =Parent.Height
-                    Text: =""
+                    Text: =Blank()
                     Width: =Parent.Width
                     ZIndex: =14
 
