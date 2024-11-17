@@ -368,24 +368,13 @@ scr_NewEvent As screen:
                 DisplayMode: =Parent.DisplayMode
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,'FotoEvento')
                 Fill: =RGBA(0, 0, 0, 0)
-                Height: =50
+                Height: =450
                 Required: =false
                 Update: =Image12.Image
                 Width: =640
                 X: =0
                 Y: =0
                 ZIndex: =1
-
-                DataCardKey16 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =48
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Semibold
-                    Width: =Parent.Width - 60
-                    Wrap: =false
-                    X: =30
-                    Y: =10
-                    ZIndex: =1
 
                 Image12 As image:
                     BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
@@ -394,6 +383,7 @@ scr_NewEvent As screen:
                     DisplayMode: =Parent.DisplayMode
                     Height: =AddPicture3.Height
                     Image: =If(IsBlank(AddPicture3.Media), Parent.Default, AddPicture3.Media)
+                    ImagePosition: =ImagePosition.Fill
                     Tooltip: =Parent.DisplayName
                     Width: =AddPicture3.Width
                     X: =AddPicture3.X
@@ -402,36 +392,15 @@ scr_NewEvent As screen:
 
                 AddPicture3 As addMedia:
                     BorderColor: =App.Theme.Colors.Darker40
+                    ChangePictureText: =""
                     Color: =RGBA(0, 0, 0, 1)
                     Fill: =RGBA(255, 255, 255, 1)
-                    Height: =320
-                    Width: =Parent.Width - 60
-                    X: =30
-                    Y: =DataCardKey16.Y + DataCardKey16.Height + 5
+                    Height: =Parent.Height
+                    Size: =36
+                    Text: ="📷"
+                    Tooltip: ="Adicionar imagem"
+                    Width: =Parent.Width
                     ZIndex: =3
-
-                ErrorMessage17 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =10
-                    Size: =12
-                    Text: =Parent.Error
-                    Visible: =Parent.DisplayMode=DisplayMode.Edit
-                    Width: =Parent.Width - 60
-                    X: =30
-                    Y: =Image12.Y + Image12.Height
-                    ZIndex: =4
-
-                StarVisible17 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =DataCardKey16.Height
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    Wrap: =false
-                    X: =0
-                    Y: =DataCardKey16.Y
-                    ZIndex: =5
 
             Cancelado_DataCard1 As typedDataCard.fluentV9ToggleEditCard:
                 BorderColor: =App.Theme.Colors.Darker40

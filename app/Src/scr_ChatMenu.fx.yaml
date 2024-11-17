@@ -10,13 +10,6 @@ scr_ChatMenu As screen:
             )
         )
 
-    Rectangle1_4 As rectangle:
-        BorderColor: =App.Theme.Colors.Darker40
-        Fill: =RGBA(245, 245, 245, 1)
-        Height: =App.Height
-        Width: =App.Width
-        ZIndex: =1
-
     Container1_1 As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.Regular
         Fill: =RGBA(255, 255, 255, 1)

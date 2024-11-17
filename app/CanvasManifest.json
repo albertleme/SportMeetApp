@@ -153,6 +153,7 @@
     "scr_Chat",
     "scr_MyEvents",
     "scr_Requisitions",
-    "scr_Profile"
+    "scr_Profile",
+    "scr_Denuncias"
   ]
 }

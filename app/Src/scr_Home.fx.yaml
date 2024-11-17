@@ -95,6 +95,35 @@ scr_Home As screen:
                     Y: =0
                     ZIndex: =1
 
+            cnt_Filter_1 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Regular
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =0
+                Height: =225
+                LayoutMinHeight: =0
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =40
+                RadiusBottomRight: =40
+                RadiusTopLeft: =40
+                RadiusTopRight: =40
+                Width: =Self.Height
+                ZIndex: =3
+
+                icoFilter_1 As icon.OptionsList:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(53, 61, 63, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Height: =Parent.Height
+                    Icon: =Icon.Flag
+                    OnSelect: =Navigate(scr_Denuncias,ScreenTransition.Fade)
+                    PaddingBottom: =16
+                    PaddingLeft: =16
+                    PaddingRight: =16
+                    PaddingTop: =16
+                    Width: =Parent.Width
+                    ZIndex: =1
+
             cnt_Filter As groupContainer.manualLayoutContainer:
                 DropShadow: =DropShadow.Regular
                 Fill: =RGBA(255, 255, 255, 1)
