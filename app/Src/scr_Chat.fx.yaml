@@ -156,6 +156,7 @@ scr_Chat As screen:
                 LoadingSpinner: =LoadingSpinner.Data
                 TemplatePadding: =0
                 TemplateSize: =300
+                Visible: =false
                 Width: =Parent.Width
                 ZIndex: =1
 
@@ -295,6 +296,173 @@ scr_Chat As screen:
                             ZIndex: =1
 
                     Label13_3 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =
+                        Width: =10
+                        ZIndex: =5
+
+            "Gallery4 As gallery.'BrowseLayout_Flexible_SocialFeed_ver5.0'":
+                BorderColor: =App.Theme.Colors.Darker40
+                DelayItemLoading: =true
+                Items: |-
+                    =Filter(
+                        tbMessages,
+                        ID_Remetente = gbl_varUser.ID And ID_Destinatario = varProfile.ID Or
+                        ID_Remetente = varProfile.ID And ID_Destinatario = gbl_varUser.ID
+                    )
+                Layout: =Layout.Vertical
+                LayoutMinHeight: =0
+                LayoutMinWidth: =320
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =4
+                TemplateSize: |-
+                    =//Min(870, Self.Height - 60)
+                    Container13_3.Height
+                ZIndex: =2
+
+                Container13_3 As groupContainer.horizontalAutoLayoutContainer:
+                    Height: =Container13_4.Height+20
+                    LayoutGap: =10
+                    LayoutMode: =LayoutMode.Auto
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =2
+
+                    Label13_4 As label:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Font: =App.Theme.Font
+                        Height: =Parent.Height
+                        LayoutMinHeight: =70
+                        LayoutMinWidth: =560
+                        Size: =21
+                        Text: =
+                        Width: =10
+                        ZIndex: =1
+
+                    Container12_4 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.Semilight
+                        FillPortions: =0
+                        Height: =70
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =100
+                        RadiusBottomRight: =100
+                        RadiusTopLeft: =100
+                        RadiusTopRight: =100
+                        Visible: =If(ThisItem.ID_Remetente=gbl_varUser.ID,false,true)
+                        Width: =70
+                        X: =10
+                        Y: =Parent.Height/2-Self.Height/2
+                        ZIndex: =2
+
+                        Image7_3 As image:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =Parent.Height
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Remetente,FotoPerfil),SampleImage)
+                            ImagePosition: =ImagePosition.Fill
+                            Width: =Parent.Width
+                            ZIndex: =1
+
+                    Container13_4 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.Semilight
+                        Fill: =If(ThisItem.ID_Remetente=gbl_varUser.ID,RGBA(125, 125, 220, 0.20),RGBA(230, 230, 230, 0.8))
+                        Height: =TextCanvas2_2.Height+Label15_1.Height
+                        LayoutMinHeight: =0
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =30
+                        RadiusBottomRight: =30
+                        RadiusTopLeft: =30
+                        RadiusTopRight: =30
+                        Width: =Parent.Width
+                        X: =Container12_4.Width-Container12_4.X
+                        ZIndex: =3
+
+                        TextCanvas2_2 As Text:
+                            Align: |-
+                                =
+                                If(ThisItem.ID_Remetente=gbl_varUser.ID,'TextCanvas.Align'.End,'TextCanvas.Align'.Start)
+                            AutoHeight: =true
+                            DisplayMode: =DisplayMode.Edit
+                            Height: =95
+                            PaddingLeft: =20
+                            PaddingRight: =20
+                            Size: =26
+                            Text: =ThisItem.Mensagem
+                            VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                            Width: =Parent.Width
+                            Wrap: =true
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        Label15_1 As label:
+                            Align: |-
+                                =
+                                If(ThisItem.ID_Remetente=gbl_varUser.ID,Align.Left,Align.Right)
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(139, 154, 159, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =App.Theme.Font
+                            Height: =25
+                            PaddingBottom: =10
+                            PaddingLeft: =16
+                            PaddingRight: =16
+                            PaddingTop: =10
+                            Size: =13
+                            Text: |-
+                                =Text(ThisItem.Criado,"dd/mm hh:mm")
+                            Width: =Parent.Width
+                            X: |-
+                                =
+                                
+                                If(ThisItem.ID_Remetente=gbl_varUser.ID,0,Parent.Width-Self.Width)
+                            Y: =TextCanvas2_2.Height
+                            ZIndex: =2
+
+                    Container12_5 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
+                        DropShadow: =DropShadow.Semilight
+                        FillPortions: =0
+                        Height: =70
+                        LayoutMinHeight: =112
+                        LayoutMinWidth: =250
+                        RadiusBottomLeft: =100
+                        RadiusBottomRight: =100
+                        RadiusTopLeft: =100
+                        RadiusTopRight: =100
+                        Visible: =If(ThisItem.ID_Remetente=gbl_varUser.ID,true,false)
+                        Width: =70
+                        X: =10
+                        Y: =Parent.Height/2-Self.Height/2
+                        ZIndex: =4
+
+                        Image7_4 As image:
+                            BorderColor: =App.Theme.Colors.Darker40
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Height: =Parent.Height
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Remetente,FotoPerfil),SampleImage)
+                            ImagePosition: =ImagePosition.Fill
+                            Width: =Parent.Width
+                            ZIndex: =1
+
+                    Label13_5 As label:
                         BorderColor: =App.Theme.Colors.Darker40
                         Color: =RGBA(0, 0, 0, 1)
                         DisabledColor: =RGBA(166, 166, 166, 1)
