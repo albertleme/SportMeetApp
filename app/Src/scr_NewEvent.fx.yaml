@@ -56,128 +56,151 @@ scr_NewEvent As screen:
             LayoutMinHeight: =250
             LayoutMinWidth: =0
             OnSuccess: |-
-                =Office365Outlook.SendEmailV2(
-                    Concat(
-                        Filter(
-                            tbInteresses,
-                            ID_Esporte = Last(tbEvent).Esporte.Id
+                =UpdateContext({varLoadingSpinner:true});
+                ForAll(
+                    Filter(
+                        tbInteresses,
+                        ID_Esporte = Last(tbEvent).Esporte.Id
+                    ) As I,
+                    Office365Outlook.SendEmailV2(
+                        LookUp(
+                            tbUsers,
+                            ID = I.ID_Usuario,
+                            Email
                         ),
-                        LookUp(tbUsers,ID=ID_Usuario,Email),
-                        "; "
-                    ),
-                    "🏅 Novo evento de " & Last(tbEvent).Esporte.Value & " foi criado! Venha participar!",
-                    "<!DOCTYPE html>
-                    <html lang=""pt-BR"">
-                    <head>
-                        <meta charset=""UTF-8"">
-                        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
-                        <style>
-                            body {
-                                font-family: Arial, sans-serif;
-                                background-color: #f4f4f9;
-                                margin: 0;
-                                padding: 0;
-                            }
-                            .email-container {
-                                background-color: #ffffff;
-                                width: 100%;
-                                max-width: 600px;
-                                margin: 20px auto;
-                                border: 1px solid #ddd;
-                                border-radius: 8px;
-                                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                            }
-                            .header {
-                                background-color: #4CAF50;
-                                color: white;
-                                text-align: center;
-                                padding: 20px 10px;
-                                border-radius: 8px 8px 0 0;
-                            }
-                            .header h1 {
-                                margin: 0;
-                                font-size: 24px;
-                            }
-                            .content {
-                                padding: 20px;
-                                color: #333;
-                            }
-                            .content h2 {
-                                font-size: 20px;
-                                color: #4CAF50;
-                                margin-bottom: 10px;
-                            }
-                            .event-details {
-                                background-color: #f9f9f9;
-                                border: 1px solid #ddd;
-                                border-radius: 8px;
-                                padding: 15px;
-                                margin-top: 10px;
-                            }
-                            .event-details p {
-                                margin: 8px 0;
-                                font-size: 16px;
-                            }
-                            .conditional-message {
-                                background-color: #e6ffe6;
-                                border-left: 5px solid #4CAF50;
-                                padding: 10px;
-                                margin-top: 15px;
-                                border-radius: 5px;
-                                font-size: 16px;
-                            }
-                            .footer {
-                                text-align: center;
-                                padding: 15px 10px;
-                                color: #666;
-                                font-size: 14px;
-                                border-top: 1px solid #ddd;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <div class=""email-container"">
-                            <div class=""header"">
-                                <h1>🎉 Novo Evento Criado! 🎉</h1>
-                            </div>
-                            <div class=""content"">
-                                <h2>Olá,</h2>
-                                <p>Um usuário acabou de criar um novo evento no app. Confira os detalhes abaixo:</p>
-                                <div class=""event-details"">
-                                    <p><strong>📅 Data: </strong>"&Text(Last(tbEvent).DataHorarioEvento,"dd")&" de "&Text(Last(tbEvent).DataHorarioEvento,"mmmm")&" de "&Text(Last(tbEvent).DataHorarioEvento,"yyyy")&"</p>
-                                    <p><strong>⏰ Horário: </strong>"&Text(Last(tbEvent).DataHorarioEvento,"hh:mm")&"</p>
-                                    <p><strong>📍 Local: </strong>"&Last(tbEvent).Endereco&"</p>
-                                    "&
-                                    Switch(
-                                        Last(tbEvent).Esporte.Id,
-                                        1,"<p><strong>⚽ Esporte:</strong> Futebol</p>",
-                                        2,"<p><strong>🏐 Esporte:</strong> Voleibol</p>",
-                                        3,"<p><strong>🏀 Esporte:</strong> Basquete</p>",
-                                        4,"<p><strong>🏓 Esporte:</strong> Ping-Pong</p>",
-                                        5,"<p><strong>🏊 Esporte:</strong> Natação</p>",
-                                        6,"<p><strong>🥋 Esporte:</strong> Luta</p>",
-                                        7,"<p><strong>🛹 Esporte:</strong> Skate</p>",
-                                        8,"<p><strong>🎯 Esporte:</strong> Airsoft</p>",
-                                        9,"<p><strong>🏎️ Esporte:</strong> Kart</p>",
-                                        10,"<p><strong>🔫 Esporte:</strong> Paintball</p>"
-                                    )
-                                    &"
+                        "🏅 Novo evento de " & Last(tbEvent).Esporte.Value & " foi criado! Venha participar!",
+                        "<!DOCTYPE html>
+                        <html lang=""pt-BR"">
+                        <head>
+                            <meta charset=""UTF-8"">
+                            <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                            <style>
+                                body {
+                                    font-family: Arial, sans-serif;
+                                    background-color: #f4f4f9;
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                                .email-container {
+                                    background-color: #ffffff;
+                                    width: 100%;
+                                    max-width: 600px;
+                                    margin: 20px auto;
+                                    border: 1px solid #ddd;
+                                    border-radius: 8px;
+                                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                }
+                                .header {
+                                    background-color: #4CAF50;
+                                    color: white;
+                                    text-align: center;
+                                    padding: 20px 10px;
+                                    border-radius: 8px 8px 0 0;
+                                }
+                                .header h1 {
+                                    margin: 0;
+                                    font-size: 24px;
+                                }
+                                .content {
+                                    padding: 20px;
+                                    color: #333;
+                                }
+                                .content h2 {
+                                    font-size: 20px;
+                                    color: #4CAF50;
+                                    margin-bottom: 10px;
+                                }
+                                .event-details {
+                                    background-color: #f9f9f9;
+                                    border: 1px solid #ddd;
+                                    border-radius: 8px;
+                                    padding: 15px;
+                                    margin-top: 10px;
+                                }
+                                .event-details p {
+                                    margin: 8px 0;
+                                    font-size: 16px;
+                                }
+                                .conditional-message {
+                                    background-color: #e6ffe6;
+                                    border-left: 5px solid #4CAF50;
+                                    padding: 10px;
+                                    margin-top: 15px;
+                                    border-radius: 5px;
+                                    font-size: 16px;
+                                }
+                                .footer {
+                                    text-align: center;
+                                    padding: 15px 10px;
+                                    color: #666;
+                                    font-size: 14px;
+                                    border-top: 1px solid #ddd;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <div class=""email-container"">
+                                <div class=""header"">
+                                    <h1>🎉 Novo Evento Criado! 🎉</h1>
                                 </div>
-                
-                                <!-- Condicional baseado no tipo de esporte -->
-                                <div class=""conditional-message"">
-                                    <p>🏅 Parece que você gosta de esportes em grupo! Este evento de "&Last(tbEvent).Esporte.Value&" pode ser uma ótima oportunidade para você se divertir com amigos e praticar habilidades. Não perca!</p>
+                                <div class=""content"">
+                                    <h2>Olá,</h2>
+                                    <p>Um usuário acabou de criar um novo evento no app. Confira os detalhes abaixo:</p>
+                                    <div class=""event-details"">
+                                        <p><strong>📅 Data: </strong>" & Text(
+                            Last(tbEvent).DataHorarioEvento,
+                            "dd"
+                        ) & " de " & Text(
+                            Last(tbEvent).DataHorarioEvento,
+                            "mmmm"
+                        ) & " de " & Text(
+                            Last(tbEvent).DataHorarioEvento,
+                            "yyyy"
+                        ) & "</p>
+                                        <p><strong>⏰ Horário: </strong>" & Text(
+                            Last(tbEvent).DataHorarioEvento,
+                            "hh:mm"
+                        ) & "</p>
+                                        <p><strong>📍 Local: </strong>" & Last(tbEvent).Endereco & "</p>
+                                        " & Switch(
+                            Last(tbEvent).Esporte.Id,
+                            1,
+                            "<p><strong>⚽ Esporte:</strong> Futebol</p>",
+                            2,
+                            "<p><strong>🏐 Esporte:</strong> Voleibol</p>",
+                            3,
+                            "<p><strong>🏀 Esporte:</strong> Basquete</p>",
+                            4,
+                            "<p><strong>🏓 Esporte:</strong> Ping-Pong</p>",
+                            5,
+                            "<p><strong>🏊 Esporte:</strong> Natação</p>",
+                            6,
+                            "<p><strong>🥋 Esporte:</strong> Luta</p>",
+                            7,
+                            "<p><strong>🛹 Esporte:</strong> Skate</p>",
+                            8,
+                            "<p><strong>🎯 Esporte:</strong> Airsoft</p>",
+                            9,
+                            "<p><strong>🏎️ Esporte:</strong> Kart</p>",
+                            10,
+                            "<p><strong>🔫 Esporte:</strong> Paintball</p>"
+                        ) & "
+                                    </div>
+                                    <!-- Condicional baseado no tipo de esporte -->
+                                    <div class=""conditional-message"">
+                                        <p>🏅 Parece que você gosta de esportes em grupo! Este evento de " & Last(tbEvent).Esporte.Value & " pode ser uma ótima oportunidade para você se divertir com amigos e praticar habilidades. Não perca!</p>
+                                    </div>
+                                    <p style=""margin-top: 15px;"">Prepare-se para participar ou compartilhar este evento com seus amigos!</p>
                                 </div>
-                
-                                <p style=""margin-top: 15px;"">Prepare-se para participar ou compartilhar este evento com seus amigos!</p>
+                                <div class=""footer"">
+                                    <p>Este é um email automático. Por favor, não responda a este endereço.</p>
+                                </div>
                             </div>
-                            <div class=""footer"">
-                                <p>Este é um email automático. Por favor, não responda a este endereço.</p>
-                            </div>
-                        </div>
-                    </body>
-                    </html>"
-                )
+                        </body>
+                        </html>"
+                    )
+                );
+                UpdateContext({varLoadingSpinner:false});
             UseFluentV9Cards: =true
             Width: =Parent.Width
             Y: =40
@@ -337,6 +360,69 @@ scr_NewEvent As screen:
                             Y: =
                             ZIndex: =6
 
+            Cancelado_DataCard1 As typedDataCard.fluentV9ToggleEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Cancelado"
+                Default: =ThisItem.Cancelado
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,'Cancelado')
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =DataCardValue7.Checked
+                Visible: =false
+                Width: =640
+                X: =0
+                Y: =12
+                ZIndex: =1
+
+                DataCardKey13 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                DataCardValue7 As Toggle:
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    Checked: =Parent.Default
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =32
+                    Label: =""
+                    OnCheck: =false
+                    OnUncheck: =false
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey13.Y + DataCardKey13.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage16 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue7.Y + DataCardValue7.Height
+                    ZIndex: =3
+
+                StarVisible16 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey13.Y
+                    ZIndex: =4
+
             Endereco_DataCard1_1 As typedDataCard.fluentV9TextualEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
                 BorderStyle: =BorderStyle.Solid
@@ -472,12 +558,7 @@ scr_NewEvent As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="FotoEvento"
                 Default: =ThisItem.FotoEvento
-                DisplayMode: |-
-                    =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID Or IsBlank(dtc_ID_Evento_1.Value),
-                        DisplayMode.Edit,
-                        DisplayMode.View
-                    )
+                DisplayMode: =DisplayMode.Edit
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,FotoEvento)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =500
@@ -838,7 +919,7 @@ scr_NewEvent As screen:
                 DisplayMode: =DisplayMode.Edit
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,DescricaoEvento)
                 Fill: =RGBA(0, 0, 0, 0)
-                Height: =220
+                Height: =230
                 MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, DescricaoEvento)
                 Required: =false
                 Update: =dtc_EventDescription_1.Value
@@ -1185,7 +1266,7 @@ scr_NewEvent As screen:
             Y: =0
             ZIndex: =65
 
-    cnt_backEvent_2 As groupContainer.manualLayoutContainer:
+    cnt_DeleteEvent_2 As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Semibold
         Fill: =RGBA(255, 255, 255, 1)
         Height: =64
@@ -1193,6 +1274,12 @@ scr_NewEvent As screen:
         RadiusBottomRight: =64
         RadiusTopLeft: =64
         RadiusTopRight: =64
+        Visible: |-
+            =If(
+                IsBlank(dtc_ID_Evento_1.Value) Or DataCardValue7.Checked Or dtv_DateTimeEvent_1.SelectedDate<Today(),
+                false,
+                true
+            )
         Width: =64
         X: =Parent.Width-Self.Width-32
         Y: =32
@@ -1360,7 +1447,7 @@ scr_NewEvent As screen:
             FontSize: =22
             Height: =55
             OnSelect: |-
-                =Patch(tbEvent,varEvent.ID,{Cancelado:true});
+                =Patch(tbEvent,varEvent,{Cancelado:true});
                 Back(ScreenTransition.Fade);
                 UpdateContext({varDeleteEvent:false})
             Text: ="Sim"

@@ -44,10 +44,10 @@ scr_Requisitions As screen:
                 Height: =Parent.Height
                 Icon: =Icon.ArrowLeft
                 OnSelect: =Navigate(scr_MyEvents,ScreenTransition.Fade)
-                PaddingBottom: =16
-                PaddingLeft: =16
-                PaddingRight: =16
-                PaddingTop: =16
+                PaddingBottom: =20
+                PaddingLeft: =20
+                PaddingRight: =20
+                PaddingTop: =20
                 Width: =Parent.Height
                 ZIndex: =1
 
