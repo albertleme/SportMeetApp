@@ -168,18 +168,20 @@ scr_ChatMenu As screen:
                 BorderColor: =App.Theme.Colors.Darker40
                 DelayItemLoading: =true
                 Items: |-
-                    =/*Filter(
+                    =Filter(
                         tbMessages,
                         ID_Destinatario = LookUp(
                             tbMessages,
                             ID_Remetente = gbl_varUser.ID And ID_Destinatario = gbl_varUser.ID Or ID_Remetente = varProfile.ID And ID_Destinatario = gbl_varUser.ID,
                             ID_Destinatario
                         )
-                    )*/
+                    )
                     
+                    /*
                     Distinct(
                         colMessages,
                         ID_Destinatario)
+                        */
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
