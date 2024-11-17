@@ -83,6 +83,32 @@ scr_Chat As screen:
                     Width: =Parent.Width
                     ZIndex: =1
 
+                Button3_1 As button:
+                    BorderColor: =
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =0
+                    Color: =
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(0, 0, 0, 0)
+                    DisabledFill: =RGBA(0, 0, 0, 0)
+                    Fill: =RGBA(0, 0, 0, 0)
+                    FocusedBorderThickness: =
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =Parent.Height
+                    HoverBorderColor: =
+                    HoverColor: =
+                    HoverFill: =
+                    OnSelect: |-
+                        =Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=varProfile.ID)})
+                    PressedBorderColor: =
+                    PressedColor: =
+                    PressedFill: =
+                    Size: =24
+                    Text: =
+                    Width: =Parent.Width
+                    ZIndex: =2
+
             Container6 As groupContainer.manualLayoutContainer:
                 Height: =Parent.Height
                 LayoutMinHeight: =0
@@ -103,7 +129,7 @@ scr_Chat As screen:
                     ZIndex: =1
 
         Container3 As groupContainer.verticalAutoLayoutContainer:
-            DropShadow: =DropShadow.Light
+            DropShadow: =DropShadow.Regular
             Height: =225
             LayoutDirection: =LayoutDirection.Vertical
             LayoutMinHeight: =112
@@ -129,12 +155,12 @@ scr_Chat As screen:
                 LayoutMinWidth: =320
                 LoadingSpinner: =LoadingSpinner.Data
                 TemplatePadding: =0
-                TemplateSize: =140
+                TemplateSize: =300
                 Width: =Parent.Width
                 ZIndex: =1
 
                 Container13 As groupContainer.horizontalAutoLayoutContainer:
-                    Height: =Parent.TemplateHeight
+                    Height: =Container13_2.Height+20
                     LayoutGap: =10
                     LayoutMode: =LayoutMode.Auto
                     PaddingBottom: =10
@@ -185,10 +211,11 @@ scr_Chat As screen:
                             ZIndex: =1
 
                     Container13_2 As groupContainer.manualLayoutContainer:
+                        AlignInContainer: =AlignInContainer.Center
                         DropShadow: =DropShadow.Regular
                         Fill: =If(ThisItem.ID_Remetente=gbl_varUser.ID,RGBA(125, 125, 220, 0.20),RGBA(230, 230, 230, 0.8))
-                        Height: =Parent.Height-20
-                        LayoutMinHeight: =112
+                        Height: =TextCanvas2.Height+Label15.Height
+                        LayoutMinHeight: =0
                         LayoutMinWidth: =250
                         RadiusBottomLeft: =30
                         RadiusBottomRight: =30
@@ -202,6 +229,7 @@ scr_Chat As screen:
                             Align: |-
                                 =
                                 If(ThisItem.ID_Remetente=gbl_varUser.ID,'TextCanvas.Align'.End,'TextCanvas.Align'.Start)
+                            AutoHeight: =true
                             DisplayMode: =DisplayMode.Edit
                             Height: =95
                             PaddingLeft: =20
@@ -210,6 +238,7 @@ scr_Chat As screen:
                             Text: =ThisItem.Mensagem
                             VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
                             Width: =Parent.Width
+                            Wrap: =true
                             X: =0
                             Y: =0
                             ZIndex: =1
@@ -235,14 +264,14 @@ scr_Chat As screen:
                                 =
                                 
                                 If(ThisItem.ID_Remetente=gbl_varUser.ID,0,Parent.Width-Self.Width)
-                            Y: =Parent.Height-Self.Height
+                            Y: =TextCanvas2.Height
                             ZIndex: =2
 
                     Container12_3 As groupContainer.manualLayoutContainer:
                         AlignInContainer: =AlignInContainer.Center
-                        DropShadow: =DropShadow.Semibold
+                        DropShadow: =DropShadow.Regular
                         FillPortions: =0
-                        Height: =80
+                        Height: =70
                         LayoutMinHeight: =112
                         LayoutMinWidth: =250
                         RadiusBottomLeft: =100
@@ -250,7 +279,7 @@ scr_Chat As screen:
                         RadiusTopLeft: =100
                         RadiusTopRight: =100
                         Visible: =If(ThisItem.ID_Remetente=gbl_varUser.ID,true,false)
-                        Width: =80
+                        Width: =70
                         X: =10
                         Y: =Parent.Height/2-Self.Height/2
                         ZIndex: =4
@@ -278,67 +307,45 @@ scr_Chat As screen:
                         Width: =10
                         ZIndex: =5
 
-        Container4 As groupContainer.horizontalAutoLayoutContainer:
+        Container4 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.ExtraBold
             FillPortions: =0
-            Height: =80
-            LayoutGap: =12
+            Height: =64
             LayoutMinHeight: =112
             LayoutMinWidth: =250
-            LayoutMode: =LayoutMode.Auto
-            PaddingBottom: =12
-            PaddingLeft: =12
-            PaddingRight: =12
-            PaddingTop: =12
             ZIndex: =3
 
-            Container10 As groupContainer.manualLayoutContainer:
-                DropShadow: =DropShadow.Semibold
-                Height: =Parent.Height
-                LayoutMinHeight: =0
-                LayoutMinWidth: =250
-                RadiusBottomLeft: =10
-                RadiusBottomRight: =10
-                RadiusTopLeft: =10
-                RadiusTopRight: =10
+            "TextInputCanvas1 As 'Text input'":
+                DisplayMode: =DisplayMode.Edit
+                FontSize: =26
+                Height: =64
+                Mode: ='TextInputCanvas.Mode'.Multiline
+                PaddingRight: =Icon2.Width+10
+                Placeholder: ="Digite sua mensagem..."
+                TriggerOutput: ="Focus"
+                Width: =640
+                X: =0
+                Y: =0
                 ZIndex: =1
 
-                "TextInputCanvas1 As 'Text input'":
-                    DisplayMode: =DisplayMode.Edit
-                    FontSize: =26
-                    Height: =Parent.Height
-                    Mode: ='TextInputCanvas.Mode'.Multiline
-                    Placeholder: ="Digite sua mensagem..."
-                    TriggerOutput: ="Focus"
-                    Width: =Parent.Width
-                    X: =0
-                    Y: =0
-                    ZIndex: =1
-
-            Container11 As groupContainer.manualLayoutContainer:
-                FillPortions: =0
+            Icon2 As icon.Send:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(39, 113, 194, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                DisplayMode: =If(IsBlank(TextInputCanvas1.Value),DisplayMode.Disabled,DisplayMode.Edit)
                 Height: =Parent.Height
-                LayoutMinHeight: =0
-                LayoutMinWidth: =250
-                RadiusBottomLeft: =10
-                RadiusBottomRight: =10
-                RadiusTopLeft: =10
-                RadiusTopRight: =10
-                Width: =100
+                Icon: =Icon.Send
+                OnSelect: |-
+                    =Collect(tbMessages,{ID_Remetente:gbl_varUser.ID,ID_Destinatario:varProfile.ID,Mensagem:TextInputCanvas1.Value});
+                    
+                    Reset(TextInputCanvas1)
+                PaddingBottom: =8
+                PaddingLeft: =8
+                PaddingRight: =8
+                PaddingTop: =8
+                Tooltip: ="Enviar mensagem"
+                Width: =Self.Height
+                X: =576
                 ZIndex: =2
-
-                Icon2 As icon.Send:
-                    BorderColor: =App.Theme.Colors.Darker40
-                    Color: =RGBA(39, 113, 194, 1)
-                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
-                    DisabledColor: =RGBA(244, 244, 244, 1)
-                    DisplayMode: =If(IsBlank(TextInputCanvas1.Value),DisplayMode.Disabled,DisplayMode.Edit)
-                    Height: =Parent.Height
-                    Icon: =Icon.Send
-                    OnSelect: |-
-                        =Collect(tbMessages,{ID_Remetente:gbl_varUser.ID,ID_Destinatario:varProfile.ID,Mensagem:TextInputCanvas1.Value});
-                        
-                        Reset(TextInputCanvas1)
-                    Tooltip: ="Enviar mensagem"
-                    Width: =Parent.Width
-                    ZIndex: =1
 

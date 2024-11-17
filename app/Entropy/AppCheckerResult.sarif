@@ -275,19 +275,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Container10.TextInputCanvas1.AccessibleLabel"
+                  "fullyQualifiedName": "scr_Chat.Container1.Container4.TextInputCanvas1.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Container10.TextInputCanvas1.AccessibleLabel",
+                  "fullyQualifiedName": "scr_Chat.Container1.Container4.TextInputCanvas1.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "scr_Chat",
-                "type": "scr_Chat.Container1.Container4.Container10.TextInputCanvas1"
+                "type": "scr_Chat.Container1.Container4.TextInputCanvas1"
               }
             }
           ],
@@ -305,49 +305,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Container11.Icon2.AccessibleLabel"
+                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Icon2.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Container11.Icon2.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "scr_Chat",
-                "type": "scr_Chat.Container1.Container4.Container11.Icon2"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Container11.Icon2.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Container11.Icon2.TabIndex",
+                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Icon2.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
                 "module": "scr_Chat",
-                "type": "scr_Chat.Container1.Container4.Container11.Icon2"
+                "type": "scr_Chat.Container1.Container4.Icon2"
               }
             }
           ],
@@ -359,6 +329,36 @@
           },
           "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
           "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Icon2.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "scr_Chat.Container1.Container4.Icon2.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "scr_Chat",
+                "type": "scr_Chat.Container1.Container4.Icon2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 2
         },
         {
           "locations": [

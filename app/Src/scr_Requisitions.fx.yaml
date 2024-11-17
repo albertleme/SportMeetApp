@@ -88,7 +88,7 @@ scr_Requisitions As screen:
                 )
             ShowScrollbar: =false
             TemplatePadding: =30
-            TemplateSize: =225
+            TemplateSize: =180
             Width: =Parent.Width
             ZIndex: =4
 
@@ -105,7 +105,8 @@ scr_Requisitions As screen:
                 ZIndex: =8
 
                 Container34_1 As groupContainer.horizontalAutoLayoutContainer:
-                    Height: =Parent.Height/4
+                    FillPortions: =0
+                    Height: =100
                     LayoutMinHeight: =0
                     LayoutMinWidth: =250
                     LayoutMode: =LayoutMode.Auto
@@ -153,6 +154,32 @@ scr_Requisitions As screen:
                             Width: =Self.Height
                             ZIndex: =1
 
+                        Button3 As button:
+                            BorderColor: =
+                            BorderStyle: =BorderStyle.None
+                            BorderThickness: =0
+                            Color: =
+                            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                            DisabledColor: =RGBA(0, 0, 0, 0)
+                            DisabledFill: =RGBA(0, 0, 0, 0)
+                            Fill: =RGBA(0, 0, 0, 0)
+                            FocusedBorderThickness: =
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Semibold
+                            Height: =Parent.Height
+                            HoverBorderColor: =
+                            HoverColor: =
+                            HoverFill: =
+                            OnSelect: |-
+                                =Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Solicitante)})
+                            PressedBorderColor: =
+                            PressedColor: =
+                            PressedFill: =
+                            Size: =24
+                            Text: =
+                            Width: =Parent.Width
+                            ZIndex: =2
+
                     "TextInputCanvas2_1 As 'Text input'":
                         Appearance: ='TextInputCanvas.Appearance'.FilledLighter
                         BasePaletteColor: =
@@ -176,7 +203,7 @@ scr_Requisitions As screen:
                         Color: =RGBA(39, 113, 194, 1)
                         DisabledBorderColor: =RGBA(166, 166, 166, 1)
                         DisabledColor: =RGBA(244, 244, 244, 1)
-                        Height: =Parent.Height-50
+                        Height: =Parent.Height-20
                         Icon: =Icon.Message
                         OnSelect: |-
                             =Navigate(scr_Chat,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Solicitante)})
@@ -202,7 +229,6 @@ scr_Requisitions As screen:
                         ZIndex: =5
 
                 Container27 As groupContainer.horizontalAutoLayoutContainer:
-                    DropShadow: =DropShadow.Light
                     FillPortions: =0
                     Height: =80
                     LayoutGap: =30
@@ -241,7 +267,7 @@ scr_Requisitions As screen:
                         BorderRadiusTopRight: =10
                         DisplayMode: =DisplayMode.Edit
                         FontSize: =26
-                        Height: =Parent.Height-20
+                        Height: =Parent.Height-30
                         LayoutMinHeight: =32
                         LayoutMinWidth: =120
                         OnSelect: |-
@@ -273,6 +299,7 @@ scr_Requisitions As screen:
                         ZIndex: =2
 
                     ButtonCanvas5 As Button:
+                        AccessibleLabel: =
                         Align: =Align.Center
                         AlignInContainer: =AlignInContainer.Center
                         BasePaletteColor: =RGBA(8, 222, 8, 1)
@@ -282,7 +309,7 @@ scr_Requisitions As screen:
                         BorderRadiusTopRight: =10
                         DisplayMode: =DisplayMode.Edit
                         FontSize: =26
-                        Height: =Parent.Height-20
+                        Height: =Parent.Height-30
                         LayoutMinHeight: =32
                         LayoutMinWidth: =120
                         OnSelect: |-
@@ -311,19 +338,6 @@ scr_Requisitions As screen:
                         X: =0
                         Y: =0
                         ZIndex: =3
-
-                Container28 As groupContainer.horizontalAutoLayoutContainer:
-                    DropShadow: =DropShadow.Light
-                    Height: =225
-                    LayoutMinHeight: =0
-                    LayoutMinWidth: =250
-                    LayoutMode: =LayoutMode.Auto
-                    RadiusBottomLeft: =4
-                    RadiusBottomRight: =4
-                    RadiusTopLeft: =4
-                    RadiusTopRight: =4
-                    Visible: =If(ThisItem.Status.Value="Em espera",false,true)
-                    ZIndex: =3
 
     img_LoadingSpinner_CreateAccount_6 As image:
         BorderColor: =App.Theme.Colors.Darker40
