@@ -26,7 +26,7 @@ scr_Home As screen:
                 640
             )
         X: =Parent.Width/2-Self.Width/2
-        ZIndex: =2
+        ZIndex: =1
 
         cnt_Header As groupContainer.horizontalAutoLayoutContainer:
             DropShadow: =DropShadow.Regular
@@ -633,7 +633,7 @@ scr_Home As screen:
                 640
             )
         X: =App.Width/2-Self.Width/2
-        ZIndex: =4
+        ZIndex: =2
 
     cnt_Filters As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.ExtraBold
@@ -647,7 +647,7 @@ scr_Home As screen:
         Width: =cnt_ContentMenu.Width
         X: =cnt_ContentMenu.X
         Y: =cnt_ContentMenu.Height-Self.Height
-        ZIndex: =5
+        ZIndex: =3
 
         Container23 As groupContainer.horizontalAutoLayoutContainer:
             FillPortions: =0
@@ -809,6 +809,61 @@ scr_Home As screen:
                 Y: =DataCardKey5_1.Height+DataCardKey5_1.Y+4
                 ZIndex: =6
 
+    cnt_ConfirmExit As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Bold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =225
+        RadiusBottomLeft: =8
+        RadiusBottomRight: =8
+        RadiusTopLeft: =8
+        RadiusTopRight: =8
+        Visible: =varSair
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =4
+
+        lbl_ConfirmarSaida As label:
+            Align: =Align.Center
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Font: =App.Theme.Font
+            Height: =112
+            Size: =21
+            Text: ="Deseja realmente sair?"
+            Width: =Parent.Width
+            ZIndex: =1
+
+        btn_RejeitarSaida As Button:
+            Align: =Align.Center
+            BasePaletteColor: =RGBA(249, 83, 109, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =22
+            Height: =55
+            OnSelect: |-
+                =UpdateContext({varSair:false})
+            Text: ="Não"
+            Width: =160
+            X: =53
+            Y: =112
+            ZIndex: =2
+
+        btn_ConfirmarSaida As Button:
+            Align: =Align.Center
+            BasePaletteColor: =RGBA(8, 222, 8, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =22
+            Height: =55
+            OnSelect: |-
+                =Set(gbl_varUser,Blank());
+                Navigate(scr_Login,ScreenTransition.Fade);
+                UpdateContext({varSair:false})
+            Text: ="Sim"
+            Width: =160
+            X: =286
+            Y: =112
+            ZIndex: =3
+
     img_LoadingSpinner_CreateAccount_3 As image:
         BorderColor: =App.Theme.Colors.Darker40
         DisabledBorderColor: =RGBA(166, 166, 166, 1)
@@ -886,60 +941,5 @@ scr_Home As screen:
         Width: =cnt_Screen_Login.Width
         X: =Parent.Width/2-Self.Width/2
         Y: =Parent.Height/2-Self.Height/2
-        ZIndex: =6
-
-    cnt_ConfirmExit As groupContainer.manualLayoutContainer:
-        DropShadow: =DropShadow.Bold
-        Fill: =RGBA(255, 255, 255, 1)
-        Height: =225
-        RadiusBottomLeft: =8
-        RadiusBottomRight: =8
-        RadiusTopLeft: =8
-        RadiusTopRight: =8
-        Visible: =varSair
-        X: =Parent.Width/2-Self.Width/2
-        Y: =Parent.Height/2-Self.Height/2
-        ZIndex: =9
-
-        lbl_ConfirmarSaida As label:
-            Align: =Align.Center
-            BorderColor: =App.Theme.Colors.Darker40
-            Color: =RGBA(0, 0, 0, 1)
-            DisabledColor: =RGBA(166, 166, 166, 1)
-            Font: =App.Theme.Font
-            Height: =112
-            Size: =21
-            Text: ="Deseja realmente sair?"
-            Width: =Parent.Width
-            ZIndex: =1
-
-        btn_RejeitarSaida As Button:
-            Align: =Align.Center
-            BasePaletteColor: =RGBA(249, 83, 109, 1)
-            DisplayMode: =DisplayMode.Edit
-            FontSize: =22
-            Height: =55
-            OnSelect: |-
-                =UpdateContext({varSair:false})
-            Text: ="Não"
-            Width: =160
-            X: =53
-            Y: =112
-            ZIndex: =2
-
-        btn_ConfirmarSaida As Button:
-            Align: =Align.Center
-            BasePaletteColor: =RGBA(8, 222, 8, 1)
-            DisplayMode: =DisplayMode.Edit
-            FontSize: =22
-            Height: =55
-            OnSelect: |-
-                =Set(gbl_varUser,Blank());
-                Navigate(scr_Login,ScreenTransition.Fade);
-                UpdateContext({varSair:false})
-            Text: ="Sim"
-            Width: =160
-            X: =286
-            Y: =112
-            ZIndex: =3
+        ZIndex: =5
 

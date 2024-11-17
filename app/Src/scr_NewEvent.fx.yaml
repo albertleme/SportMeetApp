@@ -1185,6 +1185,34 @@ scr_NewEvent As screen:
             Y: =0
             ZIndex: =65
 
+    cnt_backEvent_2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Semibold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =64
+        RadiusBottomLeft: =64
+        RadiusBottomRight: =64
+        RadiusTopLeft: =64
+        RadiusTopRight: =64
+        Width: =64
+        X: =Parent.Width-Self.Width-32
+        Y: =32
+        ZIndex: =5
+
+        ico_backEvent_2 As icon.ChevronLeft:
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(215, 58, 60, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Icon: =Icon.Trash
+            OnSelect: |-
+                =UpdateContext({varDeleteEvent:true})
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="Sair"
+            ZIndex: =64
+
     img_LoadingSpinner_CreateAccount_4 As image:
         BorderColor: =App.Theme.Colors.Darker40
         DisabledBorderColor: =RGBA(166, 166, 166, 1)
@@ -1263,4 +1291,81 @@ scr_NewEvent As screen:
         X: =Parent.Width/2-Self.Width/2
         Y: =Parent.Height/2-Self.Height/2
         ZIndex: =6
+
+    Rectangle3_1 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(0, 0, 0, 0.4)
+        Height: =App.Height
+        OnSelect: |-
+            =UpdateContext({varDeleteEvent:false})
+        Visible: =varDeleteEvent
+        Width: |-
+            =Switch(
+                scr_Login.Size,
+                1,
+                Parent.Width,
+                2,
+                Parent.Width,
+                3,
+                Parent.Width,
+                4,
+                640
+            )
+        X: =App.Width/2-Self.Width/2
+        ZIndex: =7
+
+    cnt_ConfirmExit_1 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Bold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =225
+        RadiusBottomLeft: =8
+        RadiusBottomRight: =8
+        RadiusTopLeft: =8
+        RadiusTopRight: =8
+        Visible: =varDeleteEvent
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =8
+
+        lbl_ConfirmarSaida_1 As label:
+            Align: =Align.Center
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Font: =App.Theme.Font
+            Height: =112
+            Size: =21
+            Text: ="Deseja realmente excluir o evento?"
+            Width: =Parent.Width
+            ZIndex: =1
+
+        btn_RejeitarSaida_1 As Button:
+            Align: =Align.Center
+            BasePaletteColor: =RGBA(249, 83, 109, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =22
+            Height: =55
+            OnSelect: |-
+                =UpdateContext({varDeleteEvent:false})
+            Text: ="Não"
+            Width: =160
+            X: =53
+            Y: =112
+            ZIndex: =2
+
+        btn_ConfirmarSaida_1 As Button:
+            Align: =Align.Center
+            BasePaletteColor: =RGBA(8, 222, 8, 1)
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =22
+            Height: =55
+            OnSelect: |-
+                =Patch(tbEvent,varEvent.ID,{Cancelado:true});
+                Back(ScreenTransition.Fade);
+                UpdateContext({varDeleteEvent:false})
+            Text: ="Sim"
+            Width: =160
+            X: =286
+            Y: =112
+            ZIndex: =3
 

@@ -18,7 +18,7 @@ scr_Chat As screen:
             DropShadow: =DropShadow.Semibold
             Fill: =RGBA(39, 113, 194, 1)
             FillPortions: =0
-            Height: =100
+            Height: =80
             LayoutGap: =12
             LayoutMinHeight: =100
             LayoutMinWidth: =250
@@ -95,11 +95,10 @@ scr_Chat As screen:
                     DisabledColor: =RGBA(166, 166, 166, 1)
                     Font: =App.Theme.Font
                     FontWeight: =FontWeight.Semibold
-                    Height: =70
+                    Height: =Parent.Height
                     PaddingLeft: =10
                     Size: =22
                     Text: =LookUp(tbUsers,ID=varProfile.ID,Nome)
-                    VerticalAlign: =VerticalAlign.Bottom
                     Width: =Parent.Width
                     ZIndex: =1
 

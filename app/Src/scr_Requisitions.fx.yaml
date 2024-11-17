@@ -179,8 +179,7 @@ scr_Requisitions As screen:
                         Height: =Parent.Height-50
                         Icon: =Icon.Message
                         OnSelect: |-
-                            =Set(varProfile,LookUp(tbUsers,ID=ThisItem.ID_Solicitante));
-                            Navigate(scr_Chat,ScreenTransition.Fade)
+                            =Navigate(scr_Chat,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Solicitante)})
                         PaddingBottom: =20
                         PaddingLeft: =20
                         PaddingRight: =20
@@ -287,7 +286,8 @@ scr_Requisitions As screen:
                         LayoutMinHeight: =32
                         LayoutMinWidth: =120
                         OnSelect: |-
-                            =Patch(
+                            =UpdateContext({varLoadingSpinner:true});
+                            Patch(
                                 tbParticipants,
                                 LookUp(
                                     tbParticipants,
@@ -295,7 +295,16 @@ scr_Requisitions As screen:
                                 ),
                                 {Status: {Id:2,Value: "Aprovado"}}
                             );
-                            Refresh(tbParticipants)
+                            Refresh(tbParticipants);
+                            ClearCollect(
+                                colParticipants,
+                                Filter(
+                                    tbParticipants,
+                                    ID_Aprovador = gbl_varUser.ID,
+                                    Status.Value = "Em espera"
+                                )
+                            );
+                            UpdateContext({varLoadingSpinner:false});
                         Text: ="Aprovar"
                         VerticalAlign: =VerticalAlign.Middle
                         Width: =200
