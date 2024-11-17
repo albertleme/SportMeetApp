@@ -267,17 +267,13 @@ scr_Denuncias As screen:
                     Container27_1 As groupContainer.horizontalAutoLayoutContainer:
                         FillPortions: =0
                         Height: =80
-                        LayoutGap: =30
                         LayoutMinHeight: =112
                         LayoutMinWidth: =250
                         LayoutMode: =LayoutMode.Auto
-                        PaddingLeft: =80
-                        PaddingRight: =80
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
                         RadiusTopLeft: =4
                         RadiusTopRight: =4
-                        Visible: =!LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Bloqueado)
                         ZIndex: =2
 
                         Label14_1 As label:
@@ -289,10 +285,27 @@ scr_Denuncias As screen:
                             Height: =Parent.Height
                             LayoutMinHeight: =70
                             LayoutMinWidth: =250
+                            PaddingLeft: =10
                             Size: =21
-                            Text: =
+                            Text: =ThisItem.MotivoDenuncia.Value
                             Width: =20
                             ZIndex: =1
+
+                        Icon9 As icon.Information:
+                            AlignInContainer: =AlignInContainer.Center
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: =RGBA(39, 113, 194, 1)
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(244, 244, 244, 1)
+                            Icon: =Icon.Information
+                            OnSelect: |-
+                                =UpdateContext({bolDenuncia:true,varMotivo:ThisItem.DetalhesDenuncia})
+                            PaddingBottom: =16
+                            PaddingLeft: =16
+                            PaddingRight: =16
+                            PaddingTop: =16
+                            Visible: =If(ThisItem.MotivoDenuncia.Value="Outros",true,false)
+                            ZIndex: =2
 
                         ButtonCanvas4_1 As Button:
                             Align: =Align.Center
@@ -320,13 +333,13 @@ scr_Denuncias As screen:
                                 Refresh(tbUsers);
                                 Refresh(tbDenuncias);
                                 UpdateContext({varLoadingSpinner:false});
-                            Text: ="Rejeitar"
+                            Text: ="Ativar"
                             VerticalAlign: =VerticalAlign.Middle
                             Visible: =LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Bloqueado)
                             Width: =200
                             X: =0
                             Y: =0
-                            ZIndex: =2
+                            ZIndex: =3
 
                         ButtonCanvas5_1 As Button:
                             AccessibleLabel: =
@@ -361,7 +374,7 @@ scr_Denuncias As screen:
                             Width: =200
                             X: =0
                             Y: =0
-                            ZIndex: =3
+                            ZIndex: =4
 
     img_LoadingSpinner_CreateAccount_8 As image:
         BorderColor: =App.Theme.Colors.Darker40
@@ -441,4 +454,86 @@ scr_Denuncias As screen:
         X: =Parent.Width/2-Self.Width/2
         Y: =Parent.Height/2-Self.Height/2
         ZIndex: =2
+
+    Rectangle6 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(0, 0, 0, 0.5)
+        Height: =1136
+        OnSelect: |-
+            =UpdateContext({bolDenuncia:false})
+        Visible: =bolDenuncia
+        Width: =640
+        ZIndex: =3
+
+    Container10 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =350
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =bolDenuncia
+        Width: =600
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =4
+
+        Container11 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =50
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =1
+
+            Icon16 As icon.EmojiFrown:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(39, 113, 194, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height
+                Icon: =Icon.EmojiFrown
+                PaddingBottom: =8
+                PaddingLeft: =8
+                PaddingRight: =8
+                PaddingTop: =8
+                Width: =Self.Height
+                ZIndex: =1
+
+            Label23 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(39, 113, 194, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                LayoutMinWidth: =0
+                Size: =21
+                Text: ="Motivo da Denúncia"
+                Width: =560
+                ZIndex: =2
+
+        Label24 As label:
+            Align: =Align.Center
+            BorderColor: =App.Theme.Colors.Darker40
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FillPortions: =1
+            Font: =App.Theme.Font
+            Height: =70
+            LayoutMinHeight: =70
+            LayoutMinWidth: =560
+            Size: =21
+            Text: =varMotivo
+            Width: =Parent.Width
+            ZIndex: =2
 
