@@ -5874,7 +5874,7 @@
         {
           "Category": "Data",
           "PropertyName": "StartYear",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "User"
         },
         {
           "Category": "Data",

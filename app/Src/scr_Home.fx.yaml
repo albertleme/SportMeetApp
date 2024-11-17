@@ -499,7 +499,7 @@ scr_Home As screen:
                         2,
                         Navigate(
                             scr_NewEvent,
-                            ScreenTransition.Fade
+                            ScreenTransition.Fade,{bolNewEvent:true}
                         ) + ResetForm(frm_Event_1) + NewForm(frm_Event_1);
                         ,
                         3,

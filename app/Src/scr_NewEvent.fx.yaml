@@ -1143,9 +1143,9 @@ scr_NewEvent As screen:
         RadiusTopRight: =100
         Visible: |-
             =If(
-                varEvent.DataHorarioEvento < Today(),
-                false,
-                true
+                varEvent.DataHorarioEvento > Today() Or bolNewEvent,
+                true,
+                false
             )
         Width: =256
         X: =Container16_1.Width+Container16_1.X-Self.Width-32
