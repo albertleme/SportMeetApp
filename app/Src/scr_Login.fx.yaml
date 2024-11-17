@@ -208,27 +208,38 @@ scr_Login As screen:
                     Font: =Font.Lato
                     FontSize: =26
                     Height: =64
-                    OnSelect: |-
-                        =UpdateContext({varLoadingSpinner:true});
+                    OnSelect: |
+                        =UpdateContext({varLoadingSpinner: true});
                         If(
-                            txt_Password.Value = First(
-                                Filter(
-                                    tbUsers,
-                                    Email = txt_User.Value
-                                )
-                            ).Senha,
-                            UpdateContext({varLoginError: false}) + Navigate(scr_Home) + Set(
-                                gbl_varUser,
-                                First(
+                            !LookUp(
+                                tbUsers,
+                                Email = txt_User.Value,
+                                Bloqueado
+                            ),
+                            If(
+                                txt_Password.Value = First(
                                     Filter(
                                         tbUsers,
                                         Email = txt_User.Value
                                     )
-                                )
-                            ) + Reset(txt_User) + Reset(txt_Password),
-                            UpdateContext({varLoginError: true})
+                                ).Senha,
+                                UpdateContext({varLoginError: false}) + Navigate(scr_Home) + Set(
+                                    gbl_varUser,
+                                    First(
+                                        Filter(
+                                            tbUsers,
+                                            Email = txt_User.Value
+                                        )
+                                    )
+                                ) + Reset(txt_User) + Reset(txt_Password),
+                                UpdateContext({varLoginError: true})
+                            ),
+                            Notify(
+                                "Usuário bloqueado!",
+                                NotificationType.Information
+                            )
                         );
-                        UpdateContext({varLoadingSpinner:false});
+                        UpdateContext({varLoadingSpinner: false});
                     Text: ="Login"
                     Width: =Parent.Width-64
                     X: =33
