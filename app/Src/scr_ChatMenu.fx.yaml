@@ -42,7 +42,7 @@ scr_ChatMenu As screen:
             DropShadow: =DropShadow.Regular
             Fill: =RGBA(39, 113, 194, 1)
             FillPortions: =0
-            Height: =140
+            Height: =100
             LayoutGap: =12
             LayoutMinHeight: =100
             LayoutMinWidth: =250
@@ -56,7 +56,7 @@ scr_ChatMenu As screen:
             Container7 As groupContainer.manualLayoutContainer:
                 FillPortions: =0
                 Height: =225
-                LayoutMinHeight: =112
+                LayoutMinHeight: =0
                 LayoutMinWidth: =250
                 RadiusBottomLeft: =4
                 RadiusBottomRight: =4
@@ -71,12 +71,12 @@ scr_ChatMenu As screen:
                     DisabledBorderColor: =RGBA(166, 166, 166, 1)
                     DisabledColor: =RGBA(244, 244, 244, 1)
                     Height: =Parent.Height
-                    Icon: =Icon.ChevronLeft
+                    Icon: =Icon.ArrowLeft
                     OnSelect: =Back(ScreenTransition.Fade)
-                    PaddingBottom: =10
-                    PaddingLeft: =10
-                    PaddingRight: =10
-                    PaddingTop: =10
+                    PaddingBottom: =16
+                    PaddingLeft: =16
+                    PaddingRight: =16
+                    PaddingTop: =16
                     Width: =Parent.Width
                     ZIndex: =1
 
@@ -84,7 +84,7 @@ scr_ChatMenu As screen:
                 DropShadow: =DropShadow.Bold
                 FillPortions: =0
                 Height: =Parent.Height
-                LayoutMinHeight: =112
+                LayoutMinHeight: =0
                 LayoutMinWidth: =250
                 RadiusBottomLeft: =116
                 RadiusBottomRight: =116
@@ -106,7 +106,7 @@ scr_ChatMenu As screen:
             Container15 As groupContainer.verticalAutoLayoutContainer:
                 Height: =225
                 LayoutDirection: =LayoutDirection.Vertical
-                LayoutMinHeight: =112
+                LayoutMinHeight: =0
                 LayoutMinWidth: =250
                 LayoutMode: =LayoutMode.Auto
                 RadiusBottomLeft: =4
@@ -128,6 +128,7 @@ scr_ChatMenu As screen:
                     LayoutMinWidth: =560
                     PaddingBottom: =0
                     PaddingLeft: =10
+                    PaddingTop: =0
                     Size: =22
                     Text: =LookUp(tbUsers,ID=gbl_varUser.ID,Nome)
                     VerticalAlign: =VerticalAlign.Bottom
@@ -143,7 +144,9 @@ scr_ChatMenu As screen:
                     Height: =69
                     LayoutMinHeight: =0
                     LayoutMinWidth: =560
+                    PaddingBottom: =0
                     PaddingLeft: =10
+                    PaddingTop: =0
                     Size: =21
                     Text: =LookUp(tbUsers,ID=gbl_varUser.ID,Email)
                     VerticalAlign: =VerticalAlign.Top
@@ -168,26 +171,25 @@ scr_ChatMenu As screen:
                 BorderColor: =App.Theme.Colors.Darker40
                 DelayItemLoading: =true
                 Items: |-
-                    =Filter(
+                    =/*Filter(
                         tbMessages,
                         ID_Destinatario = LookUp(
                             tbMessages,
                             ID_Remetente = gbl_varUser.ID And ID_Destinatario = gbl_varUser.ID Or ID_Remetente = varProfile.ID And ID_Destinatario = gbl_varUser.ID,
                             ID_Destinatario
                         )
-                    )
+                    )*/
                     
-                    /*
                     Distinct(
                         colMessages,
-                        ID_Destinatario)
-                        */
+                        If(ID_Remetente=gbl_varUser.ID,ID_Destinatario,ID_Remetente)
+                    )
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
                 LoadingSpinner: =LoadingSpinner.Data
                 TemplatePadding: =12
-                TemplateSize: =140
+                TemplateSize: =100
                 Width: =Parent.Width
                 ZIndex: =1
 
@@ -208,9 +210,9 @@ scr_ChatMenu As screen:
 
                     Container12_1 As groupContainer.manualLayoutContainer:
                         AlignInContainer: =AlignInContainer.Center
-                        DropShadow: =DropShadow.Semibold
+                        DropShadow: =DropShadow.Regular
                         FillPortions: =0
-                        Height: =Parent.Height-40
+                        Height: =Parent.Height-20
                         LayoutMinHeight: =112
                         LayoutMinWidth: =250
                         RadiusBottomLeft: =100
@@ -241,8 +243,8 @@ scr_ChatMenu As screen:
                             ZIndex: =1
 
                     Container13_1 As groupContainer.manualLayoutContainer:
-                        Height: =100
-                        LayoutMinHeight: =112
+                        Height: =Parent.Height
+                        LayoutMinHeight: =0
                         LayoutMinWidth: =250
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
@@ -273,8 +275,8 @@ scr_ChatMenu As screen:
 
                     Container21 As groupContainer.manualLayoutContainer:
                         FillPortions: =0
-                        Height: =225
-                        LayoutMinHeight: =112
+                        Height: =Parent.Height
+                        LayoutMinHeight: =0
                         LayoutMinWidth: =250
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
