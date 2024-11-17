@@ -192,7 +192,7 @@
         {
           "Category": "Data",
           "PropertyName": "Tooltip",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "User"
         },
         {
           "Category": "Design",
@@ -5859,7 +5859,7 @@
         },
         {
           "AFDDataSourceName": "",
-          "AutoRuleBindingEnabled": true,
+          "AutoRuleBindingEnabled": false,
           "AutoRuleBindingString": "",
           "InvariantPropertyName": "DisplayMode",
           "IsLockable": true,

@@ -61,7 +61,7 @@ scr_Profile As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="FotoPerfil"
                 Default: =ThisItem.FotoPerfil
-                DisplayMode: =Parent.DisplayMode
+                DisplayMode: =DisplayMode.View
                 DisplayName: =DataSourceInfo([@tbUsers],DataSourceInfo.DisplayName,FotoPerfil)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =400
@@ -164,7 +164,7 @@ scr_Profile As screen:
                     PressedColor: =
                     PressedFill: =
                     Text: =""
-                    Tooltip: ="Trocar Foto"
+                    Tooltip: =ThisItem.Nome
                     Width: =Self.Height
                     X: =Parent.Width/2-Self.Width/2
                     Y: =DataCardKey18_1.Y + DataCardKey18_1.Height + 5
