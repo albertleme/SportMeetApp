@@ -795,7 +795,12 @@ scr_Profile As screen:
             ButtonCanvas10 As Button:
                 AlignInContainer: =AlignInContainer.Center
                 BasePaletteColor: =RGBA(5, 102, 178, 1)
-                DisplayMode: =DisplayMode.Edit
+                DisplayMode: |-
+                    =If(
+                        IsBlank(RadioGroupCanvas1.Selected.Value),
+                        DisplayMode.Disabled,
+                        DisplayMode.Edit
+                    )
                 FillPortions: =1
                 FontSize: =26
                 Height: =50

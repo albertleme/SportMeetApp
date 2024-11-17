@@ -16,6 +16,9 @@
     "datasets": {
       "https://fatecspgov.sharepoint.com/sites/SportMeetApp": {
         "dataSources": {
+          "tbDenuncias": {
+            "tableName": "131d5017-462b-4ee6-8de1-a0503528b921"
+          },
           "tbEvent": {
             "tableName": "3f59a319-e942-471e-a00c-d6ce31399e7a"
           },
@@ -47,7 +50,8 @@
       "tbParticipants",
       "tbInteresses",
       "tbUsers",
-      "tbMessages"
+      "tbMessages",
+      "tbDenuncias"
     ],
     "dependencies": {},
     "dependents": [],

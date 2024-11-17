@@ -3,7 +3,7 @@
     "ApiId": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
     "CdpRevision": {
       "BaseUrl": "/",
-      "LastChangedTimeString": "2024-10-17T01:31:11.1370000Z",
+      "LastChangedTimeString": "2024-08-23T21:33:02.8540000Z",
       "RevisionNumber": 1
     },
     "ConnectedDataSourceInfoNameMapping": {
@@ -26,6 +26,7 @@
       "AdminUser": "AdminUser",
       "Author": "Criado por",
       "Author#Claims": "Criado por Claims",
+      "Bloqueado": "Bloqueado",
       "ComplianceAssetId": "ID de Ativo de Conformidade",
       "Created": "Criado",
       "DataNascimento": "DataNascimento",
@@ -40,9 +41,6 @@
       "Senha": "Senha",
       "Sexo": "Sexo",
       "Sexo#Id": "Sexo Id",
-      "teste": "teste",
-      "teste#Id": "teste Id",
-      "teste@odata.type": "teste (teste@odata.type)",
       "TipoUsuario": "TipoUsuario",
       "TipoUsuario#Id": "TipoUsuario Id",
       "Title": "Título"
