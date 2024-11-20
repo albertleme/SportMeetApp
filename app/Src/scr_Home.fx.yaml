@@ -8,6 +8,7 @@ scr_Home As screen:
         ClearCollect(colAllParticipants,tbParticipants)
 
     cnt_ContentMenu As groupContainer.verticalAutoLayoutContainer:
+        ContentLanguage: =
         DropShadow: =DropShadow.Regular
         Fill: =RGBA(255, 255, 255, 1)
         Height: =Parent.Height
@@ -42,7 +43,8 @@ scr_Home As screen:
             ZIndex: =1
 
             Container33_1 As groupContainer.manualLayoutContainer:
-                Height: =225
+                AlignInContainer: =AlignInContainer.Center
+                Height: =Parent.Height
                 RadiusBottomLeft: =4
                 RadiusBottomRight: =4
                 RadiusTopLeft: =4
@@ -68,7 +70,8 @@ scr_Home As screen:
                     ZIndex: =1
 
             Container33 As groupContainer.manualLayoutContainer:
-                Height: =225
+                AlignInContainer: =AlignInContainer.Center
+                Height: =Parent.Height
                 RadiusBottomLeft: =4
                 RadiusBottomRight: =4
                 RadiusTopLeft: =4
@@ -88,9 +91,10 @@ scr_Home As screen:
                     ZIndex: =1
 
             cnt_Filter_1 As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
                 DropShadow: =DropShadow.Regular
                 Fill: =RGBA(255, 255, 255, 1)
-                Height: =225
+                Height: =Parent.Height-30
                 RadiusBottomLeft: =40
                 RadiusBottomRight: =40
                 RadiusTopLeft: =40
@@ -115,9 +119,10 @@ scr_Home As screen:
                     ZIndex: =1
 
             cnt_Filter As groupContainer.manualLayoutContainer:
+                AlignInContainer: =AlignInContainer.Center
                 DropShadow: =DropShadow.Regular
                 Fill: =RGBA(255, 255, 255, 1)
-                Height: =225
+                Height: =Parent.Height-30
                 RadiusBottomLeft: =40
                 RadiusBottomRight: =40
                 RadiusTopLeft: =40
@@ -149,6 +154,7 @@ scr_Home As screen:
         cnt_SportFilter As groupContainer.horizontalAutoLayoutContainer:
             Height: =130
             LayoutMode: =LayoutMode.Auto
+            Width: =Parent.Width
             ZIndex: =2
 
             "glr_SportFilter As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0'":
