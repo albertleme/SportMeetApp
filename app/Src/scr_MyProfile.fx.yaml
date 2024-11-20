@@ -698,7 +698,7 @@ scr_MyProfile As screen:
                 LayoutMinHeight: =70
                 LayoutMinWidth: =0
                 PaddingLeft: =24
-                Size: =18
+                Size: =20
                 Text: ="Interesses"
                 Width: =560
                 ZIndex: =1
@@ -725,7 +725,7 @@ scr_MyProfile As screen:
 
                 drp_Interesse As Dropdown.pcfdataset:
                     DisplayMode: =DisplayMode.Edit
-                    FontSize: =19
+                    FontSize: =20
                     Height: =40
                     Items: =AddColumns(tbSports,colEsporte,NomeEsporte)
                     Width: =332
@@ -768,7 +768,7 @@ scr_MyProfile As screen:
                 ButtonCanvas2 As Button:
                     BasePaletteColor: =
                     DisplayMode: =DisplayMode.Edit
-                    FontSize: =18
+                    FontSize: =20
                     Height: =drp_Interesse.Height
                     OnSelect: |-
                         =If(
@@ -832,7 +832,7 @@ scr_MyProfile As screen:
                     PressedFill: =App.Theme.Colors.Darker30
                     SelectionColor: =App.Theme.Colors.PrimaryForeground
                     SelectionFill: =App.Theme.Colors.Primary
-                    Size: =18
+                    Size: =20
                     Width: =332
                     X: =24
                     Y: |
@@ -841,9 +841,9 @@ scr_MyProfile As screen:
 
                 ButtonCanvas3 As Button:
                     AcceptsFocus: =
-                    BasePaletteColor: =RGBA(249, 83, 109, 1)
+                    BasePaletteColor: =
                     DisplayMode: =DisplayMode.Edit
-                    FontSize: =18
+                    FontSize: =20
                     Height: =40
                     OnSelect: |-
                         =RemoveIf(

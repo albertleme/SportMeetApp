@@ -46,7 +46,7 @@ scr_CreateAccount As screen:
                 DisabledBorderColor: =RGBA(166, 166, 166, 1)
                 DisabledColor: =RGBA(244, 244, 244, 1)
                 Height: =Parent.Height
-                Icon: =Icon.ChevronLeft
+                Icon: =Icon.ArrowLeft
                 OnSelect: =Back(ScreenTransition.Fade)
                 PaddingBottom: =20
                 PaddingLeft: =20
@@ -77,7 +77,95 @@ scr_CreateAccount As screen:
             LayoutMinWidth: =320
             OnSuccess: |-
                 =Notify("Sucesso");
-                Navigate(scr_Login,ScreenTransition.Fade)
+                Navigate(
+                    scr_Login,
+                    ScreenTransition.Fade
+                );
+                Office365Outlook.SendEmailV2(
+                    "albertlemebrito@gmail.com",
+                    "🎉 Bem-vindo ao SportMeet, Albert Leme de Brito! 🏅",
+                    "<!DOCTYPE html>
+                <html lang=""pt-BR"">
+                <head>
+                    <meta charset=""UTF-8"">
+                    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-color: #f4f4f9;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .email-container {
+                            background-color: #ffffff;
+                            width: 100%;
+                            max-width: 600px;
+                            margin: 20px auto;
+                            border-radius: 8px;
+                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                            overflow: hidden;
+                            border: 1px solid #ddd;
+                        }
+                        .header {
+                            background-color: #2771c2;
+                            color: white;
+                            text-align: center;
+                            padding: 20px 10px;
+                        }
+                        .header h1 {
+                            margin: 0;
+                            font-size: 26px;
+                        }
+                        .content {
+                            padding: 20px;
+                            color: #333;
+                            text-align: center;
+                        }
+                        .content h2 {
+                            color: #2771c2;
+                            margin-bottom: 10px;
+                        }
+                        .cta-button {
+                            display: inline-block;
+                            margin-top: 20px;
+                            background-color: #2771c2;
+                            color: white;
+                            text-decoration: none;
+                            padding: 10px 20px;
+                            border-radius: 5px;
+                            font-size: 16px;
+                            font-weight: bold;
+                        }
+                        .cta-button:hover {
+                            background-color: #1e5b9b;
+                        }
+                        .footer {
+                            text-align: center;
+                            padding: 15px;
+                            background-color: #f4f4f9;
+                            color: #666;
+                            font-size: 14px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class=""email-container"">
+                        <div class=""header"">
+                            <h1>🏅 Bem-vindo ao SportMeet App!</h1>
+                        </div>
+                        <div class=""content"">
+                            <h2>Olá, Albert Leme de Brito!</h2>
+                            <p>Estamos muito felizes por tê-lo conosco! O SportMeet é o lugar ideal para conectar-se com outros entusiastas de esportes, participar de eventos e compartilhar sua paixão pelo esporte.</p>
+                            <p>Comece agora a explorar eventos, criar sua rede e se divertir praticando esportes!</p>
+                            <p href=""#"" class=""cta-button"">Acesse sua Conta</p>
+                        </div>
+                        <div class=""footer"">
+                            <p>Este é um email automático. Caso precise de ajuda, entre em contato conosco pelo suporte.</p>
+                        </div>
+                    </div>
+                </body>
+                </html>"
+                )
             UseFluentV9Cards: =true
             Width: =Parent.Width
             ZIndex: =2

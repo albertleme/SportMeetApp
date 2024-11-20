@@ -106,7 +106,7 @@ scr_Denuncias As screen:
                 BorderColor: =App.Theme.Colors.Darker40
                 DelayItemLoading: =true
                 Height: =Parent.Height
-                Items: =tbDenuncias
+                Items: =Distinct(tbDenuncias,ID_Denunciado)
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287
                 LayoutMinWidth: =320
@@ -181,12 +181,10 @@ scr_Denuncias As screen:
                                 DisabledBorderColor: =RGBA(166, 166, 166, 1)
                                 DisabledFill: =RGBA(244, 244, 244, 1)
                                 Height: =Parent.Height
-                                Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Denunciado,FotoPerfil),SampleImage)
+                                Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.Value,FotoPerfil),SampleImage)
                                 ImagePosition: =ImagePosition.Fill
                                 OnSelect: |-
-                                    =//Set(varProfile,LookUp(tbUsers,ID=ThisItem.ID_Solicitante));
-                                    
-                                    Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Denunciado)})
+                                    =Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.Value)})
                                 Width: =Self.Height
                                 ZIndex: =1
 
@@ -207,7 +205,7 @@ scr_Denuncias As screen:
                                 HoverColor: =
                                 HoverFill: =
                                 OnSelect: |-
-                                    =Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Denunciado)})
+                                    =Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.Value)})
                                 PressedBorderColor: =
                                 PressedColor: =
                                 PressedFill: =
@@ -225,31 +223,13 @@ scr_Denuncias As screen:
                             FontWeight: =FontWeight.Normal
                             Height: =Parent.Height
                             LayoutMinHeight: =32
-                            LayoutMinWidth: =320
+                            LayoutMinWidth: =300
                             PaddingLeft: =15
-                            Value: =LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Nome)
+                            Value: =LookUp(tbUsers,ID=ThisItem.Value,Nome)
                             Width: =320
                             X: =0
                             Y: =0
                             ZIndex: =3
-
-                        Icon7_2 As icon.Message:
-                            AlignInContainer: =AlignInContainer.Center
-                            BorderColor: =App.Theme.Colors.Darker40
-                            Color: =RGBA(39, 113, 194, 1)
-                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
-                            DisabledColor: =RGBA(244, 244, 244, 1)
-                            Height: =Parent.Height-20
-                            Icon: =Icon.Message
-                            OnSelect: |-
-                                =Navigate(scr_Chat,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Denunciado)})
-                            PaddingBottom: =20
-                            PaddingLeft: =20
-                            PaddingRight: =20
-                            PaddingTop: =20
-                            Tooltip: ="Conversar com "&LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Nome)
-                            Width: =Self.Height
-                            ZIndex: =4
 
                         Label13_7 As label:
                             BorderColor: =App.Theme.Colors.Darker40
@@ -264,12 +244,48 @@ scr_Denuncias As screen:
                             Width: =10
                             ZIndex: =5
 
+                        Label17 As label:
+                            Align: =Align.Right
+                            BorderColor: =App.Theme.Colors.Darker40
+                            Color: |-
+                                =If(
+                                    LookUp(
+                                        tbUsers,
+                                        ID = ThisItem.Value,
+                                        Bloqueado
+                                    ),
+                                    RGBA(200,100,100,1),
+                                    RGBA(100,200,100,1)
+                                )
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            FillPortions: =1
+                            Font: =App.Theme.Font
+                            FontWeight: =FontWeight.Bold
+                            Height: =70
+                            LayoutMinHeight: =70
+                            LayoutMinWidth: =0
+                            PaddingRight: =20
+                            Size: =21
+                            Text: |-
+                                =If(
+                                    LookUp(
+                                        tbUsers,
+                                        ID = ThisItem.Value,
+                                        Bloqueado
+                                    ),
+                                    "Bloqueado",
+                                    "Ativo"
+                                )
+                            Width: =560
+                            ZIndex: =6
+
                     Container27_1 As groupContainer.horizontalAutoLayoutContainer:
                         FillPortions: =0
                         Height: =80
                         LayoutMinHeight: =112
                         LayoutMinWidth: =250
                         LayoutMode: =LayoutMode.Auto
+                        PaddingRight: =15
                         RadiusBottomLeft: =4
                         RadiusBottomRight: =4
                         RadiusTopLeft: =4
@@ -285,24 +301,46 @@ scr_Denuncias As screen:
                             Height: =Parent.Height
                             Icon: =Icon.Information
                             OnSelect: |-
-                                =UpdateContext({bolDenuncia:true,varDenuncia:ThisItem})
+                                =UpdateContext({bolDenunciaList:true,varUsuario:ThisItem.Value})
                             PaddingBottom: =8
                             PaddingLeft: =8
                             PaddingRight: =8
                             PaddingTop: =8
                             ZIndex: =1
 
-                        Label14_1 As label:
+                        Label19 As label:
                             BorderColor: =App.Theme.Colors.Darker40
-                            Color: =RGBA(0, 0, 0, 1)
+                            Color: =RGBA(39, 113, 194, 1)
                             DisabledColor: =RGBA(166, 166, 166, 1)
                             FillPortions: =1
                             Font: =App.Theme.Font
-                            Height: =Parent.Height
-                            PaddingLeft: =10
+                            FontWeight: =FontWeight.Semibold
+                            Height: =70
+                            LayoutMinHeight: =70
+                            LayoutMinWidth: =0
                             Size: =21
-                            Text: =
-                            Width: =20
+                            Text: |-
+                                =If(
+                                    CountRows(
+                                        Filter(
+                                            tbDenuncias,
+                                            ID_Denunciado = ThisItem.Value
+                                        )
+                                    ) = 1,
+                                    CountRows(
+                                        Filter(
+                                            tbDenuncias,
+                                            ID_Denunciado = ThisItem.Value
+                                        )
+                                    ) & " Denúncia",
+                                    CountRows(
+                                        Filter(
+                                            tbDenuncias,
+                                            ID_Denunciado = ThisItem.Value
+                                        )
+                                    ) & " Denúncias"
+                                )
+                            Width: =0
                             ZIndex: =2
 
                         ButtonCanvas4_1 As Button:
@@ -324,7 +362,7 @@ scr_Denuncias As screen:
                                     tbUsers,
                                     LookUp(
                                         tbUsers,
-                                        ID = ThisItem.ID_Denunciado
+                                        ID = ThisItem.Value
                                     ),
                                     {Bloqueado: false}
                                 );
@@ -333,11 +371,11 @@ scr_Denuncias As screen:
                                 UpdateContext({varLoadingSpinner:false});
                             Text: ="Ativar"
                             VerticalAlign: =VerticalAlign.Middle
-                            Visible: =LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Bloqueado)
+                            Visible: =LookUp(tbUsers,ID=ThisItem.Value,Bloqueado)
                             Width: =200
                             X: =0
                             Y: =0
-                            ZIndex: =3
+                            ZIndex: =4
 
                         ButtonCanvas5_1 As Button:
                             AccessibleLabel: =
@@ -359,20 +397,20 @@ scr_Denuncias As screen:
                                     tbUsers,
                                     LookUp(
                                         tbUsers,
-                                        ID = ThisItem.ID_Denunciado
+                                        ID = ThisItem.Value
                                     ),
                                     {Bloqueado: true}
                                 );
                                 Refresh(tbUsers);
                                 Refresh(tbDenuncias);
                                 UpdateContext({varLoadingSpinner:false});
-                            Text: ="Bloquear"
+                            Text: ="Banir"
                             VerticalAlign: =VerticalAlign.Middle
-                            Visible: =!LookUp(tbUsers,ID=ThisItem.ID_Denunciado,Bloqueado)
+                            Visible: =!LookUp(tbUsers,ID=ThisItem.Value,Bloqueado)
                             Width: =200
                             X: =0
                             Y: =0
-                            ZIndex: =4
+                            ZIndex: =5
 
     img_LoadingSpinner_CreateAccount_8 As image:
         BorderColor: =App.Theme.Colors.Darker40
@@ -458,8 +496,8 @@ scr_Denuncias As screen:
         Fill: =RGBA(0, 0, 0, 0.5)
         Height: =1136
         OnSelect: |-
-            =UpdateContext({bolDenuncia:false})
-        Visible: =bolDenuncia
+            =UpdateContext({bolDenuncia:false,bolDenunciaList:false})
+        Visible: =bolDenuncia Or bolDenunciaList
         Width: =640
         ZIndex: =3
 
@@ -494,26 +532,25 @@ scr_Denuncias As screen:
 
             Icon16 As icon.EmojiFrown:
                 BorderColor: =App.Theme.Colors.Darker40
-                Color: =RGBA(39, 113, 194, 1)
+                Color: =RGBA(139, 154, 159, 1)
                 DisabledBorderColor: =RGBA(166, 166, 166, 1)
                 DisabledColor: =RGBA(244, 244, 244, 1)
                 DisplayMode: =DisplayMode.View
                 Height: =Parent.Height
                 Icon: =Icon.EmojiFrown
-                PaddingBottom: =8
-                PaddingLeft: =8
-                PaddingRight: =8
-                PaddingTop: =8
+                PaddingBottom: =12
+                PaddingLeft: =12
+                PaddingRight: =12
+                PaddingTop: =12
                 Width: =Self.Height
                 ZIndex: =1
 
             Label23 As label:
                 BorderColor: =App.Theme.Colors.Darker40
-                Color: =RGBA(39, 113, 194, 1)
+                Color: =RGBA(139, 154, 159, 1)
                 DisabledColor: =RGBA(166, 166, 166, 1)
                 FillPortions: =1
                 Font: =App.Theme.Font
-                FontWeight: =FontWeight.Semibold
                 Height: =Parent.Height
                 LayoutMinHeight: =70
                 LayoutMinWidth: =0
@@ -539,7 +576,7 @@ scr_Denuncias As screen:
                 DataField: ="ID_Denunciado"
                 Default: =ThisItem.ID_Denunciado
                 DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,'ID_Denunciado')
+                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,ID_Denunciado)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
                 Required: =false
@@ -551,8 +588,8 @@ scr_Denuncias As screen:
 
                 DataCardKey19 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Size: =20
+                    Height: =40
+                    Size: =26
                     Text: ="Denunciado"
                     Weight: ='TextCanvas.Weight'.Regular
                     Width: =Parent.Width - 48
@@ -617,7 +654,7 @@ scr_Denuncias As screen:
                 DataField: ="ID_Denunciante"
                 Default: =ThisItem.ID_Denunciante
                 DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,'ID_Denunciante')
+                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,ID_Denunciante)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
                 Required: =false
@@ -629,8 +666,8 @@ scr_Denuncias As screen:
 
                 DataCardKey20 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Size: =20
+                    Height: =40
+                    Size: =26
                     Text: ="Denunciante"
                     Weight: ='TextCanvas.Weight'.Regular
                     Width: =Parent.Width - 48
@@ -696,7 +733,7 @@ scr_Denuncias As screen:
                 DataField: ="MotivoDenuncia"
                 Default: =ThisItem.MotivoDenuncia
                 DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,'MotivoDenuncia')
+                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,MotivoDenuncia)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
                 Required: =false
@@ -708,8 +745,8 @@ scr_Denuncias As screen:
 
                 DataCardKey21 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Size: =20
+                    Height: =40
+                    Size: =26
                     Text: ="Motivo da Denúncia"
                     Weight: ='TextCanvas.Weight'.Regular
                     Width: =Parent.Width - 48
@@ -723,7 +760,7 @@ scr_Denuncias As screen:
                     DefaultSelectedItems: =[Parent.Default]
                     DisplayMode: =Parent.DisplayMode
                     Height: =32
-                    Items: =Choices([@tbDenuncias].'MotivoDenuncia')
+                    Items: =Choices([@tbDenuncias].MotivoDenuncia)
                     Required: =Parent.Required
                     ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
                     Visible: =false
@@ -775,10 +812,10 @@ scr_Denuncias As screen:
                 DataField: ="DetalhesDenuncia"
                 Default: =ThisItem.DetalhesDenuncia
                 DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,'DetalhesDenuncia')
+                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,DetalhesDenuncia)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
-                MaxLength: =DataSourceInfo([@tbDenuncias], DataSourceInfo.MaxLength, 'DetalhesDenuncia')
+                MaxLength: =DataSourceInfo([@tbDenuncias], DataSourceInfo.MaxLength, DetalhesDenuncia)
                 Required: =false
                 Update: =DataCardValue12.Value
                 Visible: =If(varDenuncia.MotivoDenuncia.Value="Outros",true,false)
@@ -789,9 +826,9 @@ scr_Denuncias As screen:
 
                 DataCardKey22 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Size: =20
-                    Text: =Parent.DisplayName
+                    Height: =40
+                    Size: =26
+                    Text: ="Detalhes da Denúncia"
                     Weight: ='TextCanvas.Weight'.Regular
                     Width: =Parent.Width - 48
                     Wrap: =false
@@ -838,9 +875,10 @@ scr_Denuncias As screen:
                 Label25_4 As label:
                     AutoHeight: =true
                     BorderColor: =App.Theme.Colors.Darker40
-                    Color: =RGBA(0, 0, 0, 1)
+                    Color: =RGBA(39, 113, 194, 1)
                     DisabledColor: =RGBA(166, 166, 166, 1)
                     Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
                     Height: |
                         =40
                     Size: =18
@@ -856,7 +894,7 @@ scr_Denuncias As screen:
                 DataField: ="DataHorarioDenuncia"
                 Default: =ThisItem.DataHorarioDenuncia
                 DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,'DataHorarioDenuncia')
+                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,DataHorarioDenuncia)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
                 Required: =false
@@ -868,8 +906,8 @@ scr_Denuncias As screen:
 
                 DataCardKey23 As Text:
                     DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Size: =20
+                    Height: =40
+                    Size: =26
                     Text: ="Data e Horário da Denúncia"
                     Weight: ='TextCanvas.Weight'.Regular
                     Width: =Parent.Width - 48
@@ -961,72 +999,197 @@ scr_Denuncias As screen:
                     Height: |
                         =40
                     Size: =18
-                    Text: =Text(ThisItem.DataHorarioDenuncia,"dd")&" de "&Text(ThisItem.DataHorarioDenuncia,"mmmm")&" de "&Text(ThisItem.DataHorarioDenuncia,"yyyy")
+                    Text: =Text(ThisItem.DataHorarioDenuncia,"dd")&" de "&Text(ThisItem.DataHorarioDenuncia,"mmmm","pt-BR")&" de "&Text(ThisItem.DataHorarioDenuncia,"yyyy")
                     Width: =Parent.Width-48
                     X: =DateValue1.X
                     Y: =DateValue1.Y
                     ZIndex: =8
 
-            Bloqueado_DataCard1 As typedDataCard.fluentV9ToggleEditCard:
-                BorderColor: =App.Theme.Colors.Darker40
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="Bloqueado"
-                Default: =ThisItem.Bloqueado
-                DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,'Bloqueado')
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                Required: =false
-                Update: =DataCardValue13.Checked
-                Visible: =false
-                Width: =600
-                X: =0
-                Y: =5
-                ZIndex: =3
+    Container10_1 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.ExtraBold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =600
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =bolDenunciaList
+        Width: =580
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =5
 
-                DataCardKey24 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =22
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Semibold
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
+        Container11_1 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =60
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =1
+
+            Icon16_1 As icon.EmojiFrown:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(139, 154, 159, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                DisplayMode: =DisplayMode.View
+                Height: =Parent.Height
+                Icon: =Icon.EmojiFrown
+                PaddingBottom: =12
+                PaddingLeft: =12
+                PaddingRight: =12
+                PaddingTop: =12
+                Width: =Self.Height
+                ZIndex: =1
+
+            Label23_1 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(139, 154, 159, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                LayoutMinWidth: =0
+                Size: =22
+                Text: ="Denúncias contra o usuário "&LookUp(tbUsers,ID=varUsuario,Nome)
+                Width: =560
+                ZIndex: =2
+
+        "Gallery5 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            BorderColor: =App.Theme.Colors.Darker40
+            DelayItemLoading: =true
+            Items: =Filter(tbDenuncias,ID_Denunciado=varUsuario)
+            Layout: =Layout.Vertical
+            LayoutMinHeight: =287
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplatePadding: =0
+            TemplateSize: =104
+            ZIndex: =2
+
+            Container34_3 As groupContainer.horizontalAutoLayoutContainer:
+                Height: =100
+                LayoutMode: =LayoutMode.Auto
+                Width: =Parent.Width
+                Y: =4
+                ZIndex: =2
+
+                Label13_8 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    Height: =Parent.Height
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =560
+                    Size: =21
+                    Text: =
+                    Width: =10
                     ZIndex: =1
 
-                DataCardValue13 As Toggle:
-                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
-                    Checked: =Parent.Default
-                    DisplayMode: =Parent.DisplayMode
-                    Height: =32
-                    Label: =""
-                    OnCheck: =false
-                    OnUncheck: =false
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey24.Y + DataCardKey24.Height + 4
+                Container14_5 As groupContainer.manualLayoutContainer:
+                    AlignInContainer: =AlignInContainer.Center
+                    DropShadow: =DropShadow.Regular
+                    FillPortions: =0
+                    Height: =Parent.Height-20
+                    LayoutMinHeight: =0
+                    LayoutMinWidth: =250
+                    RadiusBottomLeft: =999
+                    RadiusBottomRight: =999
+                    RadiusTopLeft: =999
+                    RadiusTopRight: =999
+                    Width: =Self.Height
                     ZIndex: =2
 
-                ErrorMessage24 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue13.Y + DataCardValue13.Height
+                    Image6_5 As image:
+                        BorderColor: =App.Theme.Colors.Darker40
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        DisabledFill: =RGBA(244, 244, 244, 1)
+                        Height: =Parent.Height
+                        Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_Denunciante,FotoPerfil),SampleImage)
+                        ImagePosition: =ImagePosition.Fill
+                        OnSelect: |-
+                            =Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Denunciante)})
+                        Width: =Self.Height
+                        ZIndex: =1
+
+                    Button3_3 As button:
+                        BorderColor: =
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =0
+                        Color: =
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledColor: =RGBA(0, 0, 0, 0)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        FocusedBorderThickness: =
+                        Font: =App.Theme.Font
+                        FontWeight: =FontWeight.Semibold
+                        Height: =Parent.Height
+                        HoverBorderColor: =
+                        HoverColor: =
+                        HoverFill: =
+                        OnSelect: |-
+                            =Navigate(scr_Profile,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Denunciante)})
+                        PressedBorderColor: =
+                        PressedColor: =
+                        PressedFill: =
+                        Size: =24
+                        Text: =
+                        Width: =Parent.Width
+                        ZIndex: =2
+
+                Label20 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FillPortions: =1
+                    Font: =App.Theme.Font
+                    Height: =Parent.Height
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =0
+                    Size: =21
+                    Text: |-
+                        =ThisItem.MotivoDenuncia.Value&"
+                        ("&
+                        LookUp(tbUsers,ID=ThisItem.ID_Denunciante,Email)&")"
+                    Width: =0
                     ZIndex: =3
 
-                StarVisible24 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey24.Y
+                Icon17 As icon.ArrowRight:
+                    AlignInContainer: =AlignInContainer.Center
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(39, 113, 194, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledColor: =RGBA(244, 244, 244, 1)
+                    Icon: =Icon.ArrowRight
+                    OnSelect: |-
+                        =UpdateContext({bolDenuncia:true,varDenuncia:ThisItem,bolDenunciaList:false})
+                    PaddingBottom: =12
+                    PaddingLeft: =12
+                    PaddingRight: =12
+                    PaddingTop: =12
                     ZIndex: =4
+
+                Label13_9 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(0, 0, 0, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    Height: =Parent.Height
+                    LayoutMinHeight: =70
+                    LayoutMinWidth: =560
+                    Size: =21
+                    Text: =
+                    Width: =10
+                    ZIndex: =5
 
