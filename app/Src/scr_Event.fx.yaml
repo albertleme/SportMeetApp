@@ -167,140 +167,6 @@ scr_Event As screen:
             Y: =40
             ZIndex: =2
 
-            Endereco_DataCard1 As typedDataCard.fluentV9TextualEditCard:
-                BorderColor: =App.Theme.Colors.Darker40
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="Endereco"
-                Default: =ThisItem.Endereco
-                DisplayMode: =DisplayMode.View
-                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,Endereco)
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, Endereco)
-                Required: =false
-                Update: =DataCardValue5.Value
-                Visible: =If(IsBlank(ThisItem.Endereco),false,true)
-                Width: =640
-                X: =0
-                Y: =6
-                ZIndex: =1
-
-                DataCardKey6 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =40
-                    Size: =26
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Regular
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                "DataCardValue5 As 'Text input'":
-                    AccessibleLabel: =Parent.DisplayName
-                    Appearance: ='TextInputCanvas.Appearance'.FilledLighter
-                    DisplayMode: =Parent.DisplayMode
-                    FontSize: =26
-                    Height: =64
-                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
-                    Required: =Parent.Required
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Value: =Parent.Default
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey6.Y + DataCardKey6.Height + 4
-                    ZIndex: =2
-
-                ErrorMessage11 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue5.Y + DataCardValue5.Height
-                    ZIndex: =3
-
-                StarVisible11 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey6.Y
-                    ZIndex: =4
-
-            Numero_DataCard1 As typedDataCard.fluentV9TextualEditCard:
-                BorderColor: =App.Theme.Colors.Darker40
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="Numero"
-                Default: =ThisItem.Numero
-                DisplayMode: =DisplayMode.View
-                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,Numero)
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, Numero)
-                Required: =false
-                Update: =DataCardValue6.Value
-                Visible: =If(IsBlank(ThisItem.Numero),false,true)
-                Width: =640
-                X: =0
-                Y: =7
-                ZIndex: =1
-
-                DataCardKey11 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =40
-                    Size: =26
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Regular
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                "DataCardValue6 As 'Text input'":
-                    AccessibleLabel: =Parent.DisplayName
-                    Appearance: ='TextInputCanvas.Appearance'.FilledLighter
-                    DisplayMode: =Parent.DisplayMode
-                    FontSize: =26
-                    Height: =64
-                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
-                    Required: =Parent.Required
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Value: =Parent.Default
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey11.Y + DataCardKey11.Height + 4
-                    ZIndex: =2
-
-                ErrorMessage15 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue6.Y + DataCardValue6.Height
-                    ZIndex: =3
-
-                StarVisible15 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey11.Y
-                    ZIndex: =4
-
             FotoEvento_DataCard1 As typedDataCard.fluentV9AddLargePictureCard:
                 BorderColor: =App.Theme.Colors.Darker40
                 BorderStyle: =BorderStyle.Solid
@@ -625,6 +491,140 @@ scr_Event As screen:
                     X: =dtv_DateTimeEvent.X
                     Y: =dtc_tituloEvento.Y + dtc_tituloEvento.Height + 4
                     ZIndex: =9
+
+            Endereco_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Endereco"
+                Default: =ThisItem.Endereco
+                DisplayMode: =DisplayMode.View
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,Endereco)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, Endereco)
+                Required: =false
+                Update: =DataCardValue5.Value
+                Visible: =If(IsBlank(ThisItem.Endereco),false,true)
+                Width: =640
+                X: =0
+                Y: =6
+                ZIndex: =1
+
+                DataCardKey6 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    Size: =26
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue5 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    Appearance: ='TextInputCanvas.Appearance'.FilledLighter
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =26
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey6.Y + DataCardKey6.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage11 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue5.Y + DataCardValue5.Height
+                    ZIndex: =3
+
+                StarVisible11 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey6.Y
+                    ZIndex: =4
+
+            Numero_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="Numero"
+                Default: =ThisItem.Numero
+                DisplayMode: =DisplayMode.View
+                DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,Numero)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                MaxLength: =DataSourceInfo([@tbEvent], DataSourceInfo.MaxLength, Numero)
+                Required: =false
+                Update: =DataCardValue6.Value
+                Visible: =If(IsBlank(ThisItem.Numero),false,true)
+                Width: =640
+                X: =0
+                Y: =7
+                ZIndex: =1
+
+                DataCardKey11 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    Size: =26
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue6 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    Appearance: ='TextInputCanvas.Appearance'.FilledLighter
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =26
+                    Height: =64
+                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Parent.Default
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey11.Y + DataCardKey11.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage15 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue6.Y + DataCardValue6.Height
+                    ZIndex: =3
+
+                StarVisible15 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey11.Y
+                    ZIndex: =4
 
             CriadorEvento As typedDataCard.blankCard:
                 BorderColor: =App.Theme.Colors.Darker40

@@ -868,68 +868,6 @@ scr_MyProfile As screen:
                     Y: =10
                     ZIndex: =5
 
-            ID_Usuario_DataCard1 As typedDataCard.fluentV9NumberEditCard:
-                BorderColor: =App.Theme.Colors.Darker40
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="ID_Usuario"
-                Default: =ThisItem.ID_Usuario
-                DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@tbInteresses],DataSourceInfo.DisplayName,ID_Usuario)
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                Required: =false
-                Update: =Value(DataCardValue2.Value)
-                Visible: =false
-                Width: =500
-                X: =0
-                Y: =2
-                ZIndex: =3
-
-                DataCardKey8 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =22
-                    Text: =Parent.DisplayName
-                    Weight: ='TextCanvas.Weight'.Semibold
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                "DataCardValue2 As 'Text input'":
-                    AccessibleLabel: =Parent.DisplayName
-                    DisplayMode: =Parent.DisplayMode
-                    Height: =32
-                    Required: =Parent.Required
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Value: =Coalesce(Parent.Default,gbl_varUser.ID)
-                    Width: =Parent.Width - 48
-                    X: =24
-                    Y: =DataCardKey8.Y + DataCardKey8.Height + 4
-                    ZIndex: =2
-
-                ErrorMessage8 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DataCardValue2.Y + DataCardValue2.Height
-                    ZIndex: =3
-
-                StarVisible8 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey8.Y
-                    ZIndex: =4
-
             ID_Esporte_DataCard1 As typedDataCard.fluentV9NumberEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
                 BorderStyle: =BorderStyle.Solid
@@ -990,5 +928,67 @@ scr_MyProfile As screen:
                     Width: =30
                     X: =0
                     Y: =DataCardKey12.Y
+                    ZIndex: =4
+
+            ID_Usuario_DataCard1 As typedDataCard.fluentV9NumberEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="ID_Usuario"
+                Default: =ThisItem.ID_Usuario
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbInteresses],DataSourceInfo.DisplayName,ID_Usuario)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =Value(DataCardValue2.Value)
+                Visible: =false
+                Width: =500
+                X: =0
+                Y: =2
+                ZIndex: =3
+
+                DataCardKey8 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =22
+                    Text: =Parent.DisplayName
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DataCardValue2 As 'Text input'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =32
+                    Required: =Parent.Required
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Value: =Coalesce(Parent.Default,gbl_varUser.ID)
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey8.Y + DataCardKey8.Height + 4
+                    ZIndex: =2
+
+                ErrorMessage8 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DataCardValue2.Y + DataCardValue2.Height
+                    ZIndex: =3
+
+                StarVisible8 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey8.Y
                     ZIndex: =4
 

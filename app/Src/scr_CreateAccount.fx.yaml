@@ -76,14 +76,17 @@ scr_CreateAccount As screen:
             LayoutMinHeight: =250
             LayoutMinWidth: =320
             OnSuccess: |-
-                =Notify("Sucesso");
+                =Notify(
+                    "Usuário cadastrado com sucesso!",
+                    NotificationType.Success
+                );
                 Navigate(
                     scr_Login,
                     ScreenTransition.Fade
                 );
                 Office365Outlook.SendEmailV2(
-                    "albertlemebrito@gmail.com",
-                    "🎉 Bem-vindo ao SportMeet, Albert Leme de Brito! 🏅",
+                    Last(tbUsers).Email,
+                    "🎉 Bem-vindo ao SportMeet, " & Last(tbUsers).Nome & "! 🏅",
                     "<!DOCTYPE html>
                 <html lang=""pt-BR"">
                 <head>
@@ -146,6 +149,19 @@ scr_CreateAccount As screen:
                             color: #666;
                             font-size: 14px;
                         }
+                        a {
+                            color: white; /* Cor branca para links */
+                            text-decoration: none; /* Remove o sublinhado padrão, opcional */
+                        }
+                        a:visited {
+                            color: white; /* Cor branca para links visitados */
+                        }
+                        a:hover {
+                            olor: white; /* Cor branca para links quando o mouse está sobre eles */
+                        }
+                        a:active {
+                            color: white; /* Cor branca para links ativos (clicados) */
+                        }
                     </style>
                 </head>
                 <body>
@@ -154,10 +170,10 @@ scr_CreateAccount As screen:
                             <h1>🏅 Bem-vindo ao SportMeet App!</h1>
                         </div>
                         <div class=""content"">
-                            <h2>Olá, Albert Leme de Brito!</h2>
+                            <h2>Olá, " & Last(tbUsers).Nome & "!</h2>
                             <p>Estamos muito felizes por tê-lo conosco! O SportMeet é o lugar ideal para conectar-se com outros entusiastas de esportes, participar de eventos e compartilhar sua paixão pelo esporte.</p>
                             <p>Comece agora a explorar eventos, criar sua rede e se divertir praticando esportes!</p>
-                            <p href=""#"" class=""cta-button"">Acesse sua Conta</p>
+                            <a href=""https://apps.powerapps.com/play/e/default-cf72e2bd-7a2b-4783-bdeb-39d57b07f76f/a/b6ee50f0-ef78-486c-b046-f03b41c7325a?tenantId=cf72e2bd-7a2b-4783-bdeb-39d57b07f76f&sourcetime=1732660163255"" class=""cta-button"">Acesse sua Conta</a>
                         </div>
                         <div class=""footer"">
                             <p>Este é um email automático. Caso precise de ajuda, entre em contato conosco pelo suporte.</p>

@@ -1415,7 +1415,7 @@
       "MetaDataIDKey": "",
       "Name": "cnt_MyProfile_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -1644,7 +1644,7 @@
       "MetaDataIDKey": "",
       "Name": "cnt_VoltarProfile_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -1868,7 +1868,7 @@
       "MetaDataIDKey": "",
       "Name": "cnt_VoltarProfile_2",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 4,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2094,7 +2094,7 @@
       "MetaDataIDKey": "",
       "Name": "Container12",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2735,7 +2735,7 @@
       "MetaDataIDKey": "",
       "Name": "Container35",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3007,7 +3007,7 @@
       "MetaDataIDKey": "",
       "Name": "Container36",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3392,7 +3392,7 @@
       "MetaDataIDKey": "",
       "Name": "DataCard4",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 6,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3753,7 +3753,7 @@
       "MetaDataIDKey": "%FieldName.ID%",
       "Name": "DataCardKey27_2",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3902,7 +3902,7 @@
       "MetaDataIDKey": "%FieldName.ID%",
       "Name": "DataCardKey28_2",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -4426,7 +4426,7 @@
       "MetaDataIDKey": "",
       "Name": "DataCardValue24_3",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -4591,7 +4591,7 @@
       "MetaDataIDKey": "",
       "Name": "DataCardValue26_2",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -5060,7 +5060,7 @@
       "MetaDataIDKey": "",
       "Name": "DataNascimento_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 5,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -5437,7 +5437,7 @@
       "MetaDataIDKey": "",
       "Name": "Email_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -5915,7 +5915,7 @@
       "MetaDataIDKey": "",
       "Name": "FotoPerfil_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -7765,7 +7765,7 @@
       "MetaDataIDKey": "",
       "Name": "Interesses_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 6,
+      "ParentIndex": 5,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -8930,7 +8930,7 @@
       "MetaDataIDKey": "",
       "Name": "Nome_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9240,7 +9240,7 @@
       "MetaDataIDKey": "",
       "Name": "Rectangle2",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9492,7 +9492,7 @@
       "MetaDataIDKey": "",
       "Name": "Sexo_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 4,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9848,7 +9848,7 @@
       "MetaDataIDKey": "%FieldRequired.ID%",
       "Name": "StarVisible20_2",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9956,7 +9956,7 @@
       "MetaDataIDKey": "%FieldRequired.ID%",
       "Name": "StarVisible21_2",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -10232,7 +10232,7 @@
       "MetaDataIDKey": "",
       "Name": "TextCanvas1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {

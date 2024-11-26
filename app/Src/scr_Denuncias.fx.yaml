@@ -570,6 +570,123 @@ scr_Denuncias As screen:
             Width: =640
             ZIndex: =2
 
+            DataHorarioDenuncia_DataCard1 As typedDataCard.fluentV9DateTimeEditCard:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderStyle: =BorderStyle.Solid
+                DataField: ="DataHorarioDenuncia"
+                Default: =ThisItem.DataHorarioDenuncia
+                DisplayMode: =Parent.DisplayMode
+                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,DataHorarioDenuncia)
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =70
+                Required: =false
+                Update: =If(Not IsBlank(DateValue1.SelectedDate), DateTime(Year(DateValue1.SelectedDate), Month(DateValue1.SelectedDate), Day(DateValue1.SelectedDate), Value(HourValue2.Selected.Value), Value(MinuteValue2.Selected.Value), Second(DateValue1.SelectedDate)))
+                Width: =600
+                X: =0
+                Y: =0
+                ZIndex: =3
+
+                DataCardKey23 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =40
+                    Size: =26
+                    Text: ="Data e Horário da Denúncia"
+                    Weight: ='TextCanvas.Weight'.Regular
+                    Width: =Parent.Width - 48
+                    Wrap: =false
+                    X: =24
+                    Y: =10
+                    ZIndex: =1
+
+                "DateValue1 As 'Date picker'":
+                    AccessibleLabel: =Parent.DisplayName
+                    DisplayMode: =Parent.DisplayMode
+                    FontSize: =20
+                    Height: =40
+                    Required: =Parent.Required
+                    SelectedDate: =Parent.Default
+                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                    Visible: =false
+                    Width: =(Parent.Width - 48) / 2
+                    X: =24
+                    Y: =DataCardKey23.Y + DataCardKey23.Height + 4
+                    ZIndex: =2
+
+                HourValue2 As Dropdown.pcfdataset:
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    DefaultSelectedItems: =[Text(Hour(Parent.Default),"00")]
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =28
+                    Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+                    Required: =Parent.Required
+                    Visible: =false
+                    Width: =DateValue1.Width / 2 - 10
+                    X: =DateValue1.X + DateValue1.Width + 10
+                    Y: =DateValue1.Y + 1
+                    ZIndex: =3
+
+                Separator2 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =HourValue2.Height
+                    Text: |-
+                        =":"
+                    Visible: =false
+                    Width: =10
+                    X: =HourValue2.X + HourValue2.Width
+                    Y: =HourValue2.Y
+                    ZIndex: =4
+
+                MinuteValue2 As Dropdown.pcfdataset:
+                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                    DefaultSelectedItems: =[Text(Minute(Parent.Default),"00")]
+                    DisplayMode: =Parent.DisplayMode
+                    Height: =28
+                    Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"]
+                    Required: =false
+                    Visible: =false
+                    Width: =HourValue2.Width
+                    X: =HourValue2.X + HourValue2.Width + Separator2.Width
+                    Y: =HourValue2.Y + 1
+                    ZIndex: =5
+
+                ErrorMessage23 As Text:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    Text: =Parent.Error
+                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =Parent.Width - 48
+                    Wrap: =true
+                    X: =24
+                    Y: =DateValue1.Y + DateValue1.Height
+                    ZIndex: =6
+
+                StarVisible23 As Text:
+                    Align: ='TextCanvas.Align'.Center
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =20
+                    Text: ="*"
+                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                    Width: =30
+                    X: =0
+                    Y: =DataCardKey23.Y
+                    ZIndex: =7
+
+                Label25 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    Color: =RGBA(39, 113, 194, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: |
+                        =40
+                    Size: =18
+                    Text: =Text(ThisItem.DataHorarioDenuncia,"dd")&" de "&Text(ThisItem.DataHorarioDenuncia,"mmmm","pt-BR")&" de "&Text(ThisItem.DataHorarioDenuncia,"yyyy")
+                    Width: =Parent.Width-48
+                    X: =DateValue1.X
+                    Y: =DateValue1.Y
+                    ZIndex: =8
+
             ID_Denunciado_DataCard1 As typedDataCard.fluentV9NumberEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
                 BorderStyle: =BorderStyle.Solid
@@ -887,123 +1004,6 @@ scr_Denuncias As screen:
                     X: =DateValue1.X
                     Y: =DateValue1.Y
                     ZIndex: =5
-
-            DataHorarioDenuncia_DataCard1 As typedDataCard.fluentV9DateTimeEditCard:
-                BorderColor: =App.Theme.Colors.Darker40
-                BorderStyle: =BorderStyle.Solid
-                DataField: ="DataHorarioDenuncia"
-                Default: =ThisItem.DataHorarioDenuncia
-                DisplayMode: =Parent.DisplayMode
-                DisplayName: =DataSourceInfo([@tbDenuncias],DataSourceInfo.DisplayName,DataHorarioDenuncia)
-                Fill: =RGBA(0, 0, 0, 0)
-                Height: =70
-                Required: =false
-                Update: =If(Not IsBlank(DateValue1.SelectedDate), DateTime(Year(DateValue1.SelectedDate), Month(DateValue1.SelectedDate), Day(DateValue1.SelectedDate), Value(HourValue2.Selected.Value), Value(MinuteValue2.Selected.Value), Second(DateValue1.SelectedDate)))
-                Width: =600
-                X: =0
-                Y: =0
-                ZIndex: =3
-
-                DataCardKey23 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =40
-                    Size: =26
-                    Text: ="Data e Horário da Denúncia"
-                    Weight: ='TextCanvas.Weight'.Regular
-                    Width: =Parent.Width - 48
-                    Wrap: =false
-                    X: =24
-                    Y: =10
-                    ZIndex: =1
-
-                "DateValue1 As 'Date picker'":
-                    AccessibleLabel: =Parent.DisplayName
-                    DisplayMode: =Parent.DisplayMode
-                    FontSize: =20
-                    Height: =40
-                    Required: =Parent.Required
-                    SelectedDate: =Parent.Default
-                    ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                    Visible: =false
-                    Width: =(Parent.Width - 48) / 2
-                    X: =24
-                    Y: =DataCardKey23.Y + DataCardKey23.Height + 4
-                    ZIndex: =2
-
-                HourValue2 As Dropdown.pcfdataset:
-                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
-                    DefaultSelectedItems: =[Text(Hour(Parent.Default),"00")]
-                    DisplayMode: =Parent.DisplayMode
-                    Height: =28
-                    Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
-                    Required: =Parent.Required
-                    Visible: =false
-                    Width: =DateValue1.Width / 2 - 10
-                    X: =DateValue1.X + DateValue1.Width + 10
-                    Y: =DateValue1.Y + 1
-                    ZIndex: =3
-
-                Separator2 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =HourValue2.Height
-                    Text: |-
-                        =":"
-                    Visible: =false
-                    Width: =10
-                    X: =HourValue2.X + HourValue2.Width
-                    Y: =HourValue2.Y
-                    ZIndex: =4
-
-                MinuteValue2 As Dropdown.pcfdataset:
-                    AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
-                    DefaultSelectedItems: =[Text(Minute(Parent.Default),"00")]
-                    DisplayMode: =Parent.DisplayMode
-                    Height: =28
-                    Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"]
-                    Required: =false
-                    Visible: =false
-                    Width: =HourValue2.Width
-                    X: =HourValue2.X + HourValue2.Width + Separator2.Width
-                    Y: =HourValue2.Y + 1
-                    ZIndex: =5
-
-                ErrorMessage23 As Text:
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =30
-                    Text: =Parent.Error
-                    Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =Parent.Width - 48
-                    Wrap: =true
-                    X: =24
-                    Y: =DateValue1.Y + DateValue1.Height
-                    ZIndex: =6
-
-                StarVisible23 As Text:
-                    Align: ='TextCanvas.Align'.Center
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =20
-                    Text: ="*"
-                    Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
-                    Width: =30
-                    X: =0
-                    Y: =DataCardKey23.Y
-                    ZIndex: =7
-
-                Label25 As label:
-                    BorderColor: =App.Theme.Colors.Darker40
-                    Color: =RGBA(39, 113, 194, 1)
-                    DisabledColor: =RGBA(166, 166, 166, 1)
-                    Font: =App.Theme.Font
-                    FontWeight: =FontWeight.Semibold
-                    Height: |
-                        =40
-                    Size: =18
-                    Text: =Text(ThisItem.DataHorarioDenuncia,"dd")&" de "&Text(ThisItem.DataHorarioDenuncia,"mmmm","pt-BR")&" de "&Text(ThisItem.DataHorarioDenuncia,"yyyy")
-                    Width: =Parent.Width-48
-                    X: =DateValue1.X
-                    Y: =DateValue1.Y
-                    ZIndex: =8
 
     Container10_1 As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.ExtraBold

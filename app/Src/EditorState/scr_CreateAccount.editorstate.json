@@ -4693,7 +4693,7 @@
         {
           "Category": "Data",
           "PropertyName": "TriggerOutput",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "User"
         },
         {
           "Category": "Data",

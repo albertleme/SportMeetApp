@@ -37,7 +37,7 @@
       "disableloadcomponentdefinitionsondemand": false,
       "disableruntimepolicies": false,
       "dynamicschema": false,
-      "enableappembeddingux": true,
+      "enableappembeddingux": false,
       "enablecanvasappruntimecopilot": true,
       "enablecomponentnamemaps": false,
       "enablecomponentscopeoldbehavior": false,
