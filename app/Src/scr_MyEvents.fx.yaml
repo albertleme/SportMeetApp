@@ -2,29 +2,18 @@ scr_MyEvents As screen:
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
     OnVisible: |-
-        =UpdateContext({varLoadingSpinner:true});
+        =UpdateContext({varLoadingSpinner: true});
         Refresh(tbEvent);
         Refresh(tbParticipants);
         ClearCollect(
             colMyEvents,
             Filter(
                 tbEvent,
-                ID = LookUp(
-                    tbParticipants,
-                    ID_Solicitante = gbl_varUser.ID,
-                    ID_Evento
-                ) Or ID_CriadorEvento = gbl_varUser.ID
+                ID_CriadorEvento = gbl_varUser.ID Or
+                gbl_varUser.ID in tbParticipants.ID_Solicitante
             )
         );
-        ClearCollect(
-            colParticipants,
-            Filter(
-                tbParticipants,
-                ID_Aprovador = gbl_varUser.ID,
-                Status.Value = "Em espera"
-            )
-        );
-        UpdateContext({varLoadingSpinner:false})
+        UpdateContext({varLoadingSpinner: false})
 
     cnt_ContentMenu_2 As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.Regular
@@ -261,7 +250,7 @@ scr_MyEvents As screen:
                         Height: =Parent.Height
                         LayoutMinHeight: =32
                         LayoutMinWidth: =320
-                        Value: =ThisItem.TituloEvento
+                        Value: =ThisItem.TituloEvento &" "&ThisItem.ID&" "&gbl_varUser.ID
                         Width: =320
                         X: =0
                         Y: =0
@@ -466,7 +455,7 @@ scr_MyEvents As screen:
                                 RGBA(220,220,220,1),
                                 Icon.Check,
                                 RGBA(100,200,100,1),
-                                Icon.Cancel,
+                                Icon.CancelBadge,
                                 RGBA(200,100,100,1)
                             )
                         DisabledBorderColor: =RGBA(166, 166, 166, 1)

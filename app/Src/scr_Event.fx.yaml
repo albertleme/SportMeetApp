@@ -1212,6 +1212,7 @@ scr_Event As screen:
                         Status.Value = "Aprovado"
                     )
                 );
+                ClearCollect(colAllParticipants,tbParticipants);
                 UpdateContext({varLoadingSpinner:false});
                 Notify("Solicitação enviada! Agora é só esperar o dono do evento aprovar sua participação",NotificationType.Information)
             Text: ="Participar"
