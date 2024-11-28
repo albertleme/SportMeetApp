@@ -1235,7 +1235,7 @@ scr_NewEvent As screen:
             OnSelect: |-
                 =UpdateContext({varLoadingSpinner: true});
                 SubmitForm(frm_Event_1);
-                If(
+                /*If(
                     IsBlank(
                         LookUp(
                             tbParticipants,
@@ -1250,7 +1250,7 @@ scr_NewEvent As screen:
                             ID_Esporte: Last(tbEvent).Esporte.Id
                         }
                     )
-                );
+                );*/
                 Navigate(
                     scr_Home,
                     ScreenTransition.Fade

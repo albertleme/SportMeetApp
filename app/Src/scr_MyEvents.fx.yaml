@@ -5,18 +5,30 @@ scr_MyEvents As screen:
         =UpdateContext({varLoadingSpinner: true});
         Refresh(tbEvent);
         Refresh(tbParticipants);
-        ClearCollect(
-            colMyEvents,
-            Filter(
-                tbParticipants,
         
-                ID_Aprovador = gbl_varUser.ID 
-                
-                Or
-        
-                gbl_varUser.ID = ID_Solicitante
+        Clear(colMyEvents);
+        ForAll(
+            tbEvent As E,
+            If(
+                E.ID_CriadorEvento = gbl_varUser.ID Or
+                !IsBlank(
+                    LookUp(
+                        tbParticipants,
+                        ID_Evento = E.ID && ID_Solicitante = gbl_varUser.ID
+                    )
+                ),
+                Collect(colMyEvents, E)
             )
         );
+        
+        ClearCollect(
+            colParticipants,
+            Filter(
+                tbParticipants,
+                ID_Aprovador = gbl_varUser.ID
+            )
+        );
+        
         UpdateContext({varLoadingSpinner: false})
 
     cnt_ContentMenu_2 As groupContainer.verticalAutoLayoutContainer:
@@ -143,18 +155,18 @@ scr_MyEvents As screen:
                     Sort(
                         Filter(
                             colMyEvents,
-                            LookUp(tbEvent,ID_Evento=ThisRecord.ID,DataHorarioEvento) > Today()
+                            DataHorarioEvento > Today()
                         ),
-                        LookUp(tbEvent,ID_Evento=ThisRecord.ID,DataHorarioEvento),
+                        DataHorarioEvento,
                         SortOrder.Ascending
                     ),
                     2,
                     Sort(
                         Filter(
                             colMyEvents,
-                            LookUp(tbEvent,ID_Evento=ThisRecord.ID,DataHorarioEvento) < Today()
+                            DataHorarioEvento < Today()
                         ),
-                        LookUp(tbEvent,ID_Evento=ThisRecord.ID,DataHorarioEvento),
+                        DataHorarioEvento,
                         SortOrder.Descending
                     )
                 )
@@ -232,7 +244,7 @@ scr_MyEvents As screen:
                         DisabledFill: =RGBA(244, 244, 244, 1)
                         DisplayMode: =DisplayMode.View
                         Height: =Parent.Height
-                        Image: =LookUp(tbSports,ID=ThisItem.ID_Esporte,Icone.Medium)
+                        Image: =LookUp(tbSports,ID=ThisItem.Esporte.Id,Icone.Medium)
                         LayoutMinHeight: =320
                         LayoutMinWidth: =320
                         OnSelect: =
@@ -254,7 +266,7 @@ scr_MyEvents As screen:
                         Height: =Parent.Height
                         LayoutMinHeight: =32
                         LayoutMinWidth: =320
-                        Value: =LookUp(tbEvent,ID=ThisItem.ID_Evento,TituloEvento)
+                        Value: =ThisItem.TituloEvento
                         Width: =320
                         X: =0
                         Y: =0
@@ -268,9 +280,9 @@ scr_MyEvents As screen:
                         Height: =Parent.Height
                         Icon: =Icon.ArrowRight
                         OnSelect: |+
-                            =If(LookUp(tbEvent,ID=ThisItem.ID_Evento,ID_CriadorEvento) = gbl_varUser.ID,
-                                Navigate(scr_NewEvent,ScreenTransition.Fade,{varEvent:LookUp(tbEvent,ID=ThisItem.ID_Evento)}),
-                                Navigate(scr_Event,ScreenTransition.Fade,{varEvent:LookUp(tbEvent,ID=ThisItem.ID_Evento)})
+                            =If(ThisItem.ID_CriadorEvento = gbl_varUser.ID,
+                                Navigate(scr_NewEvent,ScreenTransition.Fade,{varEvent:ThisItem}),
+                                Navigate(scr_Event,ScreenTransition.Fade,{varEvent:ThisItem})
                             )
                             
                             
@@ -314,7 +326,7 @@ scr_MyEvents As screen:
                         LayoutMinWidth: =96
                         PaddingLeft: =5
                         Size: =26
-                        Text: =Text(LookUp(tbEvent,ID=ThisItem.ID_Evento,DataHorarioEvento),"dd/mm/yyyy")
+                        Text: =Text(ThisItem.DataHorarioEvento,"dd/mm/yyyy")
                         Width: =96
                         X: =0
                         Y: =0
@@ -345,7 +357,7 @@ scr_MyEvents As screen:
                         PaddingLeft: =5
                         Size: =26
                         Text: |-
-                            =Text(LookUp(tbEvent,ID=ThisItem.ID_Evento,DataHorarioEvento),"hh:mm")
+                            =Text(ThisItem.DataHorarioEvento,"hh:mm")
                         Width: =96
                         X: =0
                         Y: =0
@@ -386,38 +398,14 @@ scr_MyEvents As screen:
                         PaddingLeft: =5
                         Size: =26
                         Text: |-
-                            =LookUp(
-                                tbEvent,
-                                ID = ThisItem.ID_Evento,
-                                Endereco
-                            ) & If(
-                                IsBlank(
-                                    LookUp(
-                                        tbEvent,
-                                        ID = ThisItem.ID_Evento,
-                                        Numero
-                                    )
-                                ),
+                            =ThisItem.Endereco & If(
+                                IsBlank(ThisItem.Numero),
                                 Blank(),
-                                ", " & LookUp(
-                                    tbEvent,
-                                    ID = ThisItem.ID_Evento,
-                                    Numero
-                                )
+                                ", " & ThisItem.Numero
                             ) & If(
-                                IsBlank(
-                                    LookUp(
-                                        tbEvent,
-                                        ID = ThisItem.ID_Evento,
-                                        Cidade.Value
-                                    )
-                                ),
+                                IsBlank(ThisItem.Cidade.Value),
                                 Blank(),
-                                " - " & LookUp(
-                                    tbEvent,
-                                    ID = ThisItem.ID_Evento,
-                                    Cidade.Value
-                                )
+                                " - " & ThisItem.Cidade.Value
                             )
                         Width: =96
                         X: =0
@@ -466,7 +454,7 @@ scr_MyEvents As screen:
                             DisabledFill: =RGBA(244, 244, 244, 1)
                             DisplayMode: =DisplayMode.View
                             Height: =Parent.Height
-                            Image: =Coalesce(LookUp(tbUsers,ID=LookUp(tbEvent,ID=ThisItem.ID_Evento,ID_CriadorEvento),FotoPerfil),SampleImage)
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,FotoPerfil),SampleImage)
                             ImagePosition: =ImagePosition.Fill
                             Width: =Self.Height
                             ZIndex: =1
@@ -482,20 +470,12 @@ scr_MyEvents As screen:
                         Text: |-
                             =LookUp(
                                 tbUsers,
-                                ID = LookUp(
-                                    tbEvent,
-                                    ID = ThisItem.ID_Evento,
-                                    ID_CriadorEvento
-                                ),
+                                ID = ThisItem.ID_CriadorEvento,
                                 Nome
                             ) & If(
                                 LookUp(
                                     tbUsers,
-                                    ID = LookUp(
-                                        tbEvent,
-                                        ID = ThisItem.ID_Evento,
-                                        ID_CriadorEvento
-                                    ),
+                                    ID = ThisItem.ID_CriadorEvento,
                                     ID
                                 ) = gbl_varUser.ID,
                                 " (Eu)",
@@ -550,7 +530,7 @@ scr_MyEvents As screen:
                                 Icon.CancelBadge,
                                 "Rejeitado"
                             )
-                        Visible: =If(LookUp(tbEvent,ID=ThisItem.ID_Evento,ID_CriadorEvento)=gbl_varUser.ID,false,true)
+                        Visible: =If(ThisItem.ID_CriadorEvento=gbl_varUser.ID,false,true)
                         ZIndex: =5
 
                     Container26 As groupContainer.manualLayoutContainer:
@@ -664,7 +644,7 @@ scr_MyEvents As screen:
                 Fill: =RGBA(240, 240, 240, 0.3)
                 Height: =Parent.TemplateHeight
                 OnSelect: =Select(Parent)
-                Visible: =If(LookUp(tbEvent,ID=ThisItem.ID_Evento,DataHorarioEvento)<Today(),true,false)
+                Visible: =If(ThisItem.DataHorarioEvento<Today(),true,false)
                 Width: =Parent.TemplateWidth
                 ZIndex: =9
 
