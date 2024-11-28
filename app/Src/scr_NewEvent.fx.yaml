@@ -1246,7 +1246,8 @@ scr_NewEvent As screen:
                         tbParticipants,
                         {
                             ID_Evento: Last(tbEvent).ID,
-                            ID_Aprovador: Last(tbEvent).ID_CriadorEvento
+                            ID_Aprovador: Last(tbEvent).ID_CriadorEvento,
+                            ID_Esporte: Last(tbEvent).Esporte.Id
                         }
                     )
                 );

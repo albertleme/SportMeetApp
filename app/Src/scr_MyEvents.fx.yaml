@@ -232,7 +232,7 @@ scr_MyEvents As screen:
                         DisabledFill: =RGBA(244, 244, 244, 1)
                         DisplayMode: =DisplayMode.View
                         Height: =Parent.Height
-                        Image: =LookUp(tbSports,ID=ThisItem.ID_Esporte,Icone.Full)
+                        Image: =LookUp(tbSports,ID=ThisItem.ID_Esporte,Icone.Medium)
                         LayoutMinHeight: =320
                         LayoutMinWidth: =320
                         OnSelect: =
@@ -353,7 +353,7 @@ scr_MyEvents As screen:
 
                 Container28_1 As groupContainer.horizontalAutoLayoutContainer:
                     Height: =Parent.Height/4
-                    LayoutMinHeight: =0
+                    LayoutMinHeight: =Icon7_1.Height
                     LayoutMinWidth: =250
                     LayoutMode: =LayoutMode.Auto
                     Width: =Parent.Width
@@ -366,7 +366,7 @@ scr_MyEvents As screen:
                         DisabledBorderColor: =RGBA(166, 166, 166, 1)
                         DisabledColor: =RGBA(244, 244, 244, 1)
                         DisplayMode: =DisplayMode.View
-                        Height: =Parent.Height
+                        Height: =75
                         Icon: =Icon.Location
                         PaddingBottom: =16
                         PaddingLeft: =16
@@ -376,7 +376,8 @@ scr_MyEvents As screen:
                         ZIndex: =1
 
                     TextCanvas4_2 As Text:
-                        AutoHeight: =false
+                        AlignInContainer: =AlignInContainer.Center
+                        AutoHeight: =true
                         DisplayMode: =DisplayMode.Edit
                         FillPortions: =1
                         Height: =Parent.Height
@@ -462,7 +463,7 @@ scr_MyEvents As screen:
                         FillPortions: =1
                         Height: =Parent.Height
                         LayoutMinHeight: =32
-                        PaddingLeft: =5
+                        PaddingLeft: =15
                         Size: =26
                         Text: |-
                             =LookUp(
