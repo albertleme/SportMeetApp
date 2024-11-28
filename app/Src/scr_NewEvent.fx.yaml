@@ -243,7 +243,7 @@ scr_NewEvent As screen:
                     Fill: =RGBA(0, 0, 0, 0)
                     Height: =Parent.Height
                     Size: =36
-                    Text: =If(IsBlank(Image12.Image),"📷",Blank())
+                    Text: =If(IsBlank(Image12),"📷",Blank())
                     Tooltip: ="Adicionar imagem"
                     Width: =Parent.Width
                     ZIndex: =3
@@ -372,6 +372,7 @@ scr_NewEvent As screen:
 
                         NextArrow1_3 As icon.ChevronRight:
                             AccessibleLabel: =Self.Tooltip
+                            AlignInContainer: =AlignInContainer.Center
                             Color: =RGBA(215, 58, 60, 1)
                             Height: =Parent.Height-20
                             Icon: =Icon.Trash
