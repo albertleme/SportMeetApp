@@ -569,7 +569,7 @@ scr_Home As screen:
                         Blank()
                     )
                 TemplatePadding: =0
-                TemplateSize: =If(CountRows(colMenuItems)=0,Parent.Width,Parent.Width/CountRows(colMenuItems))
+                TemplateSize: =Parent.Width/4
                 Transition: =Transition.Pop
                 Width: =Parent.Width
                 ZIndex: =1

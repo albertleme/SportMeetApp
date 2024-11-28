@@ -192,7 +192,7 @@ scr_Event As screen:
                     Height: =AddPicture1.Height
                     Image: |-
                         =Coalesce(
-                            Parent.Default,
+                            ThisItem.FotoEvento.Large,
                             AddPicture1.Media,
                             SampleImage
                         )
