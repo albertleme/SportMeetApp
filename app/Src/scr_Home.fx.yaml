@@ -239,7 +239,8 @@ scr_Home As screen:
                     Esporte.Value = glr_SportFilter.Selected.NomeEsporte,
                     ID_CriadorEvento <> gbl_varUser.ID,
                     If(IsBlank(varSelectedDate),true,Text(DataHorarioEvento,"yyyymmdd")=Text(varSelectedDate,"yyyymmdd")),
-                    DataHorarioEvento>Today()
+                    DataHorarioEvento>Today(),
+                    !Cancelado
                 )
             Layout: =Layout.Vertical
             LayoutMinHeight: =287
@@ -568,7 +569,7 @@ scr_Home As screen:
                         Blank()
                     )
                 TemplatePadding: =0
-                TemplateSize: =Parent.Width/CountRows(colMenuItems)
+                TemplateSize: =If(CountRows(colMenuItems)=0,Parent.Width,Parent.Width/CountRows(colMenuItems))
                 Transition: =Transition.Pop
                 Width: =Parent.Width
                 ZIndex: =1

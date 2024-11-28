@@ -155,7 +155,8 @@ scr_MyEvents As screen:
                     Sort(
                         Filter(
                             colMyEvents,
-                            DataHorarioEvento > Today()
+                            DataHorarioEvento > Today(),
+                            !Cancelado
                         ),
                         DataHorarioEvento,
                         SortOrder.Ascending
@@ -164,7 +165,8 @@ scr_MyEvents As screen:
                     Sort(
                         Filter(
                             colMyEvents,
-                            DataHorarioEvento < Today()
+                            DataHorarioEvento < Today(),
+                            !Cancelado
                         ),
                         DataHorarioEvento,
                         SortOrder.Descending
