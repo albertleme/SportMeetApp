@@ -172,10 +172,13 @@ scr_ChatMenu As screen:
                             ID_Destinatario
                         )
                     )*/
-                    
                     Distinct(
                         colMessages,
-                        If(ID_Remetente=gbl_varUser.ID,ID_Destinatario,ID_Remetente)
+                        If(
+                            ID_Remetente = gbl_varUser.ID,
+                            ID_Destinatario,
+                            ID_Remetente
+                        )
                     )
                 Layout: =Layout.Vertical
                 LayoutMinHeight: =287

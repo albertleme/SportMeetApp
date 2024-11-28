@@ -360,10 +360,10 @@ scr_NewEvent As screen:
                             Icon: =Icon.Message
                             OnSelect: |-
                                 =Navigate(scr_Chat,ScreenTransition.Fade,{varProfile:LookUp(tbUsers,ID=ThisItem.ID_Solicitante)})
-                            PaddingBottom: =8
-                            PaddingLeft: =8
-                            PaddingRight: =8
-                            PaddingTop: =8
+                            PaddingBottom: =16
+                            PaddingLeft: =16
+                            PaddingRight: =16
+                            PaddingTop: =16
                             Tooltip: ="View item details"
                             Width: =Self.Height-10
                             X: =
@@ -392,10 +392,10 @@ scr_NewEvent As screen:
                                     )
                                 );
                                 UpdateContext({varLoadingSpinner:false})
-                            PaddingBottom: =8
-                            PaddingLeft: =8
-                            PaddingRight: =8
-                            PaddingTop: =8
+                            PaddingBottom: =16
+                            PaddingLeft: =16
+                            PaddingRight: =16
+                            PaddingTop: =16
                             Tooltip: ="View item details"
                             Visible: =If(varEvent.ID_CriadorEvento=gbl_varUser.ID,true,false)
                             Width: =Self.Height-10
