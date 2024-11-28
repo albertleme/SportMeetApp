@@ -3,9 +3,9 @@ scr_Home As screen:
     LoadingSpinnerColor: =App.Theme.Colors.Primary
     OnVisible: |-
         =UpdateContext({varLoadingSpinner: true});
-        UpdateContext({varLoadingSpinner: false});
         ClearCollect(colEvents,tbEvent);
-        ClearCollect(colAllParticipants,tbParticipants)
+        ClearCollect(colAllParticipants,tbParticipants);
+        UpdateContext({varLoadingSpinner: false})
 
     cnt_ContentMenu As groupContainer.verticalAutoLayoutContainer:
         ContentLanguage: =
@@ -237,7 +237,8 @@ scr_Home As screen:
                 =Filter(
                     tbEvent,
                     Esporte.Value = glr_SportFilter.Selected.NomeEsporte,
-                    ID_CriadorEvento <> gbl_varUser.ID
+                    ID_CriadorEvento <> gbl_varUser.ID,
+                    If(IsBlank(varSelectedDate),true,Text(DataHorarioEvento,"yyyymmdd")=Text(varSelectedDate,"yyyymmdd"))
                 )
             Layout: =Layout.Vertical
             LayoutMinHeight: =287
@@ -839,6 +840,8 @@ scr_Home As screen:
                 HoverDateFill: =App.Theme.Colors.Lighter70
                 IconBackground: =App.Theme.Colors.Primary
                 IconFill: =App.Theme.Colors.PrimaryForeground
+                OnChange: |-
+                    =UpdateContext({varSelectedDate:DatePickerCanvas1.SelectedDate})
                 SelectedDateFill: =App.Theme.Colors.Primary
                 Size: =18
                 Width: =575

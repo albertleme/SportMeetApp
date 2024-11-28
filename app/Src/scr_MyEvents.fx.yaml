@@ -250,7 +250,7 @@ scr_MyEvents As screen:
                         Height: =Parent.Height
                         LayoutMinHeight: =32
                         LayoutMinWidth: =320
-                        Value: =ThisItem.TituloEvento &" "&ThisItem.ID&" "&gbl_varUser.ID
+                        Value: =ThisItem.TituloEvento
                         Width: =320
                         X: =0
                         Y: =0
@@ -431,19 +431,18 @@ scr_MyEvents As screen:
                             Width: =Self.Height
                             ZIndex: =1
 
-                    Label8 As label:
-                        BorderColor: =App.Theme.Colors.Darker40
-                        Color: =RGBA(0, 0, 0, 1)
-                        DisabledColor: =RGBA(166, 166, 166, 1)
+                    TextCanvas4_3 As Text:
+                        AutoHeight: =false
+                        DisplayMode: =DisplayMode.Edit
                         FillPortions: =1
-                        Font: =App.Theme.Font
                         Height: =Parent.Height
-                        LayoutMinHeight: =70
-                        LayoutMinWidth: =0
-                        PaddingLeft: =12
-                        Size: =21
+                        LayoutMinHeight: =32
+                        PaddingLeft: =5
+                        Size: =26
                         Text: =LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,Nome)&If(LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,ID)=gbl_varUser.ID," (Eu)",Blank())
-                        Width: =560
+                        Width: =96
+                        X: =0
+                        Y: =0
                         ZIndex: =3
 
                     Icon12 As icon.Cancel:
@@ -491,7 +490,7 @@ scr_MyEvents As screen:
                                 "Rejeitado"
                             )
                         Visible: =If(ThisItem.ID_CriadorEvento=gbl_varUser.ID,false,true)
-                        ZIndex: =4
+                        ZIndex: =5
 
                     Container26 As groupContainer.manualLayoutContainer:
                         AlignInContainer: =AlignInContainer.Center
@@ -519,7 +518,7 @@ scr_MyEvents As screen:
                                 true
                             )
                         Width: =Self.Height
-                        ZIndex: =5
+                        ZIndex: =6
 
                         Label10 As label:
                             Align: =Align.Center
@@ -597,7 +596,7 @@ scr_MyEvents As screen:
                         Size: =21
                         Text: =
                         Width: =10
-                        ZIndex: =6
+                        ZIndex: =7
 
     img_LoadingSpinner_CreateAccount_5 As image:
         BorderColor: =App.Theme.Colors.Darker40

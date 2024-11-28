@@ -193,7 +193,10 @@ scr_MyProfile As screen:
                         DisabledBorderColor: =RGBA(166, 166, 166, 1)
                         DisabledColor: =RGBA(244, 244, 244, 1)
                         Icon: =Icon.Save
-                        OnSelect: =SubmitForm(frm_MyProfile)
+                        OnSelect: |-
+                            =UpdateContext({varLoadingSpinner:true});
+                            SubmitForm(frm_MyProfile);
+                            UpdateContext({varLoadingSpinner:false})
                         PaddingBottom: =10
                         PaddingLeft: =10
                         PaddingRight: =10
@@ -848,7 +851,8 @@ scr_MyProfile As screen:
                     FontSize: =26
                     Height: =64
                     OnSelect: |-
-                        =RemoveIf(
+                        =UpdateContext({varLoadingSpinner:true});
+                        RemoveIf(
                             tbInteresses,
                             ID_Esporte = LookUp(
                                 tbSports,
@@ -863,7 +867,8 @@ scr_MyProfile As screen:
                                 tbInteresses,
                                 ID_Usuario = gbl_varUser.ID
                             )
-                        )
+                        );
+                        UpdateContext({varLoadingSpinner:false});
                     Text: ="Remover"
                     Width: =140
                     X: =340
