@@ -238,7 +238,8 @@ scr_Home As screen:
                     tbEvent,
                     Esporte.Value = glr_SportFilter.Selected.NomeEsporte,
                     ID_CriadorEvento <> gbl_varUser.ID,
-                    If(IsBlank(varSelectedDate),true,Text(DataHorarioEvento,"yyyymmdd")=Text(varSelectedDate,"yyyymmdd"))
+                    If(IsBlank(varSelectedDate),true,Text(DataHorarioEvento,"yyyymmdd")=Text(varSelectedDate,"yyyymmdd")),
+                    DataHorarioEvento>Today()
                 )
             Layout: =Layout.Vertical
             LayoutMinHeight: =287
@@ -478,6 +479,15 @@ scr_Home As screen:
                 PaddingTop: =12
                 X: =516
                 ZIndex: =5
+
+            Rectangle7 As rectangle:
+                BorderColor: =App.Theme.Colors.Darker40
+                Fill: =RGBA(240, 240, 240, 0.2)
+                Height: =Parent.TemplateHeight
+                OnSelect: =Select(Parent)
+                Visible: =If(ThisItem.DataHorarioEvento<Today(),true,false)
+                Width: =Parent.TemplateWidth
+                ZIndex: =6
 
         txt_NoEvents As Text:
             Align: ='TextCanvas.Align'.Center
@@ -721,6 +731,7 @@ scr_Home As screen:
                 DisabledColor: =RGBA(244, 244, 244, 1)
                 Height: =Parent.Height
                 Icon: =Icon.Reset
+                OnSelect: =Reset(DatePickerCanvas1);Reset(drp_Sport_Home)
                 PaddingBottom: =16
                 PaddingLeft: =16
                 PaddingRight: =16
@@ -831,6 +842,7 @@ scr_Home As screen:
                 BorderThickness: =0
                 CalendarHeaderFill: =App.Theme.Colors.Primary
                 Color: =RGBA(53, 61, 63, 1)
+                DefaultDate: =
                 DisabledBorderColor: =RGBA(166, 166, 166, 1)
                 DisabledColor: =RGBA(166, 166, 166, 1)
                 DisabledFill: =RGBA(244, 244, 244, 1)

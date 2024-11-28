@@ -527,11 +527,13 @@ scr_Event As screen:
                     Appearance: ='TextInputCanvas.Appearance'.FilledLighter
                     DisplayMode: =Parent.DisplayMode
                     FontSize: =26
+                    FontWeight: =FontWeight.Semibold
                     Height: =64
-                    Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                    Mode: ='TextInputCanvas.Mode'.Multiline
                     Required: =Parent.Required
                     ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
                     Value: =Parent.Default
+                    Visible: =false
                     Width: =Parent.Width - 48
                     X: =24
                     Y: =DataCardKey6.Y + DataCardKey6.Height + 4
@@ -558,6 +560,22 @@ scr_Event As screen:
                     X: =0
                     Y: =DataCardKey6.Y
                     ZIndex: =4
+
+                TextCanvas4 As Text:
+                    AutoHeight: =true
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =
+                    PaddingBottom: =10
+                    PaddingLeft: =15
+                    PaddingRight: =15
+                    PaddingTop: =10
+                    Size: =26
+                    Text: =Parent.Default
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey6.Y + DataCardKey6.Height + 4
+                    ZIndex: =5
 
             Numero_DataCard1 As typedDataCard.fluentV9TextualEditCard:
                 BorderColor: =App.Theme.Colors.Darker40
@@ -594,6 +612,7 @@ scr_Event As screen:
                     Appearance: ='TextInputCanvas.Appearance'.FilledLighter
                     DisplayMode: =Parent.DisplayMode
                     FontSize: =26
+                    FontWeight: =FontWeight.Semibold
                     Height: =64
                     Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
                     Required: =Parent.Required
@@ -631,7 +650,7 @@ scr_Event As screen:
                 BorderStyle: =BorderStyle.Solid
                 DisplayMode: =DisplayMode.Edit
                 Fill: =RGBA(0, 0, 0, 0)
-                Height: =300
+                Height: =270
                 Visible: =If(!IsBlank(ThisItem.ID_CriadorEvento),true,false)
                 Width: =640
                 X: =0
@@ -1125,10 +1144,27 @@ scr_Event As screen:
                     Required: =Parent.Required
                     ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
                     Value: =ThisItem.DescricaoEvento
+                    Visible: =false
                     Width: =Parent.Width - 48
                     X: =dtc_EventDescription.X
                     Y: =dtc_tituloEvento.Y + dtc_tituloEvento.Height + 4
                     ZIndex: =5
+
+                TextCanvas4_1 As Text:
+                    AutoHeight: =true
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =
+                    PaddingBottom: =10
+                    PaddingLeft: =15
+                    PaddingRight: =15
+                    PaddingTop: =10
+                    Size: =26
+                    Text: =Parent.Default
+                    Weight: ='TextCanvas.Weight'.Semibold
+                    Width: =Parent.Width - 48
+                    X: =24
+                    Y: =DataCardKey6.Y + DataCardKey6.Height + 4
+                    ZIndex: =6
 
     cnt_SaveEvent As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Semibold
