@@ -554,7 +554,7 @@ scr_MyEvents As screen:
                                         ID_Evento = ThisItem.ID,
                                         Status.Value = "Em espera"
                                     )
-                                )=0,
+                                ) = 0 Or ThisItem.DataHorarioEvento < Today(),
                                 false,
                                 true
                             )

@@ -240,7 +240,7 @@ scr_NewEvent As screen:
                     BorderColor: =App.Theme.Colors.Darker40
                     ChangePictureText: =""
                     Color: =RGBA(0, 0, 0, 1)
-                    Fill: =RGBA(255, 255, 255, 1)
+                    Fill: =RGBA(0, 0, 0, 0)
                     Height: =Parent.Height
                     Size: =36
                     Text: =If(IsBlank(Image12.Image),"📷",Blank())
