@@ -532,12 +532,13 @@ scr_Denuncias As screen:
 
             Icon16 As icon.EmojiFrown:
                 BorderColor: =App.Theme.Colors.Darker40
-                Color: =RGBA(139, 154, 159, 1)
+                Color: =RGBA(39, 113, 194, 1)
                 DisabledBorderColor: =RGBA(166, 166, 166, 1)
                 DisabledColor: =RGBA(244, 244, 244, 1)
-                DisplayMode: =DisplayMode.View
                 Height: =Parent.Height
-                Icon: =Icon.EmojiFrown
+                Icon: =Icon.ArrowLeft
+                OnSelect: |-
+                    =UpdateContext({bolDenuncia:false,bolDenunciaList:true})
                 PaddingBottom: =12
                 PaddingLeft: =12
                 PaddingRight: =12
@@ -551,6 +552,7 @@ scr_Denuncias As screen:
                 DisabledColor: =RGBA(166, 166, 166, 1)
                 FillPortions: =1
                 Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
                 Height: =Parent.Height
                 LayoutMinHeight: =70
                 LayoutMinWidth: =0
@@ -1025,7 +1027,7 @@ scr_Denuncias As screen:
             DropShadow: =DropShadow.Light
             FillPortions: =0
             Height: =60
-            LayoutMinHeight: =112
+            LayoutMinHeight: =Icon16_1.Height
             LayoutMinWidth: =250
             LayoutMode: =LayoutMode.Auto
             RadiusBottomLeft: =4
@@ -1040,7 +1042,7 @@ scr_Denuncias As screen:
                 DisabledBorderColor: =RGBA(166, 166, 166, 1)
                 DisabledColor: =RGBA(244, 244, 244, 1)
                 DisplayMode: =DisplayMode.View
-                Height: =Parent.Height
+                Height: =60
                 Icon: =Icon.EmojiFrown
                 PaddingBottom: =12
                 PaddingLeft: =12
@@ -1050,6 +1052,8 @@ scr_Denuncias As screen:
                 ZIndex: =1
 
             Label23_1 As label:
+                AlignInContainer: =AlignInContainer.Center
+                AutoHeight: =true
                 BorderColor: =App.Theme.Colors.Darker40
                 Color: =RGBA(139, 154, 159, 1)
                 DisabledColor: =RGBA(166, 166, 166, 1)
