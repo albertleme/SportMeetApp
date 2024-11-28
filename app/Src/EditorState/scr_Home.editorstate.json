@@ -1393,7 +1393,7 @@
       "MetaDataIDKey": "",
       "Name": "cnt_Event",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2695,7 +2695,7 @@
       "MetaDataIDKey": "",
       "Name": "cnt_Filter_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3394,7 +3394,7 @@
       "MetaDataIDKey": "",
       "Name": "cnt_FullEvent",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -3968,7 +3968,7 @@
       "MetaDataIDKey": "",
       "Name": "cnt_SportFilter",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -5375,7 +5375,7 @@
       "MetaDataIDKey": "",
       "Name": "Container33",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -5602,7 +5602,7 @@
       "MetaDataIDKey": "",
       "Name": "Container33_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -6734,7 +6734,7 @@
       "MetaDataIDKey": "",
       "Name": "galleryTemplate4",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 4,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -6880,7 +6880,7 @@
       "MetaDataIDKey": "",
       "Name": "glr_Events",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9212,7 +9212,7 @@
       "MetaDataIDKey": "",
       "Name": "Icon6",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -13884,7 +13884,7 @@
       "MetaDataIDKey": "",
       "Name": "Rectangle7",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -14433,7 +14433,7 @@
       "MetaDataIDKey": "",
       "Name": "txt_NoEvents",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {

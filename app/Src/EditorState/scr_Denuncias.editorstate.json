@@ -924,7 +924,7 @@
       "MetaDataIDKey": "",
       "Name": "ButtonCanvas4_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2564,7 +2564,7 @@
       "MetaDataIDKey": "",
       "Name": "Container14_4",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2878,7 +2878,7 @@
       "MetaDataIDKey": "",
       "Name": "Container14_5",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -8454,7 +8454,7 @@
       "MetaDataIDKey": "",
       "Name": "Icon17",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -10698,7 +10698,7 @@
       "MetaDataIDKey": "",
       "Name": "Label13_7",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -11328,7 +11328,7 @@
       "MetaDataIDKey": "",
       "Name": "Label13_9",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 4,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -11671,7 +11671,7 @@
       "MetaDataIDKey": "",
       "Name": "Label17",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 4,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -12007,7 +12007,7 @@
       "MetaDataIDKey": "",
       "Name": "Label19",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -12350,7 +12350,7 @@
       "MetaDataIDKey": "",
       "Name": "Label20",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -16308,7 +16308,7 @@
       "MetaDataIDKey": "",
       "Name": "TextInputCanvas2_2",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
