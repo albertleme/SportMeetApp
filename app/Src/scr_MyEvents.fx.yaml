@@ -395,6 +395,20 @@ scr_MyEvents As screen:
                                     LookUp(
                                         tbEvent,
                                         ID = ThisItem.ID_Evento,
+                                        Numero
+                                    )
+                                ),
+                                Blank(),
+                                ", " & LookUp(
+                                    tbEvent,
+                                    ID = ThisItem.ID_Evento,
+                                    Numero
+                                )
+                            ) & If(
+                                IsBlank(
+                                    LookUp(
+                                        tbEvent,
+                                        ID = ThisItem.ID_Evento,
                                         Cidade.Value
                                     )
                                 ),
