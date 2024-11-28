@@ -243,7 +243,7 @@ scr_NewEvent As screen:
                     Fill: =RGBA(255, 255, 255, 1)
                     Height: =Parent.Height
                     Size: =36
-                    Text: ="📷"
+                    Text: =If(IsBlank(Image12.Image),"📷",Blank())
                     Tooltip: ="Adicionar imagem"
                     Width: =Parent.Width
                     ZIndex: =3
@@ -1040,7 +1040,7 @@ scr_NewEvent As screen:
                             DisabledBorderColor: =RGBA(166, 166, 166, 1)
                             DisabledFill: =RGBA(244, 244, 244, 1)
                             Height: =Parent.Height
-                            Image: =LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,FotoPerfil)
+                            Image: =Coalesce(LookUp(tbUsers,ID=ThisItem.ID_CriadorEvento,FotoPerfil),SampleImage)
                             ImagePosition: =ImagePosition.Fill
                             OnSelect: |-
                                 =If(ThisItem.ID_CriadorEvento=gbl_varUser.ID,
@@ -1069,12 +1069,7 @@ scr_NewEvent As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="ID_CriadorEvento"
                 Default: =ThisItem.ID_CriadorEvento
-                DisplayMode: |-
-                    =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
-                        DisplayMode.Edit,
-                        DisplayMode.View
-                    )
+                DisplayMode: =Parent.DisplayMode
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,ID_CriadorEvento)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
@@ -1139,12 +1134,7 @@ scr_NewEvent As screen:
                 BorderStyle: =BorderStyle.Solid
                 DataField: ="ID"
                 Default: =ThisItem.ID
-                DisplayMode: |-
-                    =If(
-                        varSelectedEvent.ID_CriadorEvento = gbl_varUser.ID,
-                        DisplayMode.Edit,
-                        DisplayMode.View
-                    )
+                DisplayMode: =Parent.DisplayMode
                 DisplayName: =DataSourceInfo([@tbEvent],DataSourceInfo.DisplayName,ID)
                 Fill: =RGBA(0, 0, 0, 0)
                 Height: =70
@@ -1243,10 +1233,28 @@ scr_NewEvent As screen:
             Height: =64
             Icon: ="Save"
             OnSelect: |-
-                =UpdateContext({varLoadingSpinner:true});
+                =UpdateContext({varLoadingSpinner: true});
                 SubmitForm(frm_Event_1);
-                Navigate(scr_Home,ScreenTransition.Fade);
-                UpdateContext({varLoadingSpinner:false})
+                If(
+                    IsBlank(
+                        LookUp(
+                            tbParticipants,
+                            ID_Evento = Last(tbEvent).ID && ID_Aprovador = gbl_varUser.ID
+                        )
+                    ),
+                    Collect(
+                        tbParticipants,
+                        {
+                            ID_Evento: Last(tbEvent).ID,
+                            ID_Aprovador: Last(tbEvent).ID_CriadorEvento
+                        }
+                    )
+                );
+                Navigate(
+                    scr_Home,
+                    ScreenTransition.Fade
+                );
+                UpdateContext({varLoadingSpinner: false})
             Text: ="Salvar"
             Visible: |-
                 =If(
