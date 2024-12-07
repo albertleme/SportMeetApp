@@ -56,6 +56,20 @@
     "TemplateDisplayName": "Button",
     "Version": "0.0.43"
   },
+  "checkbox": {
+    "CustomGroupControlTemplateName": "",
+    "FirstParty": true,
+    "Id": "http://microsoft.com/appmagic/checkbox",
+    "IsComponentTemplate": false,
+    "IsCustomGroupControlTemplate": false,
+    "IsPcfControl": false,
+    "IsPremiumPcfControl": false,
+    "IsWidgetTemplate": true,
+    "LastModifiedTimestamp": "0",
+    "Name": "checkbox",
+    "OverridableProperties": {},
+    "Version": "2.1.0"
+  },
   "circle": {
     "CustomGroupControlTemplateName": "",
     "FirstParty": true,
@@ -199,6 +213,20 @@
     "Name": "hostControl",
     "OverridableProperties": {},
     "Version": "1.6.0"
+  },
+  "htmlViewer": {
+    "CustomGroupControlTemplateName": "",
+    "FirstParty": true,
+    "Id": "http://microsoft.com/appmagic/htmlViewer",
+    "IsComponentTemplate": false,
+    "IsCustomGroupControlTemplate": false,
+    "IsPcfControl": false,
+    "IsPremiumPcfControl": false,
+    "IsWidgetTemplate": true,
+    "LastModifiedTimestamp": "0",
+    "Name": "htmlViewer",
+    "OverridableProperties": {},
+    "Version": "2.1.0"
   },
   "icon": {
     "CustomGroupControlTemplateName": "",

@@ -533,59 +533,316 @@ scr_CreateAccount As screen:
             FontSize: =26
             Height: =Parent.Height
             Icon: ="Save"
-            OnSelect: |
-                =UpdateContext({varLoadingSpinner: true});
-                If(
-                    txt_Email_CreateAccount.Value = LookUp(
-                        tbUsers,
-                        Email = txt_Email_CreateAccount.Value,
-                        Email
-                    ),
-                    Notify("Usuário já cadastrado"),
-                    If(
-                        Not("@" in txt_Email_CreateAccount.Value),
-                        Notify("E-mail inválido"),
-                        If(
-                            txt_Senha_CreateAccount.Value <> txt_ConfirmarSenha_CreateAccount.Value,
-                            Notify("A senhas informadas não são equivalentes"),
-                            If(
-                                Len(txt_Senha_CreateAccount.Value) < 6 Or Len(txt_Senha_CreateAccount.Value) > 12,
-                                Notify("A senha deve possuir entre 6 e 12 caracteres"),
-                                If(
-                                    Not("!" in txt_Senha_CreateAccount.Value) And
-                                    Not("@" in txt_Senha_CreateAccount.Value) And
-                                    Not("#" in txt_Senha_CreateAccount.Value) And
-                                    Not("$" in txt_Senha_CreateAccount.Value) And
-                                    Not("%" in txt_Senha_CreateAccount.Value) And
-                                    Not("&" in txt_Senha_CreateAccount.Value) And
-                                    Not("*" in txt_Senha_CreateAccount.Value) And
-                                    Not("(" in txt_Senha_CreateAccount.Value) And
-                                    Not(")" in txt_Senha_CreateAccount.Value) And
-                                    Not("_" in txt_Senha_CreateAccount.Value) And
-                                    Not("-" in txt_Senha_CreateAccount.Value) And
-                                    Not("=" in txt_Senha_CreateAccount.Value) And
-                                    Not("+" in txt_Senha_CreateAccount.Value) And
-                                    Not("/" in txt_Senha_CreateAccount.Value) And
-                                    Not("." in txt_Senha_CreateAccount.Value) And
-                                    Not("," in txt_Senha_CreateAccount.Value) And
-                                    Not(";" in txt_Senha_CreateAccount.Value) And
-                                    Not(":" in txt_Senha_CreateAccount.Value) And
-                                    Not("?" in txt_Senha_CreateAccount.Value) And
-                                    Not("\" in txt_Senha_CreateAccount.Value) And
-                                    Not("|" in txt_Senha_CreateAccount.Value),
-                                    Notify("A senha deve conter no mínimo um caractere especial"),
-                                    SubmitForm(frm_CreateUser)
-                                )
-                            )
-                        )
-                    )
-                );
-                UpdateContext({varLoadingSpinner: false});
+            OnSelect: |-
+                =UpdateContext({bolTermo:true})
             Text: ="Salvar"
             Width: =Parent.Width
             X: =0
             Y: =0
             ZIndex: =1
+
+    Rectangle8 As rectangle:
+        BorderColor: =App.Theme.Colors.Darker40
+        Fill: =RGBA(0, 0, 0, 0.4)
+        Height: =Parent.Height
+        OnSelect: |-
+            =UpdateContext({bolTermo:false});Reset(Checkbox1)
+        Visible: =bolTermo
+        Width: =Parent.Width
+        ZIndex: =4
+
+    Container28 As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.ExtraBold
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =Parent.Height-200
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =bolTermo
+        X: =Parent.Width/2-Self.Width/2
+        Y: =Parent.Height/2-Self.Height/2
+        ZIndex: =5
+
+        Container40 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =64
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =1
+
+            Label8 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(39, 113, 194, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.Height
+                LayoutMinHeight: =70
+                LayoutMinWidth: =0
+                PaddingLeft: =15
+                Size: =18
+                Text: ="Termos de Uso e Política de Privacidade"
+                Width: =560
+                ZIndex: =1
+
+        HtmlText1 As htmlViewer:
+            AlignInContainer: =AlignInContainer.Stretch
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            FillPortions: =1
+            Font: =App.Theme.Font
+            Height: =70
+            HtmlText: |-
+                ="<!DOCTYPE html>
+                <html lang=""pt-br"">
+                <head>
+                    <meta charset=""UTF-8"">
+                    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                    <title>Termos de Uso e Política de Privacidade</title>
+                    <style>
+                        /* Global styles */
+                        body {
+                            font-family: Arial, sans-serif;
+                            line-height: 1.8;
+                            margin: 0;
+                            padding: 0;
+                            background-color: #f9f9f9;
+                            color: #333;
+                        }
+                
+                        header {
+                            background-color: #0056b3;
+                            color: #fff;
+                            padding: 20px;
+                            text-align: center;
+                        }
+                
+                        h1 {
+                            font-size: 1.8rem;
+                            margin: 0;
+                        }
+                
+                        main {
+                            padding: 20px;
+                            max-width: 800px;
+                            margin: auto;
+                        }
+                
+                        h2 {
+                            font-size: 1.4rem;
+                            color: #0056b3;
+                            margin-top: 20px;
+                        }
+                
+                        p {
+                            font-size: 1rem;
+                            margin: 10px 0;
+                        }
+                
+                        ul {
+                            margin-left: 20px;
+                            padding-left: 0;
+                        }
+                
+                        ul li {
+                            margin-bottom: 10px;
+                            font-size: 1rem;
+                        }
+                
+                        footer {
+                            text-align: center;
+                            padding: 20px;
+                            font-size: 0.9rem;
+                            color: #666;
+                        }
+                
+                        /* Mobile styles */
+                        @media (max-width: 768px) {
+                            h1 {
+                                font-size: 1.6rem;
+                            }
+                
+                            h2 {
+                                font-size: 1.2rem;
+                            }
+                
+                            p, ul li {
+                                font-size: 1rem;
+                            }
+                
+                            main {
+                                padding: 15px;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <header>
+                        <h1>Termos de Uso e Política de Privacidade</h1>
+                    </header>
+                    <main>
+                        <h2>1. Objetivo do Aplicativo</h2>
+                        <p>O <strong>SportMeet App</strong> foi criado para facilitar a organização e comunicação entre grupos esportivos, promovendo uma experiência dinâmica e colaborativa para seus usuários.</p>
+                
+                        <h2>2. Uso de Dados Pessoais</h2>
+                        <p>De acordo com a <strong>Lei Geral de Proteção de Dados (LGPD)</strong>, garantimos o uso responsável das informações coletadas. Os dados fornecidos, como nome, e-mail, número de telefone, localização e imagens, serão utilizados para:</p>
+                        <ul>
+                            <li>Criar e gerenciar seu perfil;</li>
+                            <li>Facilitar a comunicação dentro dos grupos esportivos;</li>
+                            <li>Personalizar sua experiência no aplicativo;</li>
+                            <li>Realizar melhorias no serviço e oferecer suporte técnico.</li>
+                        </ul>
+                        <p><strong>Armazenamento de Dados:</strong> Seus dados serão armazenados de maneira segura em servidores protegidos. Adotamos medidas de segurança para evitar acesso não autorizado, mas alertamos que nenhum sistema é totalmente imune a falhas.</p>
+                        <p><strong>Compartilhamento de Dados:</strong> Não compartilhamos seus dados com terceiros, exceto quando necessário para cumprimento legal, ordem judicial ou com empresas parceiras para melhoria do serviço, sempre respeitando as exigências legais.</p>
+                
+                        <h2>3. Direitos do Usuário</h2>
+                        <p>Você, como titular de dados, possui os seguintes direitos garantidos pela LGPD:</p>
+                        <ul>
+                            <li>Acessar, corrigir ou excluir seus dados pessoais;</li>
+                            <li>Revogar o consentimento para uso de dados a qualquer momento;</li>
+                            <li>Solicitar informações sobre como seus dados são tratados.</li>
+                        </ul>
+                        <p>Para exercer esses direitos, entre em contato com nossa equipe pelo e-mail <strong>albert.brito@fatec.sp.gov.br</strong>.</p>
+                
+                        <h2>4. Uso de Imagens</h2>
+                        <p>Ao utilizar o aplicativo, você autoriza o uso de imagens enviadas ou capturadas dentro da plataforma, como fotos de perfil ou publicações, para fins exclusivos de exibição dentro dos grupos esportivos ou em funcionalidades relacionadas ao serviço. O uso das imagens respeitará as finalidades do aplicativo e não serão utilizadas para fins comerciais ou publicitários sem seu consentimento explícito.</p>
+                        <p>Se você desejar remover uma imagem publicada, basta acessar as configurações ou entrar em contato com nossa equipe.</p>
+                
+                        <h2>5. Responsabilidades do Usuário</h2>
+                        <p>Ao utilizar o aplicativo, você concorda em:</p>
+                        <ul>
+                            <li>Utilizar a plataforma exclusivamente para os fins previstos, como organização e interação de grupos esportivos;</li>
+                            <li>Não compartilhar conteúdos ofensivos, ilegais ou que violem os direitos de terceiros;</li>
+                            <li>Respeitar a privacidade e os dados dos demais usuários.</li>
+                        </ul>
+                
+                        <h2>6. Alterações nos Termos</h2>
+                        <p>O <strong>SportMeet App</strong> reserva-se o direito de alterar estes Termos de Uso e a Política de Privacidade a qualquer momento. Notificaremos os usuários sobre mudanças significativas por meio do aplicativo ou do e-mail cadastrado. Recomendamos revisar regularmente este documento para se manter atualizado.</p>
+                
+                        <h2>7. Contato</h2>
+                        <p>Se tiver dúvidas sobre os Termos de Uso ou a Política de Privacidade, entre em contato conosco pelo e-mail <strong>albert.brito@fatec.sp.gov.br</strong>.</p>
+                
+                        <p>Ao prosseguir com o uso do aplicativo, você declara ter lido e concordado com estes Termos de Uso e Política de Privacidade. Aproveite a experiência no <strong>SportMeet App</strong> e bons treinos! 🚀</p>
+                    </main>
+                    <footer>
+                        <p>&copy; 2024 SportMeet App. Todos os direitos reservados.</p>
+                    </footer>
+                </body>
+                </html>"
+            LayoutMinHeight: =0
+            LayoutMinWidth: =0
+            PaddingLeft: =16
+            PaddingRight: =16
+            Size: =18
+            Width: =Parent.Width
+            ZIndex: =2
+
+        Container41 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =64
+            LayoutMinHeight: =112
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =3
+
+            Checkbox1 As checkbox:
+                BorderColor: =
+                BorderStyle: =BorderStyle.None
+                CheckboxBorderColor: =App.Theme.Colors.Primary
+                CheckboxSize: =55
+                CheckmarkFill: =App.Theme.Colors.Primary
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                FillPortions: =1
+                Font: =App.Theme.Font
+                Height: =Parent.Height
+                HoverBorderColor: =
+                HoverColor: =App.Theme.Colors.Darker30
+                LayoutMinHeight: =85
+                LayoutMinWidth: =280
+                PressedBorderColor: =
+                Size: =21
+                Text: ="Aceito os termos de uso"
+                Width: =280
+                ZIndex: =1
+
+            Icon18 As icon.ArrowRight:
+                BorderColor: =App.Theme.Colors.Darker40
+                Color: =RGBA(39, 113, 194, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                DisplayMode: =If(Checkbox1.Value,DisplayMode.Edit,DisplayMode.Disabled)
+                Height: =Parent.Height
+                Icon: =Icon.ArrowRight
+                OnSelect: |-
+                    =UpdateContext({varLoadingSpinner: true});
+                    If(
+                        txt_Email_CreateAccount.Value = LookUp(
+                            tbUsers,
+                            Email = txt_Email_CreateAccount.Value,
+                            Email
+                        ),
+                        Notify("Usuário já cadastrado"),
+                        If(
+                            Not("@" in txt_Email_CreateAccount.Value),
+                            Notify("E-mail inválido"),
+                            If(
+                                txt_Senha_CreateAccount.Value <> txt_ConfirmarSenha_CreateAccount.Value,
+                                Notify("A senhas informadas não são equivalentes"),
+                                If(
+                                    Len(txt_Senha_CreateAccount.Value) < 6 Or Len(txt_Senha_CreateAccount.Value) > 12,
+                                    Notify("A senha deve possuir entre 6 e 12 caracteres"),
+                                    If(
+                                        Not("!" in txt_Senha_CreateAccount.Value) And
+                                        Not("@" in txt_Senha_CreateAccount.Value) And
+                                        Not("#" in txt_Senha_CreateAccount.Value) And
+                                        Not("$" in txt_Senha_CreateAccount.Value) And
+                                        Not("%" in txt_Senha_CreateAccount.Value) And
+                                        Not("&" in txt_Senha_CreateAccount.Value) And
+                                        Not("*" in txt_Senha_CreateAccount.Value) And
+                                        Not("(" in txt_Senha_CreateAccount.Value) And
+                                        Not(")" in txt_Senha_CreateAccount.Value) And
+                                        Not("_" in txt_Senha_CreateAccount.Value) And
+                                        Not("-" in txt_Senha_CreateAccount.Value) And
+                                        Not("=" in txt_Senha_CreateAccount.Value) And
+                                        Not("+" in txt_Senha_CreateAccount.Value) And
+                                        Not("/" in txt_Senha_CreateAccount.Value) And
+                                        Not("." in txt_Senha_CreateAccount.Value) And
+                                        Not("," in txt_Senha_CreateAccount.Value) And
+                                        Not(";" in txt_Senha_CreateAccount.Value) And
+                                        Not(":" in txt_Senha_CreateAccount.Value) And
+                                        Not("?" in txt_Senha_CreateAccount.Value) And
+                                        Not("\" in txt_Senha_CreateAccount.Value) And
+                                        Not("|" in txt_Senha_CreateAccount.Value),
+                                        Notify("A senha deve conter no mínimo um caractere especial"),
+                                        SubmitForm(frm_CreateUser)
+                                    )
+                                )
+                            )
+                        )
+                    );
+                    UpdateContext({varLoadingSpinner: false});
+                    Reset(Checkbox1);
+                    UpdateContext({bolTermo:false})
+                PaddingBottom: =8
+                PaddingLeft: =8
+                PaddingRight: =8
+                PaddingTop: =8
+                ZIndex: =2
 
     img_LoadingSpinner_CreateAccount As image:
         BorderColor: =App.Theme.Colors.Darker40
@@ -664,5 +921,5 @@ scr_CreateAccount As screen:
         Width: =640
         X: =Parent.Width/2-Self.Width/2
         Y: =Parent.Height/2-Self.Height/2
-        ZIndex: =4
+        ZIndex: =6
 
